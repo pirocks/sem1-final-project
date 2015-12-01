@@ -94,7 +94,7 @@ begin = """
 import java.io.*;
 import java.util.Scanner;
 
-public class myCurses
+public class myCurses_auto
 {
     public static final String BLACK = "\033[0m";
     public static final String RED = "\033[31m";
@@ -105,16 +105,19 @@ public class myCurses
     public static final String CYAN = "\033[36m";
     public static final String WHITE = "\033[37m";
 """
-format1 ="""public static String %s;\n"""
+format1 ="""    public static String %s;\n"""
 
 begin2="""    
     public static String cmp;
-    public myCurses()
+    public myCurses_auto()
     {
         cmp = constructorStuff.getCmp();
-        System.out.println(constructorStuff.getCmp());
         String[] cmp_array = constructorStuff.toArray(cmp);
-        constructorStuff.set_vars.set_buffer_init(cmp_array);
+        constructorStuff.set_vars.enter_bold_mode_init(cmp_array);
+        System.out.println("bold");
+        constructorStuff.set_vars.clear_screen_init(cmp_array);
+        System.out.println(clear_screen);
+        System.out.println("clear");
     }
     public static class constructorStuff
     {
@@ -148,22 +151,22 @@ end ="""}
     }
     public static void init()
     {
-        System.out.print(buffer_init);
+        System.out.print(enter_bold_mode);
     }
 }
 
 """
 
-middle_format = """public static void %s_init(String[] in)
+middle_format = """\n            public static void %s_init(String[] in)
             {
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
                     index = (in[i]).indexOf("\\\\");
-                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    if((in[i]).indexOf("%s") != -1)
                     {
                         %s = in[i].substring(index,in[i].length() - 1).replace("\\\\E","\\033");
-                        System.out.println(enter_bold_mode);
+                        System.out.println(%s);
                     }
                 }
             }"""
@@ -175,6 +178,6 @@ def generate():
         middle1 += format1 % (item)
     middle2 = ''
     for item in items:
-        middle2 += (middle_format % (item,item))
+        middle2 += (middle_format % (item,item,item,item))
     return begin + middle1 + begin2 + middle2 + end
 print generate()
