@@ -3,7 +3,7 @@ public final class pieces
 	public static final int blank =   0;
 	public static final int wking =   1;
 	public static final int wqueen =  2;
-	public static final int wrook =    3;
+	public static final int wrook =   3;
 	public static final int wbishop = 4;
 	public static final int wknight = 5;
 	public static final int wpawn =   6;

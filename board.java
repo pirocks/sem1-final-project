@@ -1,6 +1,10 @@
 
 public class board {
-	private int boardValue[][];
+	private int boardValue[][] = new int[8][8];
+	public board(int[][] board_in)
+	{
+		boardValue = board_in;
+	}
 	public int getPiece(int y, int x)
 	{
 		return boardValue[y][x];
