@@ -104,10 +104,10 @@ public class myCurses
     public static final String MAGENTA = "\033[35m";
     public static final String CYAN = "\033[36m";
     public static final String WHITE = "\033[37m";
-    public static String enter_bold_mode;
-    public static String cursor_home;
-    public static String change_scroll_region;
-    
+"""
+format1 ="""public static String %s;\n"""
+
+begin2="""    
     public static String cmp;
     public myCurses()
     {
@@ -133,7 +133,7 @@ public class myCurses
         }
         private static String inputStreamToString(InputStream in)
         {
-            String inputStreamString = new Scanner(in,"UTF-8").useDelimiter("\\A").next();
+            String inputStreamString = new Scanner(in,"UTF-8").useDelimiter("\\\\A").next();
             return inputStreamString;
         }
         public static String[] toArray(String in)
@@ -154,15 +154,15 @@ end ="""}
 
 """
 
-middle_format = """public static void %sinit(String[] in)
+middle_format = """public static void %s_init(String[] in)
             {
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
+                    index = (in[i]).indexOf("\\\\");
                     if((in[i]).indexOf("enter_bold_mode") != -1)
                     {
-                        %s = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        %s = in[i].substring(index,in[i].length() - 1).replace("\\\\E","\\033");
                         System.out.println(enter_bold_mode);
                     }
                 }
@@ -170,9 +170,11 @@ middle_format = """public static void %sinit(String[] in)
 
 
 def generate():
-    middle = ''
+    middle1 =''
     for item in items:
-        middle += (middle_format % (item,item))
-    return begin + middle + end
-    
+        middle1 += format1 % (item)
+    middle2 = ''
+    for item in items:
+        middle2 += (middle_format % (item,item))
+    return begin + middle1 + begin2 + middle2 + end
 print generate()

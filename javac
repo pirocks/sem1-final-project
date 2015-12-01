@@ -1,0 +1,1081 @@
+
+import java.io.*;
+import java.util.Scanner;
+
+public class myCurses
+{
+    public static final String BLACK = "[0m";
+    public static final String RED = "[31m";
+    public static final String GREEN = "[32m";
+    public static final String YELLOW = "[33m";
+    public static final String BLUE = "[34m";
+    public static final String MAGENTA = "[35m";
+    public static final String CYAN = "[36m";
+    public static final String WHITE = "[37m";
+    public static String enter_bold_mode;
+    public static String cursor_home;
+    public static String change_scroll_region;
+    
+    public static String cmp;
+    public myCurses()
+    {
+        cmp = constructorStuff.getCmp();
+        System.out.println(constructorStuff.getCmp());
+        String[] cmp_array = constructorStuff.toArray(cmp);
+        constructorStuff.set_vars.set_buffer_init(cmp_array);
+    }
+    public static class constructorStuff
+    {
+        public static String getCmp()
+        {
+            try
+            {
+                Process process = Runtime.getRuntime().exec("infocmp -L");
+                return inputStreamToString(process.getInputStream());
+            }
+            catch(IOException e)
+            {
+                System.out.println("something is wrong");
+                return "";
+            }
+        }
+        private static String inputStreamToString(InputStream in)
+        {
+            String inputStreamString = new Scanner(in,"UTF-8").useDelimiter("\A").next();
+            return inputStreamString;
+        }
+        public static String[] toArray(String in)
+        {
+            return in.split(" ");
+        }
+        public static class set_vars
+        {
+            public static void back_tabinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        back_tab = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void bellinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        bell = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void carriage_returninit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        carriage_return = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void change_scroll_regioninit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        change_scroll_region = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void clear_all_tabsinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        clear_all_tabs = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void clear_screeninit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        clear_screen = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void clr_bolinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        clr_bol = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void clr_eolinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        clr_eol = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void clr_eosinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        clr_eos = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_addressinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_address = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_downinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_down = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_homeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_home = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_invisibleinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_invisible = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_leftinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_left = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_normalinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_normal = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_rightinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_right = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_upinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_up = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void cursor_visibleinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        cursor_visible = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void delete_characterinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        delete_character = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void delete_lineinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        delete_line = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void ena_acsinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        ena_acs = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_alt_charset_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_alt_charset_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_blink_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_blink_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_bold_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_bold_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_ca_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_ca_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_insert_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_insert_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_reverse_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_reverse_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_standout_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_standout_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void enter_underline_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        enter_underline_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void exit_alt_charset_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        exit_alt_charset_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void exit_attribute_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        exit_attribute_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void exit_ca_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        exit_ca_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void exit_insert_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        exit_insert_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void exit_standout_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        exit_standout_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void exit_underline_modeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        exit_underline_mode = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void flash_screeninit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        flash_screen = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void init_2stringinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        init_2string = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void insert_lineinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        insert_line = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_backspaceinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_backspace = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_btabinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_btab = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_dcinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_dc = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_downinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_down = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_endinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_end = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f1init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f1 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f10init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f10 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f11init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f11 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f12init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f12 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f2init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f2 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f3init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f3 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f4init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f4 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f5init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f5 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f6init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f6 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f7init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f7 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f8init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f8 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_f9init(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_f9 = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_homeinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_home = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_icinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_ic = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_leftinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_left = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_mouseinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_mouse = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_npageinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_npage = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_ppageinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_ppage = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_rightinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_right = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void key_upinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        key_up = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void keypad_localinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        keypad_local = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void keypad_xmitinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        keypad_xmit = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void newlineinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        newline = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void orig_pairinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        orig_pair = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_dchinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_dch = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_delete_lineinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_delete_line = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_down_cursorinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_down_cursor = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_ichinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_ich = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_insert_lineinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_insert_line = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_left_cursorinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_left_cursor = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_right_cursorinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_right_cursor = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void parm_up_cursorinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        parm_up_cursor = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void reset_2stringinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        reset_2string = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void restore_cursorinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        restore_cursor = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void save_cursorinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        save_cursor = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void scroll_forwardinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        scroll_forward = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void scroll_reverseinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        scroll_reverse = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void set_a_backgroundinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        set_a_background = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void set_a_foregroundinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        set_a_foreground = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void set_attributesinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        set_attributes = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void set_tabinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        set_tab = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }public static void tabinit(String[] in)
+            {
+                int index = -1;
+                for(int i = 0; i < in.length; i++)
+                {
+                    index = (in[i]).indexOf("\");
+                    if((in[i]).indexOf("enter_bold_mode") != -1)
+                    {
+                        tab = in[i].substring(index,in[i].length() - 1).replace("\E","");
+                        System.out.println(enter_bold_mode);
+                    }
+                }
+            }}
+    }
+    public static void init()
+    {
+        System.out.print(buffer_init);
+    }
+}
+
+
