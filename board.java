@@ -17,11 +17,7 @@ public class board {
 	{
 		return boardValue;
 	}
-	public board apply_move(board board_in,move move_in)
-	{
-		assert(valid.validinternal(board_in,move_in));
-		return move_in.apply_move(board_in);
-	}
+
 	public board apply_move(move move_in)
 	{
 		assert(valid.validinternal(this,move_in));
