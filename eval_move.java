@@ -3,8 +3,8 @@ public class eval_move extends move
     private double value;
     public eval_move(int x_in, int y_in, int x_end,int y_end,boolean castlingq,double value)
     {
-        this.value = value;
         super(x_in,y_in,x_end,y_end,castlingq);
+        this.value = value;
     }
     public eval_move(int x_in, int y_in, int x_end,int y_end,double value)
     {
@@ -12,8 +12,8 @@ public class eval_move extends move
     }
     public eval_move(int[] moves,double value)
     {
+        super(moves);
         this.value = value;
-        super(moves)
     }
     public double get_value()
     {
