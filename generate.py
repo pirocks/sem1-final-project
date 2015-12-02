@@ -113,9 +113,8 @@ begin2="""
     {
         cmp = constructorStuff.getCmp();
         String[] cmp_array = constructorStuff.toArray(cmp);
-        constructorStuff.set_vars.enter_bold_mode_init(cmp_array);
+        constructorStuff.set_vars.init_all(cmp_array);
         System.out.println("bold");
-        constructorStuff.set_vars.clear_screen_init(cmp_array);
         System.out.println(clear_screen);
         System.out.println("clear");
     }
@@ -146,13 +145,18 @@ begin2="""
         public static class set_vars
         {
             """
-        
+
+init_all_beg = """ public static void init_all(String[] in) {"""
+init_all_mid = """set_vars.%s_init(in);\n"""
+init_all_end = """}"""
 end ="""}
     }
+    
     public static void init()
     {
         System.out.print(enter_bold_mode);
     }
+    
 }
 
 """
@@ -162,10 +166,10 @@ middle_format = """\n            public static void %s_init(String[] in)
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\\\");
                     if((in[i]).indexOf("%s") != -1)
                     {
-                        %s = in[i].substring(index,in[i].length() - 1).replace("\\\\E","\\033");
+                        index = (in[i]).indexOf("=");
+                        %s = in[i].substring(index + 1,in[i].length() - 1).replace("\\\\E","\\033");
                         System.out.println(%s);
                     }
                 }
@@ -179,5 +183,9 @@ def generate():
     middle2 = ''
     for item in items:
         middle2 += (middle_format % (item,item,item,item))
-    return begin + middle1 + begin2 + middle2 + end
+    init_all = init_all_beg
+    for item in items:
+        init_all += init_all_mid % (item)
+    init_all += init_all_end
+    return begin + middle1 + begin2 + middle2 +init_all+ end
 print generate()

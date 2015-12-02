@@ -103,9 +103,8 @@ public class myCurses_auto
     {
         cmp = constructorStuff.getCmp();
         String[] cmp_array = constructorStuff.toArray(cmp);
-        constructorStuff.set_vars.enter_bold_mode_init(cmp_array);
+        constructorStuff.set_vars.init_all(cmp_array);
         System.out.println("bold");
-        constructorStuff.set_vars.clear_screen_init(cmp_array);
         System.out.println(clear_screen);
         System.out.println("clear");
     }
@@ -141,10 +140,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("back_tab") != -1)
                     {
-                        back_tab = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        back_tab = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(back_tab);
                     }
                 }
@@ -154,10 +153,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("bell") != -1)
                     {
-                        bell = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        bell = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(bell);
                     }
                 }
@@ -167,10 +166,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("carriage_return") != -1)
                     {
-                        carriage_return = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        carriage_return = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(carriage_return);
                     }
                 }
@@ -180,10 +179,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("change_scroll_region") != -1)
                     {
-                        change_scroll_region = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        change_scroll_region = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(change_scroll_region);
                     }
                 }
@@ -193,10 +192,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("clear_all_tabs") != -1)
                     {
-                        clear_all_tabs = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        clear_all_tabs = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(clear_all_tabs);
                     }
                 }
@@ -206,10 +205,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("clear_screen") != -1)
                     {
-                        clear_screen = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        clear_screen = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(clear_screen);
                     }
                 }
@@ -219,10 +218,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("clr_bol") != -1)
                     {
-                        clr_bol = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        clr_bol = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(clr_bol);
                     }
                 }
@@ -232,10 +231,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("clr_eol") != -1)
                     {
-                        clr_eol = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        clr_eol = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(clr_eol);
                     }
                 }
@@ -245,10 +244,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("clr_eos") != -1)
                     {
-                        clr_eos = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        clr_eos = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(clr_eos);
                     }
                 }
@@ -258,10 +257,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_address") != -1)
                     {
-                        cursor_address = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_address = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_address);
                     }
                 }
@@ -271,10 +270,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_down") != -1)
                     {
-                        cursor_down = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_down = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_down);
                     }
                 }
@@ -284,10 +283,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_home") != -1)
                     {
-                        cursor_home = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_home = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_home);
                     }
                 }
@@ -297,10 +296,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_invisible") != -1)
                     {
-                        cursor_invisible = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_invisible = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_invisible);
                     }
                 }
@@ -310,10 +309,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_left") != -1)
                     {
-                        cursor_left = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_left = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_left);
                     }
                 }
@@ -323,10 +322,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_normal") != -1)
                     {
-                        cursor_normal = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_normal = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_normal);
                     }
                 }
@@ -336,10 +335,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_right") != -1)
                     {
-                        cursor_right = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_right = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_right);
                     }
                 }
@@ -349,10 +348,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_up") != -1)
                     {
-                        cursor_up = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_up = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_up);
                     }
                 }
@@ -362,10 +361,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("cursor_visible") != -1)
                     {
-                        cursor_visible = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        cursor_visible = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(cursor_visible);
                     }
                 }
@@ -375,10 +374,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("delete_character") != -1)
                     {
-                        delete_character = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        delete_character = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(delete_character);
                     }
                 }
@@ -388,10 +387,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("delete_line") != -1)
                     {
-                        delete_line = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        delete_line = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(delete_line);
                     }
                 }
@@ -401,10 +400,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("ena_acs") != -1)
                     {
-                        ena_acs = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        ena_acs = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(ena_acs);
                     }
                 }
@@ -414,10 +413,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_alt_charset_mode") != -1)
                     {
-                        enter_alt_charset_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_alt_charset_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_alt_charset_mode);
                     }
                 }
@@ -427,10 +426,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_blink_mode") != -1)
                     {
-                        enter_blink_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_blink_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_blink_mode);
                     }
                 }
@@ -440,10 +439,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_bold_mode") != -1)
                     {
-                        enter_bold_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_bold_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_bold_mode);
                     }
                 }
@@ -453,10 +452,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_ca_mode") != -1)
                     {
-                        enter_ca_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_ca_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_ca_mode);
                     }
                 }
@@ -466,10 +465,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_insert_mode") != -1)
                     {
-                        enter_insert_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_insert_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_insert_mode);
                     }
                 }
@@ -479,10 +478,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_reverse_mode") != -1)
                     {
-                        enter_reverse_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_reverse_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_reverse_mode);
                     }
                 }
@@ -492,10 +491,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_standout_mode") != -1)
                     {
-                        enter_standout_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_standout_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_standout_mode);
                     }
                 }
@@ -505,10 +504,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("enter_underline_mode") != -1)
                     {
-                        enter_underline_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        enter_underline_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(enter_underline_mode);
                     }
                 }
@@ -518,10 +517,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("exit_alt_charset_mode") != -1)
                     {
-                        exit_alt_charset_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        exit_alt_charset_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(exit_alt_charset_mode);
                     }
                 }
@@ -531,10 +530,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("exit_attribute_mode") != -1)
                     {
-                        exit_attribute_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        exit_attribute_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(exit_attribute_mode);
                     }
                 }
@@ -544,10 +543,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("exit_ca_mode") != -1)
                     {
-                        exit_ca_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        exit_ca_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(exit_ca_mode);
                     }
                 }
@@ -557,10 +556,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("exit_insert_mode") != -1)
                     {
-                        exit_insert_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        exit_insert_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(exit_insert_mode);
                     }
                 }
@@ -570,10 +569,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("exit_standout_mode") != -1)
                     {
-                        exit_standout_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        exit_standout_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(exit_standout_mode);
                     }
                 }
@@ -583,10 +582,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("exit_underline_mode") != -1)
                     {
-                        exit_underline_mode = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        exit_underline_mode = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(exit_underline_mode);
                     }
                 }
@@ -596,10 +595,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("flash_screen") != -1)
                     {
-                        flash_screen = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        flash_screen = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(flash_screen);
                     }
                 }
@@ -609,10 +608,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("init_2string") != -1)
                     {
-                        init_2string = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        init_2string = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(init_2string);
                     }
                 }
@@ -622,10 +621,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("insert_line") != -1)
                     {
-                        insert_line = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        insert_line = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(insert_line);
                     }
                 }
@@ -635,10 +634,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_backspace") != -1)
                     {
-                        key_backspace = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_backspace = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_backspace);
                     }
                 }
@@ -648,10 +647,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_btab") != -1)
                     {
-                        key_btab = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_btab = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_btab);
                     }
                 }
@@ -661,10 +660,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_dc") != -1)
                     {
-                        key_dc = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_dc = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_dc);
                     }
                 }
@@ -674,10 +673,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_down") != -1)
                     {
-                        key_down = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_down = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_down);
                     }
                 }
@@ -687,10 +686,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_end") != -1)
                     {
-                        key_end = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_end = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_end);
                     }
                 }
@@ -700,10 +699,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f1") != -1)
                     {
-                        key_f1 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f1 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f1);
                     }
                 }
@@ -713,10 +712,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f10") != -1)
                     {
-                        key_f10 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f10 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f10);
                     }
                 }
@@ -726,10 +725,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f11") != -1)
                     {
-                        key_f11 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f11 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f11);
                     }
                 }
@@ -739,10 +738,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f12") != -1)
                     {
-                        key_f12 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f12 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f12);
                     }
                 }
@@ -752,10 +751,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f2") != -1)
                     {
-                        key_f2 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f2 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f2);
                     }
                 }
@@ -765,10 +764,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f3") != -1)
                     {
-                        key_f3 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f3 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f3);
                     }
                 }
@@ -778,10 +777,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f4") != -1)
                     {
-                        key_f4 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f4 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f4);
                     }
                 }
@@ -791,10 +790,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f5") != -1)
                     {
-                        key_f5 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f5 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f5);
                     }
                 }
@@ -804,10 +803,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f6") != -1)
                     {
-                        key_f6 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f6 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f6);
                     }
                 }
@@ -817,10 +816,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f7") != -1)
                     {
-                        key_f7 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f7 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f7);
                     }
                 }
@@ -830,10 +829,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f8") != -1)
                     {
-                        key_f8 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f8 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f8);
                     }
                 }
@@ -843,10 +842,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_f9") != -1)
                     {
-                        key_f9 = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_f9 = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_f9);
                     }
                 }
@@ -856,10 +855,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_home") != -1)
                     {
-                        key_home = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_home = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_home);
                     }
                 }
@@ -869,10 +868,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_ic") != -1)
                     {
-                        key_ic = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_ic = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_ic);
                     }
                 }
@@ -882,10 +881,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_left") != -1)
                     {
-                        key_left = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_left = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_left);
                     }
                 }
@@ -895,10 +894,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_mouse") != -1)
                     {
-                        key_mouse = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_mouse = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_mouse);
                     }
                 }
@@ -908,10 +907,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_npage") != -1)
                     {
-                        key_npage = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_npage = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_npage);
                     }
                 }
@@ -921,10 +920,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_ppage") != -1)
                     {
-                        key_ppage = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_ppage = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_ppage);
                     }
                 }
@@ -934,10 +933,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_right") != -1)
                     {
-                        key_right = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_right = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_right);
                     }
                 }
@@ -947,10 +946,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("key_up") != -1)
                     {
-                        key_up = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        key_up = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(key_up);
                     }
                 }
@@ -960,10 +959,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("keypad_local") != -1)
                     {
-                        keypad_local = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        keypad_local = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(keypad_local);
                     }
                 }
@@ -973,10 +972,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("keypad_xmit") != -1)
                     {
-                        keypad_xmit = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        keypad_xmit = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(keypad_xmit);
                     }
                 }
@@ -986,10 +985,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("newline") != -1)
                     {
-                        newline = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        newline = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(newline);
                     }
                 }
@@ -999,10 +998,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("orig_pair") != -1)
                     {
-                        orig_pair = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        orig_pair = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(orig_pair);
                     }
                 }
@@ -1012,10 +1011,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_dch") != -1)
                     {
-                        parm_dch = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_dch = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_dch);
                     }
                 }
@@ -1025,10 +1024,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_delete_line") != -1)
                     {
-                        parm_delete_line = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_delete_line = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_delete_line);
                     }
                 }
@@ -1038,10 +1037,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_down_cursor") != -1)
                     {
-                        parm_down_cursor = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_down_cursor = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_down_cursor);
                     }
                 }
@@ -1051,10 +1050,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_ich") != -1)
                     {
-                        parm_ich = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_ich = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_ich);
                     }
                 }
@@ -1064,10 +1063,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_insert_line") != -1)
                     {
-                        parm_insert_line = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_insert_line = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_insert_line);
                     }
                 }
@@ -1077,10 +1076,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_left_cursor") != -1)
                     {
-                        parm_left_cursor = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_left_cursor = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_left_cursor);
                     }
                 }
@@ -1090,10 +1089,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_right_cursor") != -1)
                     {
-                        parm_right_cursor = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_right_cursor = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_right_cursor);
                     }
                 }
@@ -1103,10 +1102,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("parm_up_cursor") != -1)
                     {
-                        parm_up_cursor = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        parm_up_cursor = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(parm_up_cursor);
                     }
                 }
@@ -1116,10 +1115,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("reset_2string") != -1)
                     {
-                        reset_2string = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        reset_2string = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(reset_2string);
                     }
                 }
@@ -1129,10 +1128,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("restore_cursor") != -1)
                     {
-                        restore_cursor = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        restore_cursor = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(restore_cursor);
                     }
                 }
@@ -1142,10 +1141,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("save_cursor") != -1)
                     {
-                        save_cursor = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        save_cursor = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(save_cursor);
                     }
                 }
@@ -1155,10 +1154,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("scroll_forward") != -1)
                     {
-                        scroll_forward = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        scroll_forward = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(scroll_forward);
                     }
                 }
@@ -1168,10 +1167,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("scroll_reverse") != -1)
                     {
-                        scroll_reverse = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        scroll_reverse = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(scroll_reverse);
                     }
                 }
@@ -1181,10 +1180,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("set_a_background") != -1)
                     {
-                        set_a_background = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        set_a_background = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(set_a_background);
                     }
                 }
@@ -1194,10 +1193,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("set_a_foreground") != -1)
                     {
-                        set_a_foreground = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        set_a_foreground = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(set_a_foreground);
                     }
                 }
@@ -1207,10 +1206,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("set_attributes") != -1)
                     {
-                        set_attributes = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        set_attributes = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(set_attributes);
                     }
                 }
@@ -1220,10 +1219,10 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("set_tab") != -1)
                     {
-                        set_tab = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        set_tab = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(set_tab);
                     }
                 }
@@ -1233,19 +1232,106 @@ public class myCurses_auto
                 int index = -1;
                 for(int i = 0; i < in.length; i++)
                 {
-                    index = (in[i]).indexOf("\\");
                     if((in[i]).indexOf("tab") != -1)
                     {
-                        tab = in[i].substring(index,in[i].length() - 1).replace("\\E","\033");
+                        index = (in[i]).indexOf("=");
+                        tab = in[i].substring(index + 1,in[i].length() - 1).replace("\\E","\033");
                         System.out.println(tab);
                     }
                 }
-            }}
+            } public static void init_all(String[] in) {set_vars.back_tab_init(in);
+set_vars.bell_init(in);
+set_vars.carriage_return_init(in);
+set_vars.change_scroll_region_init(in);
+set_vars.clear_all_tabs_init(in);
+set_vars.clear_screen_init(in);
+set_vars.clr_bol_init(in);
+set_vars.clr_eol_init(in);
+set_vars.clr_eos_init(in);
+set_vars.cursor_address_init(in);
+set_vars.cursor_down_init(in);
+set_vars.cursor_home_init(in);
+set_vars.cursor_invisible_init(in);
+set_vars.cursor_left_init(in);
+set_vars.cursor_normal_init(in);
+set_vars.cursor_right_init(in);
+set_vars.cursor_up_init(in);
+set_vars.cursor_visible_init(in);
+set_vars.delete_character_init(in);
+set_vars.delete_line_init(in);
+set_vars.ena_acs_init(in);
+set_vars.enter_alt_charset_mode_init(in);
+set_vars.enter_blink_mode_init(in);
+set_vars.enter_bold_mode_init(in);
+set_vars.enter_ca_mode_init(in);
+set_vars.enter_insert_mode_init(in);
+set_vars.enter_reverse_mode_init(in);
+set_vars.enter_standout_mode_init(in);
+set_vars.enter_underline_mode_init(in);
+set_vars.exit_alt_charset_mode_init(in);
+set_vars.exit_attribute_mode_init(in);
+set_vars.exit_ca_mode_init(in);
+set_vars.exit_insert_mode_init(in);
+set_vars.exit_standout_mode_init(in);
+set_vars.exit_underline_mode_init(in);
+set_vars.flash_screen_init(in);
+set_vars.init_2string_init(in);
+set_vars.insert_line_init(in);
+set_vars.key_backspace_init(in);
+set_vars.key_btab_init(in);
+set_vars.key_dc_init(in);
+set_vars.key_down_init(in);
+set_vars.key_end_init(in);
+set_vars.key_f1_init(in);
+set_vars.key_f10_init(in);
+set_vars.key_f11_init(in);
+set_vars.key_f12_init(in);
+set_vars.key_f2_init(in);
+set_vars.key_f3_init(in);
+set_vars.key_f4_init(in);
+set_vars.key_f5_init(in);
+set_vars.key_f6_init(in);
+set_vars.key_f7_init(in);
+set_vars.key_f8_init(in);
+set_vars.key_f9_init(in);
+set_vars.key_home_init(in);
+set_vars.key_ic_init(in);
+set_vars.key_left_init(in);
+set_vars.key_mouse_init(in);
+set_vars.key_npage_init(in);
+set_vars.key_ppage_init(in);
+set_vars.key_right_init(in);
+set_vars.key_up_init(in);
+set_vars.keypad_local_init(in);
+set_vars.keypad_xmit_init(in);
+set_vars.newline_init(in);
+set_vars.orig_pair_init(in);
+set_vars.parm_dch_init(in);
+set_vars.parm_delete_line_init(in);
+set_vars.parm_down_cursor_init(in);
+set_vars.parm_ich_init(in);
+set_vars.parm_insert_line_init(in);
+set_vars.parm_left_cursor_init(in);
+set_vars.parm_right_cursor_init(in);
+set_vars.parm_up_cursor_init(in);
+set_vars.reset_2string_init(in);
+set_vars.restore_cursor_init(in);
+set_vars.save_cursor_init(in);
+set_vars.scroll_forward_init(in);
+set_vars.scroll_reverse_init(in);
+set_vars.set_a_background_init(in);
+set_vars.set_a_foreground_init(in);
+set_vars.set_attributes_init(in);
+set_vars.set_tab_init(in);
+set_vars.tab_init(in);
+}}
     }
+    
     public static void init()
     {
         System.out.print(enter_bold_mode);
     }
+    
 }
 
 
