@@ -17,25 +17,31 @@ public class board {
 	{
 		return boardValue;
 	}
-	public board move(board board_in,int x_in, int y_in, int x_end, int y_end, boolean castlingq)
+	public board apply_move(board board_in,move move_in)
 	{
-		if (! castlingq)
+		assert(valid.validinternal(board_in,move_in));
+		return move_in.apply_move(board_in);
+	}
+	public board apply_move(move move_in)
+	{
+		assert(valid.validinternal(this,move_in));
+		return move_in.apply_move(this);
+	}
+	public boolean valid_move(board board_in,move move_in)
+	{
+		if (valid.validinternal(board_in,move_in))
 		{
-			int piece = (board_in).getPiece(y_in, x_in);
-			(board_in).setPiece(y_end, x_end,piece);
-			(board_in).setPiece(y_in, x_in,pieces.blank);
-			return board_in;
+			move_in.apply_move(board_in);
+			return true;
 		}
 		else
-		{
-			return(null);
-		}
+			return false;
 	}
-	public boolean valid_move(board board_in,int x_in, int y_in, int x_end, int y_end, boolean castlingq)
+	public boolean valid_move(move move_in)
 	{
-		if (valid.validinternal(board_in.toArray(),x_in,y_in,x_end,y_end))
+		if (valid.validinternal(this,move_in))
 		{
-			move(board_in,x_in,y_in,x_end,y_end,castlingq);
+			move_in.apply_move(this);
 			return true;
 		}
 		else
