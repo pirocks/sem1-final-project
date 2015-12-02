@@ -4,12 +4,12 @@ public class scored_board extends board
     private double eval;
     public scored_board(int[][] board_in,double eval)
 	{
-	    this.eval = eval;
 		super(board_in);
+	    this.eval = eval;
 	}
 	//later the board should be able to apply moves in order for eval board to avoid 
 	// changing of pieces without updating eval
-		public board apply_move(move move_in)
+	public board apply_move(move move_in)
 	{
     	update_eval(move_in);
     	return super.apply_move(move_in);
@@ -39,16 +39,16 @@ public class scored_board extends board
 	    //as of now uses slow calculation methods. will fix later.
 	    this.eval = white_count(super.boardValue) - black_count(super.boardValue);
 	}
-	private static double white_count(board board_in)
+	private static double white_count(int[][] board_in)
 	{
 	    //this is super slow
 	    //need to fix
 	    int piece;
 	    double eval = 0.0;
-	    for(int y = 0; y < super.boardValue.length;y++)
-	        for(int x = 0; x < super.boardValue[0].length;x++)
+	    for(int y = 0; y < board_in.length;y++)
+	        for(int x = 0; x < board_in[0].length;x++)
 	        {
-	            piece = super.boardValue[y][x];
+	            piece = board_in[y][x];
 	            switch(piece)
 	            {
 	                case pieces.white.king:
@@ -73,16 +73,16 @@ public class scored_board extends board
 	        }
 	   return eval;
 	}
-	private static double black_count(board board_in)
+	private static double black_count(int[][] board_in)
 	{
 	    //this is super slow
 	    //need to fix
 	    int piece;
 	    double eval = 0.0;
-	    for(int y = 0; y < super.boardValue.length;y++)
-	        for(int x = 0; x < super.boardValue[0].length;x++)
+	    for(int y = 0; y < board_in.length;y++)
+	        for(int x = 0; x < board_in[0].length;x++)
 	        {
-	            piece = super.boardValue[y][x];
+	            piece = board_in[y][x];
 	            switch(piece)
 	            {
 	                case pieces.black.king:

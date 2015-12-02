@@ -1,6 +1,6 @@
 
 public class board {
-	private int boardValue[][] = new int[8][8];
+	protected int boardValue[][] = new int[8][8];
 	public board(int[][] board_in)
 	{
 		boardValue = board_in;
