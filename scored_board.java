@@ -16,6 +16,7 @@ public class scored_board extends board
 	}
 	public boolean valid_move(board board_in,move move_in)
 	{
+		assert(false);
 		if (valid.validinternal(board_in,move_in))
 		{
 			move_in.apply_move(board_in);
@@ -26,6 +27,7 @@ public class scored_board extends board
 	}
 	public boolean valid_move(move move_in)
 	{
+		assert(false);
 		if (valid.validinternal(this,move_in))
 		{
 			move_in.apply_move(this);
@@ -106,5 +108,10 @@ public class scored_board extends board
 	            }
 	        }
 	   return eval;
+	}
+	public double get_eval()
+	{
+		assert(white_count(super.boardValue) - black_count(super.boardValue) == eval)
+		return eval;
 	}
 }
