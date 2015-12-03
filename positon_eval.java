@@ -3,31 +3,44 @@ public class positon_eval
 {
     public static final double special = 200000.0;
     //everything static for performance
-    public static double call_generated(board board_in,move[] moves_in,int len)
+    public static eval_move[] call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth)
     {
-        double[] evaluations = new double[1000];//need to figue out what actually is
+        scored_board current_board;
+        move current_move;
+        eval_move[] evaluations = new eval_move[len];
         for(int i = 0; i < len; i++)
         {
-            
-            evaluations[i] = eval();
+            current_board = scored_board.copy_board(board_in);
+            current_move = moves_in[i];
+            current_board.apply_move(current_move);//thi better be updating scores
+            //add tons of asserts
+            evaluations[i] = new eval_move(current_move,eval(current_board,!white_to_moveq,depth - 1).get_value());
         }
+        return evaluations;
     }
-    public static double eval(scored_board board_in,boolean white_to_moveq,int depth)
+    public static eval_move eval(scored_board board_in,boolean white_to_moveq,int depth)
     {
         if(depth == 0)
         {
-            return board_in.get_eval();
+            //need somme shit here
+            return new eval_move(-1,-1,-1,-1,board_in.get_eval());
         }
         else
         {
-            move[] moves;
+            move[] moves = new move[1000];//need to figure out what actually is
+            eval_move evals[];
+            int len;
             if(white_to_moveq)
             {
-                generators.generate_white(board_in,moves,0);
+                len = generators.generate_white(board_in,moves,0);
+                evals = call_generated(board_in,moves,len,white_to_moveq,depth);
+                return min_max(evals,len,white_to_moveq,depth);
             }
             else
             {
-                generators.generate_black(board_in,moves,0);
+                len = generators.generate_black(board_in,moves,0);
+                evals = call_generated(board_in,moves,len,white_to_moveq,depth);
+                return min_max(evals,len,white_to_moveq,depth);
             }
         }
     }
@@ -64,6 +77,7 @@ public class positon_eval
                             break;
                     }
                 }
+            return len_out;
         }
         public static int generate_black(board board_in,move[] out,int len)
         {
@@ -96,6 +110,7 @@ public class positon_eval
                             break;
                     }
                 }
+            return len_out;
         }
         public static class individual
         {
@@ -224,41 +239,41 @@ public class positon_eval
             }
         }
     }
-    public static double min_max(eval_move[] array,int len,boolean white_to_moveq,int depth)
+    public static eval_move min_max(eval_move[] array,int len,boolean white_to_moveq,int depth)
     {
         if(white_to_moveq)
             return max(array,len);
         else
             return min(array,len);
     }
-    public static double min(eval_move[] array,int len)
+    public static eval_move min(eval_move[] array,int len)
     {
-        double current;
+        eval_move current;
         if(len == 0)
-            return special;
-        double min = array[0].get_value();
+            return new eval_move(-1,-1,-1,-1,special);
+        eval_move min = array[0];
         for(int i = 0; i < len; i++)
         {
-            current = array[i].get_value();
-            if(min == special)
+            current = array[i];
+            if(min.get_value() == special)
                 min = current;
-            if(current < min && current != special)
+            if(current.get_value() < min.get_value() && current.get_value() != special)
                 min = current;
         }
         return min;
     }
-    public static double max(eval_move[] array,int len)
+    public static eval_move max(eval_move[] array,int len)
     {
-        double current;
+        eval_move current;
         if(len == 0)
-            return special;
-        double max = array[0].get_value();
-        for(int i = 0; i < len; i++)
+            return new eval_move(-1,-1,-1,-1,special);
+        eval_move max = array[0];
+        for(int i = 1; i < len; i++)
         {
-            current = array[i].get_value();
-            if(max == special)
+            current = array[i];
+            if(max.get_value() == special)
                 max = current;
-            if(current < max && current != special)
+            if(current.get_value() < max.get_value() && current.get_value() != special)
                 max = current;
         }
         return max;

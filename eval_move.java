@@ -15,6 +15,11 @@ public class eval_move extends move
         super(moves);
         this.value = value;
     }
+    public eval_move(move in,double value)
+    {
+        super(in);
+        this.value = value;
+    }
     public double get_value()
     {
         return value;

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 //proofread this it probably needs it
 public class scored_board extends board
 {
@@ -117,5 +118,15 @@ public class scored_board extends board
 	public board to_board()
 	{
 		return new board(super.boardValue);
+	}
+	public static scored_board copy_board(scored_board source)
+	{
+		//deepcopy
+		int[][] temp = source.toArray();
+		int[][] finall = new int[8][8];
+		for (int i = 0; i < finall.length; i++)
+  			finall[i] = Arrays.copyOf(temp[i], temp[i].length);
+		scored_board out = new scored_board(finall,source.get_eval());
+		return out;
 	}
 }

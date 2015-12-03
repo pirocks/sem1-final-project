@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 public class board {
 	protected int boardValue[][] = new int[8][8];
 	public board(int[][] board_in)
@@ -41,6 +41,16 @@ public class board {
 		}
 		else
 			return false;
+	}
+	public static board copy_board(board source)
+	{
+		//deepcopy
+		int[][] temp = source.toArray();
+		int[][] finall = new int[8][8];
+		for (int i = 0; i < finall.length; i++)
+  			finall[i] = Arrays.copyOf(temp[i], temp[i].length);
+		board out = new board(finall);
+		return out;
 	}
 
 }

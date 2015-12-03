@@ -31,6 +31,13 @@ public class move
         this.x_end = moves[2];
         this.y_end = moves[3];
     }
+    public move(move in)
+    {
+        this.x_in = in.get_x_in();
+        this.y_in = in.get_y_in();
+        this.x_end = in.get_x_end();
+        this.y_end = in.get_y_end();;
+    }
     public board apply_move(board board_in)
     {
         //assertvalid
