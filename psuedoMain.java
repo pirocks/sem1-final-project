@@ -15,10 +15,10 @@ public class psuedoMain
         System.out.print(curses.cursor_home);
         System.out.print("hola2");
         System.out.print(curses.cursor_home);
-        System.out.print(curses.delete_character);
-        System.out.print(" ");
-        System.out.print(curses.delete_character);
-        System.out.print(" ");
+        //System.out.print(curses.delete_character);
+        System.out.print("3");
+        //System.out.print(curses.delete_character);
+        System.out.print("3");
         //System.out.print(curses.delete_line);
         try {
             Thread.sleep(1000000);
