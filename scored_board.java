@@ -111,7 +111,11 @@ public class scored_board extends board
 	}
 	public double get_eval()
 	{
-		assert(white_count(super.boardValue) - black_count(super.boardValue) == eval)
+		assert(white_count(super.boardValue) - black_count(super.boardValue) == eval);
 		return eval;
+	}
+	public board to_board()
+	{
+		return new board(super.boardValue);
 	}
 }

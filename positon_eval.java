@@ -20,20 +20,20 @@ public class positon_eval
         }
         else
         {
-            eval_move moves;
+            move[] moves;
             if(white_to_moveq)
             {
-                generate_white();
+                generators.generate_white(board_in,moves,0);
             }
             else
             {
-                generate_black();
+                generators.generate_black(board_in,moves,0);
             }
         }
     }
     public static class generators
     {
-        public static int generate_white(scored_board board_in,eval_move[] out,int len)
+        public static int generate_white(board board_in,move[] out,int len)
         {
             int len_out = len;
             int piece;
@@ -45,27 +45,27 @@ public class positon_eval
                     switch(piece)
                     {
                         case pieces.white.pawn:
-                            len_out = individual.generate_pawn_white(board_in,out,len_out);
+                            len_out = individual.generate_pawn_white(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.knight:
-                            len_out = individual.generate_knight(board_in,out,len_out);
+                            len_out = individual.generate_knight(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.king:
-                            len_out = individual.generate_king(board_in,out,len_out);
+                            len_out = individual.generate_king(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.bishop:
-                            len_out = individual.generate_bishop(board_in,out,len_out);
+                            len_out = individual.generate_bishop(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.queen:
-                            len_out = individual.generate_queen(board_in,out,len_out);
+                            len_out = individual.generate_queen(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.rook:
-                            len_out = individual.generate_rook(board_in,out,len_out);
+                            len_out = individual.generate_rook(board_in,out,len_out,x,y);
                             break;
                     }
                 }
         }
-        public static int generate_black(scored_board board_in,eval_move[] out,int len)
+        public static int generate_black(board board_in,move[] out,int len)
         {
             int len_out = len;
             int piece;
@@ -77,22 +77,22 @@ public class positon_eval
                     switch(piece)
                     {
                         case pieces.white.pawn:
-                            len_out = individual.generate_pawn_black(board_in,out,len_out);
+                            len_out = individual.generate_pawn_black(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.knight:
-                            len_out = individual.generate_knight(board_in,out,len_out);
+                            len_out = individual.generate_knight(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.king:
-                            len_out = individual.generate_king(board_in,out,len_out);
+                            len_out = individual.generate_king(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.bishop:
-                            len_out = individual.generate_bishop(board_in,out,len_out);
+                            len_out = individual.generate_bishop(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.queen:
-                            len_out = individual.generate_queen(board_in,out,len_out);
+                            len_out = individual.generate_queen(board_in,out,len_out,x,y);
                             break;
                         case pieces.white.rook:
-                            len_out = individual.generate_rook(board_in,out,len_out);
+                            len_out = individual.generate_rook(board_in,out,len_out,x,y);
                             break;
                     }
                 }
@@ -106,7 +106,32 @@ public class positon_eval
             }
             public static int generate_bishop(board board_in,move[] out,int len,int x_in,int y_in)
             {
-                
+                int templen = len;
+                int x;
+                int y;
+                move current_move;
+                for(x = 1,y = 1,current_move = new move(x_in,y_in,x_in + x,y_in + y); valid.validinternal(board_in,current_move);x++,y++,current_move = new move(x_in,y_in,x_in + x,y_in + y))
+                {
+                    out[templen] = current_move;
+                    templen++;
+                }
+                for(x = -1,y = 1,current_move = new move(x_in,y_in,x_in + x,y_in + y); valid.validinternal(board_in,current_move);x--,y++,current_move = new move(x_in,y_in,x_in + x,y_in + y))
+                {
+                    out[templen] = current_move;
+                    templen++;
+                }
+                x = 0;
+                for(x = 1,y = -1,current_move = new move(x_in,y_in,x_in + x,y_in + y); valid.validinternal(board_in,current_move);x++,y--,current_move = new move(x_in,y_in,x_in + x,y_in + y))
+                {
+                    out[templen] = current_move;
+                    templen++;
+                }
+                for(x = -1,y = -1,current_move = new move(x_in,y_in,x_in + x,y_in + y); valid.validinternal(board_in,current_move);x--,y--,current_move = new move(x_in,y_in,x_in + x,y_in + y))
+                {
+                    out[templen] = current_move;
+                    templen++;
+                }
+                return templen;
             }
             public static int generate_rook(board board_in,move[] out,int len,int x_in,int y_in)
             {
@@ -197,7 +222,6 @@ public class positon_eval
                 }
                 return templen;
             }
-            }
         }
     }
     public static double min_max(eval_move[] array,int len,boolean white_to_moveq,int depth)
@@ -212,7 +236,7 @@ public class positon_eval
         double current;
         if(len == 0)
             return special;
-        double min = array[0].get_value;
+        double min = array[0].get_value();
         for(int i = 0; i < len; i++)
         {
             current = array[i].get_value();
