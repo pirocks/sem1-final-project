@@ -1,0 +1,93 @@
+BLACK = "[0m";
+RED = "[31m";
+GREEN = "[32m";
+YELLOW = "[33m";
+BLUE = "[34m";
+MAGENTA = "[35m";
+CYAN = "[36m";
+WHITE = "[37m";
+back_tab;
+bell; in theory sets of the terminal bell
+carriage_return; moves the cursor back to the beginning of the line but desnt go to a new line
+change_scroll_region;
+clear_all_tabs;
+clear_screen; clears the screen
+clr_bol;
+clr_eol;
+clr_eos;
+cursor_address;
+cursor_down;//doesn't appear to work in cloud nine
+cursor_home;//moves cursor back to home. Cusor will overwrite if insert mode not avaliable
+cursor_invisible;//alegidly makes cursor invisible not so sure about that
+cursor_left;
+cursor_normal;
+cursor_right;
+cursor_up;
+cursor_visible;
+delete_character;//deletes character cursor is on and shifts txt over
+delete_line;//clears line
+ena_acs;
+enter_alt_charset_mode; enter screwed up mode
+enter_blink_mode;
+enter_bold_mode; all text afterwards will be bold
+enter_ca_mode;
+enter_insert_mode;
+enter_reverse_mode;
+enter_standout_mode;
+enter_underline_mode;
+exit_alt_charset_mode;
+exit_attribute_mode;
+exit_ca_mode;
+exit_insert_mode;
+exit_standout_mode;
+exit_underline_mode;
+flash_screen;
+init_2string;
+insert_line;//inserts newline character.
+key_backspace;
+key_btab;
+key_dc;
+key_down;
+key_end;
+key_f1;
+key_f10;
+key_f11;
+key_f12;
+key_f2;
+key_f3;
+key_f4;
+key_f5;
+key_f6;
+key_f7;
+key_f8;
+key_f9;
+key_home;
+key_ic;
+key_left;
+key_mouse;
+key_npage;
+key_ppage;
+key_right;
+key_up;
+keypad_local;
+keypad_xmit;
+newline;
+orig_pair;
+parm_dch;
+parm_delete_line;
+parm_down_cursor;
+parm_ich;
+parm_insert_line;
+parm_left_cursor;
+parm_right_cursor;
+parm_up_cursor;
+reset_2string;
+restore_cursor;
+save_cursor;
+scroll_forward;
+scroll_reverse;
+set_a_background;
+set_a_foreground;
+set_attributes;
+set_tab;
+tab;
