@@ -24,4 +24,8 @@ public class eval_move extends move
     {
         return value;
     }
+    public int compareTo(eval_move in)
+    {
+        return(this.get_value() - in.get_value());
+    }
 }

@@ -40,7 +40,7 @@ public class move
     }
     public board apply_move(board board_in)
     {
-        //assertvalid
+        assert(valid.validinternal(board_in,this));
     	int piece = (board_in).getPiece(y_in, x_in);
 		(board_in).setPiece(y_end, x_end,piece);
 		(board_in).setPiece(y_in, x_in,pieces.blank);
