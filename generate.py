@@ -94,7 +94,7 @@ begin = """
 import java.io.*;
 import java.util.Scanner;
 
-public class myCurses_auto
+public class Curses
 {
     public static final String BLACK = "\033[0m";
     public static final String RED = "\033[31m";
@@ -109,14 +109,10 @@ format1 ="""    public static String %s;\n"""
 
 begin2="""    
     public static String cmp;
-    public myCurses_auto()
+    public Curses()
     {
         cmp = constructorStuff.getCmp();
-        String[] cmp_array = constructorStuff.toArray(cmp);
-        constructorStuff.set_vars.init_all(cmp_array);
-        System.out.println("bold");
-        System.out.println(clear_screen);
-        System.out.println("clear");
+        constructorStuff.set_vars.init_all(cmp);
     }
     public static class constructorStuff
     {
@@ -146,7 +142,7 @@ begin2="""
         {
             """
 
-init_all_beg = """ public static void init_all(String[] in) {"""
+init_all_beg = """ public static void init_all(String in) {"""
 init_all_mid = """set_vars.%s_init(in);\n"""
 init_all_end = """}"""
 end ="""}
@@ -161,18 +157,18 @@ end ="""}
 
 """
 
-middle_format = """\n            public static void %s_init(String[] in)
+middle_format = """\n            public static void %s_init(String in)
             {
-                int index = -1;
-                for(int i = 0; i < in.length; i++)
-                {
-                    if((in[i]).indexOf("%s") != -1)
-                    {
-                        index = (in[i]).indexOf("=");
-                        %s = in[i].substring(index + 1,in[i].length() - 1).replace("\\\\E","\\033");
-                        System.out.println(%s);
-                    }
-                }
+                int word_index = (in).indexOf("%s=");
+                //System.out.println("debug word_index" + word_index);
+                String new_string = in.substring(word_index);
+                //System.out.println("debug new_string_index" + new_string);
+                int equals_index = (new_string).indexOf("=");
+                int comma_index = new_string.indexOf(",");
+                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
+                String final_word = new_string.substring(equals_index + 1,comma_index);
+                //System.out.println("debug %s" + "thing: " + final_word);
+                %s = final_word.replace("\\\\E","\\033");
             }"""
 
 
