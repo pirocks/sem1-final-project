@@ -14,7 +14,7 @@ public class positon_eval
             current_move = moves_in[i];
             current_board.apply_move(current_move);//thi better be updating scores
             //add tons of asserts
-            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1)).get_value(),Prune_data);
+            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,Prune_data)).get_value());
         }
         return evaluations;
     }

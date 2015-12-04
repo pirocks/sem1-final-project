@@ -1,10 +1,11 @@
-public static class prune
+import java.util.Arrays;
+public class prune
 {
-    move[] prune_internal(eval_move[] in,int len, prune_data data)
+    public static move[] prune_internal(eval_move[] in,int len, prune_data data)
     {
-        to_move(prune_from_array(in,len),10);
+        return to_move(prune_from_array(in,len),10);
     }
-    eval_move[] prune_from_array(eval_move[] moves, int len)
+    public static eval_move[] prune_from_array(eval_move[] moves, int len)
     {
         //eval_move top5 = new eval_move[5];
         //eval_move bottom5 = new eval_move[5];
@@ -19,11 +20,11 @@ public static class prune
         for(int i = 5; i < 10; i++)
         {
             moves_i = len - (i - 5);
-            out[i] = moves[move_i];
+            out[i] = moves[moves_i];
         }
         return out;
     }
-    public static move[] to_move(eval_move in, int len)
+    public static move[] to_move(eval_move[] in, int len)
     {
         move[] out = new move[len];
         for(int i =0; i < len;i++)
