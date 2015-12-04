@@ -39,6 +39,7 @@ public class utils
 		int piece;
 		for(int y = 0; y < 8;y++)
 		{
+		    System.out.print(RESET);
 		    System.out.print("|");
 			for(int x = 0; x < 8;x++)
 			{
@@ -106,10 +107,11 @@ public class utils
 				}
 				else
 				{
-				    assert(false);
-				    return;
+				    System.out.print("  ");
+				    assert(piece == blank);
 				}
 			}
+			System.out.print(RESET);
 			System.out.print("|\n");
 		}
 		System.out.print(RESET);

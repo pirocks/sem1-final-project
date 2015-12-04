@@ -47,21 +47,21 @@ public class command_line_ui
             assert(false);
         }
         utils.display_fancy_board(global_board);
-        System.out.println("Enter the x coordinate of the white piece you would like to move(integer from 0 to 7):");
+        System.out.println("Enter the x coordinate of the black piece you would like to move(integer from 0 to 7):");
         int x = TextIO.getlnInt();
-        System.out.println("Enter the y coordinate of the white piece you would like to move(integer from 0 to 7):");
+        System.out.println("Enter the y coordinate of the black piece you would like to move(integer from 0 to 7):");
         int y = TextIO.getlnInt();
         if(global_board.getPiece(y,x) == pieces.blank)
         {
             System.out.println("That is not a piece");
             ask_for_piece_white(global_board,aiw,aib);
         }
-        if(valid.is_black(global_board.getPiece(y,x)))
+        if(valid.is_white(global_board.getPiece(y,x)))
         {
-            System.out.println("That is a black piece. Please select a white piece");
+            System.out.println("That is a white piece. Please select a black piece");
             ask_for_piece_white(global_board,aiw,aib);
         }
-        ask_for_move_white(global_board,aiw,aib,x,y);
+        ask_for_move_black(global_board,aiw,aib,x,y);
     }
     public static void ask_for_move_black(board global_board,boolean aiw, boolean aib,int x, int y)
     {
