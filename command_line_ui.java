@@ -5,7 +5,7 @@ public class command_line_ui
         if(aiw)
         {
             //experimental
-            scored_board temp = scored_board(global_board);
+            scored_board temp = new scored_board(global_board);
             positon_eval.eval(temp,true,3,null);
             //do ai moves
             assert(false);
@@ -47,7 +47,7 @@ public class command_line_ui
         if(aib)
         {
             //experimental
-            scored_board temp = scored_board(global_board);
+            scored_board temp = new scored_board(global_board);
             positon_eval.eval(temp,false,3,null);
             //do ai moves
             assert(false);
@@ -60,12 +60,12 @@ public class command_line_ui
         if(global_board.getPiece(y,x) == pieces.blank)
         {
             System.out.println("That is not a piece");
-            ask_for_piece_white(global_board,aiw,aib);
+            ask_for_piece_black(global_board,aiw,aib);
         }
         if(valid.is_white(global_board.getPiece(y,x)))
         {
             System.out.println("That is a white piece. Please select a black piece");
-            ask_for_piece_white(global_board,aiw,aib);
+            ask_for_piece_black(global_board,aiw,aib);
         }
         ask_for_move_black(global_board,aiw,aib,x,y);
     }

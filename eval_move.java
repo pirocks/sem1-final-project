@@ -30,6 +30,6 @@ public class eval_move extends move
     }
     public String toString()
     {
-        return(super.toString() + "eval:" + this.get_value())
+        return(super.toString() + "eval:" + this.get_value());
     }
 }
