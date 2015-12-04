@@ -1,6 +1,6 @@
-public static class command_line_ui
+public class command_line_ui
 {
-    public static ask_for_piece_white(board global_board, boolean aiw, boolean aib)
+    public static void ask_for_piece_white(board global_board, boolean aiw, boolean aib)
     {
         if(aiw)
         {
@@ -24,13 +24,13 @@ public static class command_line_ui
         }
         ask_for_move_white(global_board,aiw,aib,x,y);
     }
-    public static ask_for_move_white(board global_board,boolean aiw, boolean aib,int x, int y)
+    public static void ask_for_move_white(board global_board,boolean aiw, boolean aib,int x, int y)
     {
         System.out.println("Please select the x coordinate of the location you want to move your black piece to.");
         int x_end = TextIO.getlnInt();
         System.out.println("Please select the y coordinate of the location you want to move your black piece to.");
         int y_end = TextIO.getlnInt();
-        if(!valid.validinternal(global_board,x,y,x_end,y_end))
+        if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
         {
             System.out.println("That is not a valid move");
             ask_for_piece_white(global_board,aiw,aib);
@@ -39,7 +39,7 @@ public static class command_line_ui
         global_board.apply_move(current_move);
         ask_for_piece_black(global_board,aiw,aib);
     }
-    public static ask_for_piece_black(board global_board, boolean aiw, boolean aib)
+    public static void ask_for_piece_black(board global_board, boolean aiw, boolean aib)
     {
         if(aib)
         {
@@ -63,13 +63,13 @@ public static class command_line_ui
         }
         ask_for_move_white(global_board,aiw,aib,x,y);
     }
-    public static ask_for_move_black(board global_board,boolean aiw, boolean aib,int x, int y)
+    public static void ask_for_move_black(board global_board,boolean aiw, boolean aib,int x, int y)
     {
         System.out.println("Please select the x coordinate of the location you want to move your black piece to.");
         int x_end = TextIO.getlnInt();
         System.out.println("Please select the y coordinate of the location you want to move your black piece to.");
         int y_end = TextIO.getlnInt();
-        if(!valid.validinternal(global_board,x,y,x_end,y_end))
+        if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
         {
             System.out.println("That is not a valid move");
             ask_for_piece_white(global_board,aiw,aib);
