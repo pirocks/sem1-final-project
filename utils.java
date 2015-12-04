@@ -13,8 +13,7 @@ public class utils
 	public static final int bbishop = 10;
 	public static final int bknight = 11;
 	public static final int bpawn =   12;
-    public static board defualt_board = new board(new int[8][8]
-    {
+    public static board defualt_board = new board(new int[][] {
     {brook,bknight,bbishop,bqueen,bking,bbishop,bknight,brook},
     {bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn},
     {blank,blank,blank,blank,blank,blank,blank,blank},
@@ -24,7 +23,7 @@ public class utils
     {wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn},
     {wrook,wknight,wbishop,wqueen,wking,wbishop,wknight,wrook},
     }
-    )
+    );
     public static final String BLACK = "[0m";
     public static final String RED = "[31m";
     public static final String GREEN = "[32m";
@@ -33,22 +32,22 @@ public class utils
     public static final String MAGENTA = "[35m";
     public static final String CYAN = "[36m";
     public static final String WHITE = "[37m";
-    public static final String RESET = "\x1b[0m";
+    public static final String RESET = "\033[0m";
     public static void display_fancy_board(board board_in)
     {
         String background;
 		int piece;
 		for(int y = 0; y < 8;y++)
 		{
-		    System.out.print("|")
+		    System.out.print("|");
 			for(int x = 0; x < 8;x++)
 			{
 			    if((x + y) % 2 == 0)
-    				background = "\x1b[47m";
+    				background = "\033[47m";
     			else
-    				background = "\x1b[40m";
+    				background = "\033[40m";
     			System.out.print(background);
-				piece = boardValue[y][x]
+				piece = board_in.toArray()[y][x];
 				if(valid.is_black(piece))
 				{
 				    System.out.print(BLUE);
@@ -77,7 +76,7 @@ public class utils
 				            return;
 				    }
 				}
-				else if(valid.is_white(piece)
+				else if(valid.is_white(piece))
 				{
 				    System.out.print(RED);
 				    switch(piece)
@@ -111,9 +110,9 @@ public class utils
 				    return;
 				}
 			}
-			System.out.print("|\n")
+			System.out.print("|\n");
 		}
-		System.out.print(RESET)
+		System.out.print(RESET);
 		
     }
 }
