@@ -3,7 +3,7 @@ public class positon_eval
 {
     public static final double special = 200000.0;
     //everything static for performance
-    public static eval_move[] call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth)
+    public static eval_move[] call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data)
     {
         scored_board current_board;
         move current_move;
@@ -14,11 +14,11 @@ public class positon_eval
             current_move = moves_in[i];
             current_board.apply_move(current_move);//thi better be updating scores
             //add tons of asserts
-            evaluations[i] = new eval_move(current_move,eval(current_board,!white_to_moveq,depth - 1).get_value());
+            evaluations[i] = new eval_move(current_move,eval(current_board,!white_to_moveq,depth - 1).get_value(),Prune_data);
         }
         return evaluations;
     }
-    public static eval_move eval(scored_board board_in,boolean white_to_moveq,int depth)
+    public static eval_move eval(scored_board board_in,boolean white_to_moveq,int depth,prune_data Prune_data)
     {
         if(depth == 0)
         {
@@ -33,13 +33,13 @@ public class positon_eval
             if(white_to_moveq)
             {
                 len = generators.generate_white(board_in,moves,0);
-                evals = call_generated(board_in,moves,len,white_to_moveq,depth);
+                evals = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data);
                 return min_max(evals,len,white_to_moveq,depth);
             }
             else
             {
                 len = generators.generate_black(board_in,moves,0);
-                evals = call_generated(board_in,moves,len,white_to_moveq,depth);
+                evals = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data);
                 return min_max(evals,len,white_to_moveq,depth);
             }
         }

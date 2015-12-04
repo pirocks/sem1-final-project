@@ -1,6 +1,9 @@
 public static class prune
 {
-    move[] prune_internal(eval_move)
+    move[] prune_internal(eval_move[] in,int len, prune_data data)
+    {
+        to_move(prune_from_array(in,len),10);
+    }
     eval_move[] prune_from_array(eval_move[] moves, int len)
     {
         //eval_move top5 = new eval_move[5];
