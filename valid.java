@@ -301,26 +301,39 @@ public class valid
 
 	public static boolean validinternal(int[][] board_in, int x_in, int y_in, int x_end, int y_end)
 	{
-		int piece = board_in[y_in][x_in];
-		if (is_white(piece))
-			return(white(board_in, x_in, y_in, x_end, y_end));
-		else if (is_black(piece))
-			return(black(board_in, x_in, y_in, x_end, y_end));
-		return false;
+		try
+		{
+			int piece = board_in[y_in][x_in];
+			if (is_white(piece))
+				return(white(board_in, x_in, y_in, x_end, y_end));
+			else if (is_black(piece))
+				return(black(board_in, x_in, y_in, x_end, y_end));
+			return false;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
 	}
 	
 	public static boolean validinternal(board board_in, move move_in)
 	{
-		int x_in = move_in.get_x_in();
-	    int y_in = move_in.get_y_in();
-	    int x_end = move_in.get_x_end();
-	    int y_end  = move_in.get_y_end();
-	    int[][] board_temp = board_in.toArray();
-		int piece = board_temp[y_in][x_in];
-		if (is_white(piece))
-			return(white(board_temp, x_in, y_in, x_end, y_end));
-		else if (is_black(piece))
-			return(black(board_temp, x_in, y_in, x_end, y_end));
-		return false;
+		try {
+			int x_in = move_in.get_x_in();
+		    int y_in = move_in.get_y_in();
+		    int x_end = move_in.get_x_end();
+		    int y_end  = move_in.get_y_end();
+		    int[][] board_temp = board_in.toArray();
+			int piece = board_temp[y_in][x_in];
+			if (is_white(piece))
+				return(white(board_temp, x_in, y_in, x_end, y_end));
+			else if (is_black(piece))
+				return(black(board_temp, x_in, y_in, x_end, y_end));
+			return false;
+		} 
+		catch(Exception e) 
+		{
+			return false;
+		}
 	}
 }

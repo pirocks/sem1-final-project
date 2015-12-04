@@ -1,6 +1,7 @@
 
 public class positon_eval 
 {
+    public static moves_store store = new moves_store();
     public static final double special = 200000.0;
     //everything static for performance
     public static eval_move[] call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data)
@@ -12,6 +13,7 @@ public class positon_eval
         {
             current_board = scored_board.copy_board(board_in);
             current_move = moves_in[i];
+            assert(valid.validinternal(board_in,current_move));
             current_board.apply_move(current_move);//thi better be updating scores
             //add tons of asserts
             evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,Prune_data)).get_value());
@@ -181,9 +183,9 @@ public class positon_eval
             {
                 int templen = len;
                 move current_move;
-                for(int i = 0; i < moves_store.knight.length;i++)
+                for(int i = 0; i < store.knight.length;i++)
                 {
-                    current_move = moves_store.knight[i].to_move(x_in,y_in);
+                    current_move = store.knight[i].to_move(x_in,y_in);
                     if(valid.validinternal(board_in,current_move))
                     {
                         out[templen] = current_move;
@@ -196,9 +198,9 @@ public class positon_eval
             {
                  int templen = len;
                 move current_move;
-                for(int i = 0; i < moves_store.king.length;i++)
+                for(int i = 0; i < store.king.length;i++)
                 {
-                    current_move = moves_store.king[i].to_move(x_in,y_in);
+                    current_move = store.king[i].to_move(x_in,y_in);
                     if(valid.validinternal(board_in,current_move))
                     {
                         out[templen] = current_move;
@@ -211,9 +213,9 @@ public class positon_eval
             {
                 int templen = len;
                 move current_move;
-                for(int i = 0; i < moves_store.pawn_white.length;i++)
+                for(int i = 0; i < store.pawn_white.length;i++)
                 {
-                    current_move = moves_store.pawn_white[i].to_move(x_in,y_in);
+                    current_move = store.pawn_white[i].to_move(x_in,y_in);
                     if(valid.validinternal(board_in,current_move))
                     {
                         out[templen] = current_move;
@@ -226,9 +228,9 @@ public class positon_eval
             {
                 int templen = len;
                 move current_move;
-                for(int i = 0; i < moves_store.pawn_black.length;i++)
+                for(int i = 0; i < store.pawn_black.length;i++)
                 {
-                    current_move = moves_store.pawn_black[i].to_move(x_in,y_in);
+                    current_move = store.pawn_black[i].to_move(x_in,y_in);
                     if(valid.validinternal(board_in,current_move))
                     {
                         out[templen] = current_move;

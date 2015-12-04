@@ -9,7 +9,7 @@ public final class generic_move
     }
     public move to_move(int x_in, int y_in)
     {
-        assert(valid.on_board(x_in,y_in) && valid.on_board(x_in+xend,y_in+yend));
+        //no validity assert neceseary
         return new move(x_in,y_in,x_in+xend,y_in+yend);
     }
     public int[] get_end()

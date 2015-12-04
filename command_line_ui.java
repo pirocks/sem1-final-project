@@ -6,9 +6,11 @@ public class command_line_ui
         {
             //experimental
             scored_board temp = new scored_board(global_board);
-            positon_eval.eval(temp,true,3,null);
+            move current_move = new move(positon_eval.eval(temp,true,3,null));
             //do ai moves
-            assert(false);
+            global_board.apply_move(current_move);
+            ask_for_piece_black(global_board,aiw,aib);
+            //assert(false);
         }
         utils.display_fancy_board(global_board);
         System.out.println("Enter the x coordinate of the white piece you would like to move(integer from 0 to 7):");
