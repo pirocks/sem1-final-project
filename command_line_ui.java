@@ -4,6 +4,9 @@ public class command_line_ui
     {
         if(aiw)
         {
+            //experimental
+            scored_board temp = scored_board(global_board);
+            positon_eval.eval(temp,true,3,null);
             //do ai moves
             assert(false);
         }
@@ -43,6 +46,9 @@ public class command_line_ui
     {
         if(aib)
         {
+            //experimental
+            scored_board temp = scored_board(global_board);
+            positon_eval.eval(temp,false,3,null);
             //do ai moves
             assert(false);
         }

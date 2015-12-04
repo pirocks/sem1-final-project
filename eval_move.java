@@ -28,4 +28,8 @@ public class eval_move extends move
     {
         return(this.get_value() - in.get_value());
     }
+    public String toString()
+    {
+        return(super.toString() + "eval:" + this.get_value())
+    }
 }

@@ -129,4 +129,8 @@ public class scored_board extends board
 		scored_board out = new scored_board(finall,source.get_eval());
 		return out;
 	}
+	public scored_board(board in)
+	{
+		this(board_in.toArray(),white_count(board_in.toArray())-black_count(board_in.toArray()));
+	}
 }
