@@ -55,4 +55,8 @@ public class Curses_interface
             System.out.println(current[i]);
         }
     }
+    public void board_overwrite(board board_in)
+    {
+        update(utils.create_fancy_board(board_in));
+    }
 }

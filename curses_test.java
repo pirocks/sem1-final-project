@@ -2,6 +2,7 @@ public class curses_test
 {
     public static void main(String[] args)
     {
+        board global_board = utils.defualt_board;
         String[] array = new String[] {
             "                                                                ",//1 //64
             "                                                                ",//2
@@ -17,5 +18,6 @@ public class curses_test
             "                                                                ",//12
         };
         Curses_interface curse = new Curses_interface(array,12);
+        curse.board_overwrite(global_board);
     }
 }

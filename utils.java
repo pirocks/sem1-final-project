@@ -117,4 +117,92 @@ public class utils
 		System.out.print(RESET);
 		
     }
+    public static String[] create_fancy_board(board board_in)
+    {
+    	int out_i = 0;
+    	String[] out = new String[8];
+    	String background;
+		int piece;
+		for(int y = 0; y < 8;y++)
+		{
+		    out[out_i] += (RESET);
+		    out[out_i] += "|";
+			for(int x = 0; x < 8;x++)
+			{
+			    if((x + y) % 2 == 0)
+    				background = "\033[47m";
+    			else
+    				background = "\033[40m";
+    			out[out_i] += background;
+				piece = board_in.toArray()[y][x];
+				if(valid.is_black(piece))
+				{
+				    out[out_i] += BLUE;
+				    switch(piece)
+				    {
+				        case pieces.black.king:
+				            System.out.print("BK");
+				            break;
+				        case pieces.black.knight:
+				            System.out.print("BN");
+				            break;
+				        case pieces.black.bishop:
+				            System.out.print("BB");
+				            break;
+				        case pieces.black.pawn:
+				            System.out.print("BP");
+				            break;
+				        case pieces.black.queen:
+				            System.out.print("BQ");
+				            break;
+				        case pieces.black.rook:
+				            System.out.print("BR");
+				            break;
+				        default:
+				            assert(false);
+				            return null;
+				    }
+				}
+				else if(valid.is_white(piece))
+				{
+				    out[out_i] += RED;
+				    switch(piece)
+				    {
+				        case pieces.white.king:
+				            System.out.print("WK");
+				            break;
+				        case pieces.white.knight:
+				            System.out.print("WN");
+				            break;
+				        case pieces.white.bishop:
+				            System.out.print("WB");
+				            break;
+				        case pieces.white.pawn:
+				            System.out.print("WP");
+				            break;
+				        case pieces.white.queen:
+				            System.out.print("WQ");
+				            break;
+				        case pieces.white.rook:
+				            System.out.print("WR");
+				            break;
+				        default:
+				            assert(false);
+				            return null;
+				    }
+				}
+				else
+				{
+				    out[out_i] += "  ";
+				    assert(piece == blank);
+				}
+			}
+			out[out_i] += RESET;
+			out[out_i] += "|";
+			out_i++;
+		}
+		out_i--;
+		out[out_i] += RESET;
+		return out;
+    }
 }
