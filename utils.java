@@ -121,11 +121,15 @@ public class utils
     {
     	int out_i = 0;
     	String[] out = new String[8];
+    	for(int i = 0; i < 8;i++)
+    	{
+    		out[i] = "";
+    	}
     	String background;
 		int piece;
 		for(int y = 0; y < 8;y++)
 		{
-		    out[out_i] += (RESET);
+			out[out_i] += RESET;
 		    out[out_i] += "|";
 			for(int x = 0; x < 8;x++)
 			{
@@ -141,22 +145,22 @@ public class utils
 				    switch(piece)
 				    {
 				        case pieces.black.king:
-				            System.out.print("BK");
+				            out[out_i] += ("BK");
 				            break;
 				        case pieces.black.knight:
-				            System.out.print("BN");
+				            out[out_i] += ("BN");
 				            break;
 				        case pieces.black.bishop:
-				            System.out.print("BB");
+				            out[out_i] += ("BB");
 				            break;
 				        case pieces.black.pawn:
-				            System.out.print("BP");
+				            out[out_i] += ("BP");
 				            break;
 				        case pieces.black.queen:
-				            System.out.print("BQ");
+				            out[out_i] += ("BQ");
 				            break;
 				        case pieces.black.rook:
-				            System.out.print("BR");
+				            out[out_i] += ("BR");
 				            break;
 				        default:
 				            assert(false);
@@ -169,22 +173,22 @@ public class utils
 				    switch(piece)
 				    {
 				        case pieces.white.king:
-				            System.out.print("WK");
+				            out[out_i] += ("WK");
 				            break;
 				        case pieces.white.knight:
-				            System.out.print("WN");
+				            out[out_i] += ("WN");
 				            break;
 				        case pieces.white.bishop:
-				            System.out.print("WB");
+				            out[out_i] += ("WB");
 				            break;
 				        case pieces.white.pawn:
-				            System.out.print("WP");
+				            out[out_i] += ("WP");
 				            break;
 				        case pieces.white.queen:
-				            System.out.print("WQ");
+				            out[out_i] += ("WQ");
 				            break;
 				        case pieces.white.rook:
-				            System.out.print("WR");
+				            out[out_i] += ("WR");
 				            break;
 				        default:
 				            assert(false);

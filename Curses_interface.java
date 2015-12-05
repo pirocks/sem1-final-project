@@ -29,6 +29,7 @@ public class Curses_interface
     }
     public void update(String[] in)
     {
+        System.out.print(curses.cursor_home);
         String[] to_update = diff(in);
         String current;
         for(int i = 0; i < in.length;i++,System.out.print(curses.cursor_down))
@@ -46,10 +47,26 @@ public class Curses_interface
     }
     public void complete_update()
     {
+        System.out.print("clearing");
         System.out.print(curses.clear_screen);
         System.out.print(curses.exit_alt_charset_mode);
         System.out.print(curses.cursor_home);
         System.out.print(curses.cursor_invisible);
+        System.out.print(curses.clear_screen);
+        for(int i = 0; i < current.length;i++)
+        {
+            System.out.println(current[i]);
+        }
+    }
+    public void complete_update(String[] in)
+    {
+        current = in;
+        System.out.print("clearing");
+        System.out.print(curses.clear_screen);
+        System.out.print(curses.exit_alt_charset_mode);
+        System.out.print(curses.cursor_home);
+        System.out.print(curses.cursor_invisible);
+        System.out.print(curses.clear_screen);
         for(int i = 0; i < current.length;i++)
         {
             System.out.println(current[i]);
@@ -57,6 +74,8 @@ public class Curses_interface
     }
     public void board_overwrite(board board_in)
     {
-        update(utils.create_fancy_board(board_in));
+        for(int i = 0; i< 8; i++)System.out.print(utils.create_fancy_board(board_in)[i]);
+        for(int i = 0; i < 50; i++)System.out.print("\n");
+        complete_update(utils.create_fancy_board(board_in));
     }
 }

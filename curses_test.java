@@ -19,5 +19,13 @@ public class curses_test
         };
         Curses_interface curse = new Curses_interface(array,12);
         curse.board_overwrite(global_board);
+        curse.complete_update();
+        curse.board_overwrite(global_board);
+        // System.out.println("hc" + utils.RESET);
+        // for(int i =0;i < 8;i++) 
+        // {
+        //     System.out.println(i);
+        //     System.out.println(utils.create_fancy_board(global_board)[i]);
+        // }
     }
 }
