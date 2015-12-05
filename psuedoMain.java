@@ -8,7 +8,7 @@ public class psuedoMain
         //System.out.print(curses.exit_insert_mode);
         //System.out.print(curses.enter_alt_charset_mode);
         System.out.print(curses.enter_ca_mode);
-        System.out.print("\ngjgv\nghgfvhj\nghf\nftdgtg\nftdgcv\ntydyfrydtfu\nfythfyh");
+        System.out.print("");
         //System.out.print(curses.key_up);
         
         System.out.print(curses.cursor_up);
@@ -16,7 +16,7 @@ public class psuedoMain
         System.out.print(curses.cursor_up);
         System.out.print(curses.cursor_up);
         System.out.print(curses.cursor_up);
-        
+        System.out.print(curses.cursor_up);
         System.out.print(curses.cursor_down);
         //System.out.print(curses.parm_down_cursor);
         try {

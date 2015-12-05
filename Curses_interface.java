@@ -6,14 +6,14 @@ public class Curses_interface
     public Curses_interface(String[] in,int height)
     {
         assert(in.length == 12);
-        curses = new Curses();
-        curses.complete_update();
+        Curses curses = new Curses();
         this.current = in;
         this.height = height;
+        this.complete_update();
     }
     public Curses_interface()
     {
-        this(new String[12],12)
+        this(new String[12],12);
     }
     public String[] diff(String[] in)
     {
@@ -31,15 +31,16 @@ public class Curses_interface
     {
         String[] to_update = diff(in);
         String current;
-        for(int i = 0; i < in.length;i++,curses.down)
+        for(int i = 0; i < in.length;i++,System.out.print(curses.cursor_down))
         {
-            current = to_update[i]
+            current = to_update[i];
             if(current == null)
                 continue;
             else
             {
-                assert(current.length < 51);
-                System.out.print(curses.cursor_down);
+                assert(current.length() < 51);
+                System.out.print(curses.delete_line);
+                System.out.print(current);
             }
         }
     }
@@ -49,5 +50,9 @@ public class Curses_interface
         System.out.print(curses.exit_alt_charset_mode);
         System.out.print(curses.cursor_home);
         System.out.print(curses.cursor_invisible);
+        for(int i = 0; i < current.length;i++)
+        {
+            System.out.println(current[i]);
+        }
     }
 }
