@@ -168,7 +168,36 @@ middle_format = """\n            public static void %s_init(String in)
                 //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
                 String final_word = new_string.substring(equals_index + 1,comma_index);
                 //System.out.println("debug %s" + "thing: " + final_word);
-                %s = final_word.replace("\\\\E","\\033");
+                %s = final_word.replace("\\\\E","\\033")
+                //.replace("^J", Character.toString((char)10))
+                .replace("^@","\0")
+                .replace("^A", Character.toString((char)1))
+                .replace("^B", Character.toString((char)2))
+                .replace("^C", Character.toString((char)3))
+                .replace("^D", Character.toString((char)4))
+                .replace("^E", Character.toString((char)5))
+                .replace("^F", Character.toString((char)6))
+                .replace("^G", Character.toString((char)7))
+                .replace("^H", Character.toString((char)8))
+                .replace("^I", Character.toString((char)9))
+                .replace("^J", Character.toString((char)10))
+                .replace("^K", Character.toString((char)11))
+                .replace("^L", Character.toString((char)12))
+                .replace("^M", Character.toString((char)13))
+                .replace("^N", Character.toString((char)14))
+                .replace("^O", Character.toString((char)15))
+                .replace("^P", Character.toString((char)16))
+                .replace("^Q", Character.toString((char)17))
+                .replace("^R", Character.toString((char)18))
+                .replace("^S", Character.toString((char)19))
+                .replace("^T", Character.toString((char)20))
+                .replace("^U", Character.toString((char)21))
+                .replace("^V", Character.toString((char)22))
+                .replace("^W", Character.toString((char)23))
+                .replace("^X", Character.toString((char)24))
+                .replace("^Y", Character.toString((char)25))
+                .replace("^Z", Character.toString((char)24));
+                
             }"""
 
 

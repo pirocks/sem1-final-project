@@ -22,7 +22,7 @@ cursor_invisible;//alegidly makes cursor invisible not so sure about that
 cursor_left;
 cursor_normal;
 cursor_right;
-cursor_up;
+cursor_up;//works, moves cursor up on line
 cursor_visible;
 delete_character;//deletes character cursor is on and shifts txt over
 delete_line;//clears line
@@ -35,7 +35,7 @@ enter_insert_mode;
 enter_reverse_mode;
 enter_standout_mode;
 enter_underline_mode;
-exit_alt_charset_mode;
+exit_alt_charset_mode;//prints ^N
 exit_attribute_mode;
 exit_ca_mode;
 exit_insert_mode;
