@@ -209,4 +209,12 @@ public class utils
 		out[out_i] += RESET;
 		return out;
     }
+    public static void sleep(int in)
+    {
+    	try {
+            Thread.sleep(in);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
