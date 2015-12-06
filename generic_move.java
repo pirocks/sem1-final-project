@@ -25,4 +25,9 @@ public final class generic_move
     {
         return yend;
     }
+    public generic_move(move in)
+    {
+        this.xend = in.get_x_end();
+        this.yend = in.get_y_end();
+    }
 }
