@@ -1,3 +1,4 @@
+#!/bin/python
 import copy
 items = [
     'back_tab',
@@ -67,14 +68,14 @@ items = [
     'keypad_xmit',
     'newline',
     'orig_pair',
-    'parm_dch',
-    'parm_delete_line',
-    'parm_down_cursor', 
-    'parm_ich',
-    'parm_insert_line',
-    'parm_left_cursor',
-    'parm_right_cursor',
-    'parm_up_cursor',
+    # 'parm_dch',
+    # 'parm_delete_line',
+    # 'parm_down_cursor', 
+    # 'parm_ich',
+    # 'parm_insert_line',
+    # 'parm_left_cursor',
+    # 'parm_right_cursor',
+    # 'parm_up_cursor',
     'reset_2string',
     'restore_cursor',
     'save_cursor',
@@ -111,6 +112,15 @@ begin2="""
     public static String cmp;
     public Curses()
     {
+        try 
+        {
+            String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
+            Runtime.getRuntime().exec(cmd).waitFor();
+        }
+        catch (Exception e) 
+        {
+            return;
+        }
         cmp = constructorStuff.getCmp();
         constructorStuff.set_vars.init_all(cmp);
     }
@@ -192,14 +202,10 @@ end ="""}
 middle_format = """\n            public static void %s_init(String in)
             {
                 int word_index = (in).indexOf("%s=");
-                //System.out.println("debug word_index" + word_index);
                 String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
                 int equals_index = (new_string).indexOf("=");
                 int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
                 String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug %s" + "thing: " + final_word);
                 %s = doReplace(final_word);
             }"""
 

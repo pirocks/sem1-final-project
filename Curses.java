@@ -101,6 +101,15 @@ public class Curses
     public static String cmp;
     public Curses()
     {
+        try 
+        {
+            String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
+            Runtime.getRuntime().exec(cmd).waitFor();
+        }
+        catch (Exception e) 
+        {
+            return;
+        }
         cmp = constructorStuff.getCmp();
         constructorStuff.set_vars.init_all(cmp);
     }

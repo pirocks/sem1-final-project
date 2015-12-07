@@ -3,9 +3,16 @@ public class get_char
 {
     public static void get_char_internal()
     {
+        // try 
+        // {
+        //     String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
+        //     Runtime.getRuntime().exec(cmd).waitFor();
+        // }
+        // catch (Exception e) 
+        // {
+        //     return;
+        // }
         Curses curses = new Curses();
-        System.out.print(curses.enter_insert_mode);
-        System.out.print(curses.enter_ca_mode);
         Console cons = System.console();
         System.out.print("enter:");
         char c;
