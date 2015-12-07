@@ -20,7 +20,12 @@ public class highlighted_board extends board
         highlights[y_in][x_in] = states.flashing_white;
         for(int y = 0; y < 8; y++)
             for(int x = 0; x < 8; x++)
-                if(vald.validinternal(board_in,x_in,y_in,x,y))
-                highlights[y][x] = states.move_valid;
+                if(valid.validinternal(board_in,x_in,y_in,x,y))
+                    highlights[y][x] = states.move_valid;
+    }
+    public highlighted_board(int[][] in, states[][] states_in)
+    {
+        super(in);
+        highlights = states_in;
     }
 }
