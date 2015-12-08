@@ -99,6 +99,17 @@ public class Curses
     public static String tab;
     
     public static String cmp;
+    public static void fix_the_terminal()
+    {
+        try{
+        String[] cmd = {"/bin/sh", "-c", "stty sane </dev/tty"};
+        Runtime.getRuntime().exec(cmd).waitFor();
+        }
+        catch(Exception e)
+        {
+            return;
+        }
+    }
     public Curses()
     {
         try 
@@ -142,7 +153,6 @@ public class Curses
             public static String doReplace(String in)
             {
                 return in.replace("\\E","\033")
-                //.replace("^J", Character.toString((char)10))
                 .replace("^@","\0")
                 .replace("^A", Character.toString((char)1))
                 .replace("^B", Character.toString((char)2))

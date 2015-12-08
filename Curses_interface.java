@@ -1,12 +1,13 @@
 public class Curses_interface
 {
     public int height = 12;
-    public String[] current; 
+    public String[] current;
     public Curses curses;
     public Curses_interface(String[] in,int height)
     {
         assert(in.length == 12);
         Curses curses = new Curses();
+        utils.global_curses = curses
         this.current = in;
         this.height = height;
         this.complete_update();

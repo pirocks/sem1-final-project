@@ -110,6 +110,17 @@ format1 ="""    public static String %s;\n"""
 
 begin2="""    
     public static String cmp;
+    public static void fix_the_terminal()
+    {
+        try{
+        String[] cmd = {"/bin/sh", "-c", "stty sane </dev/tty"};
+        Runtime.getRuntime().exec(cmd).waitFor();
+        }
+        catch(Exception e)
+        {
+            return;
+        }
+    }
     public Curses()
     {
         try 
