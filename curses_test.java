@@ -18,9 +18,7 @@ public class curses_test
             "                                                                ",//12
         };
         Curses_interface curse = new Curses_interface(array,12);
-        utils.sleep(2000);
         curse.board_overwrite(global_board);
-        utils.sleep(10000);
         // System.out.println("hc" + utils.RESET);
         // for(int i =0;i < 8;i++) 
         // {

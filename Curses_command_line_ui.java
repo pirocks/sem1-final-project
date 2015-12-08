@@ -1,7 +1,13 @@
 public class command_line_ui
 {
-    public static void ask_for_piece_white(highlighted_board global_board, boolean aiw, boolean aib)
+    public static void ask_for_piece_white(highlighted_board global_board, boolean aiw, boolean aib,Curses_high_level curses_initq )
     {
+        String[] message_piece = new String[]{
+            "Select a white piece.",
+            "Use the arrow keys."
+            "Use ennter to select",
+            ""
+        };
         if(aiw)
         {
             // //experimental
@@ -12,78 +18,90 @@ public class command_line_ui
             // ask_for_piece_black(global_board,aiw,aib);
             // //assert(false);
         }
-        utils.create_fancy_board(global_board);
-        
-        int x = TextIO.getlnInt();
-        System.out.println("Enter the y coordinate of the white piece you would like to move(integer from 0 to 7):");
-        int y = TextIO.getlnInt();
+        int[] piece = curses_initq.get_piece_coordinates(message_piece);
+        int x = piece[0];
+        int y = piece[1];
         if(global_board.getPiece(y,x) == pieces.blank)
         {
             System.out.println("That is not a piece");
-            ask_for_piece_white(global_board,aiw,aib);
+            ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
         if(valid.is_black(global_board.getPiece(y,x)))
         {
             System.out.println("That is a black piece. Please select a white piece");
-            ask_for_piece_white(global_board,aiw,aib);
+            ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
-        ask_for_move_white(global_board,aiw,aib,x,y);
+        ask_for_move_white(global_board,aiw,aib,x,y,curses_initq);
     }
-    public static void ask_for_move_white(highlighted_board global_board,boolean aiw, boolean aib,int x, int y)
+    public static void ask_for_move_white(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,Curses_high_level curses_initq)
     {
-        System.out.println("Please select the x coordinate of the location you want to move your black piece to.");
-        int x_end = TextIO.getlnInt();
-        System.out.println("Please select the y coordinate of the location you want to move your black piece to.");
-        int y_end = TextIO.getlnInt();
+        String[] message_move = new String[]{
+            "Please select the",
+            "location you want",
+            "to move to",""
+        };
+        int[] temp = curses_initq.get_move_coordinates(message_move,x,y);
+        int x_end = temp[0];
+        int y_end = temp[1];
         if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
         {
             System.out.println("That is not a valid move");
-            ask_for_piece_white(global_board,aiw,aib);
+            ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
         move current_move = new move(x,y,x_end,y_end);
         global_board.apply_move(current_move);
-        ask_for_piece_black(global_board,aiw,aib);
+        ask_for_piece_black(global_board,aiw,aib,curses_initq);
     }
-    public static void ask_for_piece_black(highlighted_board global_board, boolean aiw, boolean aib)
+    public static void ask_for_piece_black(highlighted_board global_board, boolean aiw, boolean aib,Curses_high_level curses_initq)
     {
-        if(aib)
+        String[] message_piece = new String[]{
+            "Select a white piece.",
+            "Use the arrow keys."
+            "Use ennter to select",
+            ""
+        };
+        if(aiw)
         {
             // //experimental
             // scored_board temp = new scored_board(global_board);
-            // positon_eval.eval(temp,false,3,null);
+            // move current_move = new move(positon_eval.eval(temp,true,3,null));
             // //do ai moves
-            // assert(false);
+            // global_board.apply_move(current_move);
+            // ask_for_piece_black(global_board,aiw,aib);
+            // //assert(false);
         }
-        utils.display_fancy_board(global_board);
-        System.out.println("Enter the x coordinate of the black piece you would like to move(integer from 0 to 7):");
-        int x = TextIO.getlnInt();
-        System.out.println("Enter the y coordinate of the black piece you would like to move(integer from 0 to 7):");
-        int y = TextIO.getlnInt();
+        int[] piece = curses_initq.get_piece_coordinates(message_piece);
+        int x = piece[0];
+        int y = piece[1];
         if(global_board.getPiece(y,x) == pieces.blank)
         {
             System.out.println("That is not a piece");
-            ask_for_piece_black(global_board,aiw,aib);
+            ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
-        if(valid.is_white(global_board.getPiece(y,x)))
+        if(valid.is_black(global_board.getPiece(y,x)))
         {
-            System.out.println("That is a white piece. Please select a black piece");
-            ask_for_piece_black(global_board,aiw,aib);
+            System.out.println("That is a black piece. Please select a white piece");
+            ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
-        ask_for_move_black(global_board,aiw,aib,x,y);
+        ask_for_move_black(global_board,aiw,aib,x,y,curses_initq);
     }
-    public static void ask_for_move_black(highlighted_board global_board,boolean aiw, boolean aib,int x, int y)
+    public static void ask_for_move_black(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,Curses_high_level curses_initq)
     {
-        System.out.println("Please select the x coordinate of the location you want to move your black piece to.");
-        int x_end = TextIO.getlnInt();
-        System.out.println("Please select the y coordinate of the location you want to move your black piece to.");
-        int y_end = TextIO.getlnInt();
+        String[] message_move = new String[]{
+            "Please select the",
+            "location you want",
+            "to move to",""
+        };
+        int[] temp = curses_initq.get_move_coordinates(message_move,x,y);
+        int x_end = temp[0];
+        int y_end = temp[1];
         if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
         {
             System.out.println("That is not a valid move");
-            ask_for_piece_white(global_board,aiw,aib);
+            ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
         move current_move = new move(x,y,x_end,y_end);
         global_board.apply_move(current_move);
-        ask_for_piece_white(global_board,aiw,aib);
+        ask_for_piece_white(global_board,aiw,aib,curses_initq);
     }
 }

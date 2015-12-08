@@ -33,7 +33,7 @@ public class utils
     public static final String CYAN = "[36m";
     public static final String WHITE = "[37m";
     public static final String RESET = "\033[0m";
-    public Curses global_curses;
+    public static Curses global_curses;
     public static void display_fancy_board(board board_in)
     {
         String background;

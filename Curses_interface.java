@@ -7,7 +7,7 @@ public class Curses_interface
     {
         assert(in.length == 12);
         Curses curses = new Curses();
-        utils.global_curses = curses
+        utils.global_curses = curses;
         this.current = in;
         this.height = height;
         this.complete_update();
@@ -58,7 +58,17 @@ public class Curses_interface
         System.out.print(curses.clear_screen);
         for(int i = 0; i < current.length;i++)
         {
+            try{
+                String[] cmd = {"/bin/sh", "-c", "stty sane </dev/tty"};
+                Runtime.getRuntime().exec(cmd).waitFor();
+            }
+            catch(Exception e)
+            {
+                return;
+            }
             System.out.println(current[i]);
+            //for(int i2 = 0; i2 < current[i].length();i2++)
+            //System.out.println(curses.cursor_left);
         }
     }
     public void complete_update(String[] in)
@@ -71,7 +81,10 @@ public class Curses_interface
         System.out.print(curses.clear_screen);
         for(int i = 0; i < current.length;i++)
         {
+            //System.out.print(curses.cursor_home);
             System.out.println(current[i]);
+            //for(int i2 = 0; i2 < current[i].length();i2++)
+            //System.out.println(curses.cursor_left);
         }
     }
     public void board_overwrite(board board_in)

@@ -24,6 +24,10 @@ public class highlighted_board extends board
                 if(valid.validinternal(this.toArray(),x_in,y_in,x,y))
                     highlights[y][x] = states.move_valid;
     }
+    public void set_selected(int x,int y)
+    {
+        highlights[y][x] = states.selected;
+    }
     public highlighted_board(int[][] in, states[][] states_in)
     {
         super(in);
