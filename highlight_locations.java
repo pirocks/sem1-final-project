@@ -6,7 +6,7 @@ public class highlight_locations
     public String[] colors;
     public highlight_locations(int[] x,int[] y,String[] colors)
     {
-        assert(x.length == y.length == colors.lentgh);
+        assert(x.length == y.length && y.length == colors.length);
         x_locs = x;
         y_locs = y;
         this.colors = colors;
@@ -23,11 +23,11 @@ public class highlight_locations
     }
     public highlight_locations(highlighted_board in)
     {
-        this(64)
+        this(64);
         int i = 0;
         String color;
-        for(int y = 0; y < in.length; y++)
-            for(int x = 0; x < in[0].length;x++)
+        for(int y = 0; y < in.toArray().length; y++)
+            for(int x = 0; x < in.toArray()[0].length;x++)
             {
                 color = state_to_string(in.get(y,x));
                 if(color != null)
@@ -38,7 +38,7 @@ public class highlight_locations
                 }
             }
     }
-    public add(int x,int y,String color)
+    public void add(int x,int y,String color)
     {
         x_locs[current_len] = x;
         y_locs[current_len] = y;
@@ -63,14 +63,16 @@ public class highlight_locations
     {
         switch(in)
         {
-            case highlighted_board.states.blank:
+            case blank:
                 return null;
-            case highlighted_board.states.selected:
+            case selected:
                 return utils.YELLOW;
-            case highlighted_board.states.move_valid:
+            case move_valid:
                 return utils.GREEN;
-            case highlighted_board.states.flashing_check:
+            case flashing_check:
                 return utils.RED;
+            default:
+                return null;
         }
     }
 }
