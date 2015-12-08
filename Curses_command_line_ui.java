@@ -1,10 +1,10 @@
-public class command_line_ui
+public class Curses_command_line_ui
 {
     public static void ask_for_piece_white(highlighted_board global_board, boolean aiw, boolean aib,Curses_high_level curses_initq )
     {
         String[] message_piece = new String[]{
             "Select a white piece.",
-            "Use the arrow keys."
+            "Use the arrow keys.",
             "Use ennter to select",
             ""
         };
@@ -56,7 +56,7 @@ public class command_line_ui
     {
         String[] message_piece = new String[]{
             "Select a white piece.",
-            "Use the arrow keys."
+            "Use the arrow keys.",
             "Use ennter to select",
             ""
         };

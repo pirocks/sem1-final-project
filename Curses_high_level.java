@@ -1,7 +1,7 @@
 public class Curses_high_level
 {
     String[] display;
-    highlighted_board localboard
+    highlighted_board localboard;
     Curses_interface intface;
     public Curses_high_level()
     {
@@ -9,7 +9,7 @@ public class Curses_high_level
     }
     public void update_message(String[] array)
     {
-        assert(array.length == 4)
+        assert(array.length == 4);
         for (int i = 9; i < 12;i++)
             display[i] = array[i - 9];
         intface.update(display);
@@ -22,11 +22,11 @@ public class Curses_high_level
     public get_char.inputs get_input(String[] message)
     {
         update_message(message);
-        get_char.get_input("")
+        return get_char.get_input("");
     }
     public void board_update()
     {
-        String[] temp = utils.create_fancy_board(localboard)
+        String[] temp = utils.create_fancy_board(localboard);
         for(int i = 0; i < temp.length;i++)
             display[i] = temp[i];
         
@@ -36,13 +36,13 @@ public class Curses_high_level
         int x = 0;
         int y = 0;
         boolean exit = false;
-        assert(message.length == 4);
+        assert(message_piece.length == 4);
         update_message(message_piece);
-        get_char.inputs current = inputs.other;
+        get_char.inputs current = get_char.inputs.other;
         while(exit != true)
         {
             board_update();
-            current = get_input();
+            current = get_char.get_input();
             switch(current)
             {
                 case left:
@@ -74,7 +74,7 @@ public class Curses_high_level
                     {}
                     break;
             }
-            update_valids(x,y);
+            localboard.update_valids(x,y);
         }
         return new int[] {x,y};
     }
@@ -83,13 +83,13 @@ public class Curses_high_level
         int x = 0;
         int y = 0;
         boolean exit = false;
-        assert(message.length == 4);
-        update_message(message_piece);
-        get_char.inputs current = inputs.other;
+        assert(message_move.length == 4);
+        update_message(message_move);
+        get_char.inputs current = get_char.inputs.other;
         while(exit != true)
         {
             board_update();
-            current = get_input();
+            current = get_char.get_input();
             switch(current)
             {
                 case left:
@@ -121,8 +121,8 @@ public class Curses_high_level
                     {}
                     break;
             }
-            update_valids(x_in,y_in);
-            update_valids(x,y);
+            localboard.update_valids(x_in,y_in);
+            localboard.update_valids(x,y);
         }
         return new int[] {x,y};
     }
