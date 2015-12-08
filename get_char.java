@@ -85,8 +85,4 @@ public class get_char
             return inputs.down;
         return inputs.other;
     }
-    public static void main(String[] args)
-    {
-        get_input();
-    }
 }

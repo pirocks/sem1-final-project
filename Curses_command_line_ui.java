@@ -1,6 +1,6 @@
 public class command_line_ui
 {
-    public static void ask_for_piece_white(board global_board, boolean aiw, boolean aib)
+    public static void ask_for_piece_white(highlighted_board global_board, boolean aiw, boolean aib)
     {
         if(aiw)
         {
@@ -12,8 +12,8 @@ public class command_line_ui
             // ask_for_piece_black(global_board,aiw,aib);
             // //assert(false);
         }
-        utils.display_fancy_board(global_board);
-        System.out.println("Enter the x coordinate of the white piece you would like to move(integer from 0 to 7):");
+        utils.create_fancy_board(global_board);
+        
         int x = TextIO.getlnInt();
         System.out.println("Enter the y coordinate of the white piece you would like to move(integer from 0 to 7):");
         int y = TextIO.getlnInt();
@@ -29,7 +29,7 @@ public class command_line_ui
         }
         ask_for_move_white(global_board,aiw,aib,x,y);
     }
-    public static void ask_for_move_white(board global_board,boolean aiw, boolean aib,int x, int y)
+    public static void ask_for_move_white(highlighted_board global_board,boolean aiw, boolean aib,int x, int y)
     {
         System.out.println("Please select the x coordinate of the location you want to move your black piece to.");
         int x_end = TextIO.getlnInt();
@@ -44,7 +44,7 @@ public class command_line_ui
         global_board.apply_move(current_move);
         ask_for_piece_black(global_board,aiw,aib);
     }
-    public static void ask_for_piece_black(board global_board, boolean aiw, boolean aib)
+    public static void ask_for_piece_black(highlighted_board global_board, boolean aiw, boolean aib)
     {
         if(aib)
         {
@@ -71,7 +71,7 @@ public class command_line_ui
         }
         ask_for_move_black(global_board,aiw,aib,x,y);
     }
-    public static void ask_for_move_black(board global_board,boolean aiw, boolean aib,int x, int y)
+    public static void ask_for_move_black(highlighted_board global_board,boolean aiw, boolean aib,int x, int y)
     {
         System.out.println("Please select the x coordinate of the location you want to move your black piece to.");
         int x_end = TextIO.getlnInt();
