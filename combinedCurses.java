@@ -27,8 +27,7 @@ public class combinedCurses
         help,
         other,
     }
-    public class input_methods
-    {
+    //begin input stuff
         public String get_char_internal(String prompt)
         {
             System.out.print(prompt);
@@ -96,7 +95,7 @@ public class combinedCurses
                 return inputs.down;
             return inputs.other;
         }
-    };
+    //end input stuff
     public combinedCurses(highlighted_board in,String[] message)
     {
         Board = in;
@@ -109,10 +108,10 @@ public class combinedCurses
     {
         message = in;
     }
-    public class display
-    {
+    //begin display stuff
         public void full()
         {
+            System.out.print(curses.clear_screen);
             System.out.println(board_string);
             System.out.println(message);
         }
@@ -179,7 +178,7 @@ public class combinedCurses
             }
             return out;
         }
-    };
+    //end display stuff
     public static class raw_mode
     {
         public static void enter_raw()
@@ -193,6 +192,7 @@ public class combinedCurses
             {
                 return;
             }
+            return;
         }
         public static void leave_raw()
         {
@@ -205,101 +205,113 @@ public class combinedCurses
             {
                 return;
             }
+            return;
         }
     };
-    /*public int[] get_piece_coordinates(String[] message_piece)
+    public class higher_level_stuff
     {
-        int x = 0;
-        int y = 0;
-        boolean exit = false;
-        assert(message_piece.length == 4);
-        update_message(message_piece);
-        get_char.inputs current = get_char.inputs.other;
-        while(exit != true)
+        public int[] get_piece_coordinates(String[] message_piece)
         {
-            board_update();
-            current = get_char.get_input();
-            switch(current)
+            raw_mode.enter_raw();
+            int x = 0;
+            int y = 0;
+            boolean exit = false;
+            assert(message_piece.length == 4);
+            update_message(message_piece);
+            inputs current = inputs.other;
+            while(exit != true)
             {
-                case left:
-                    if(x > 0)
-                        x--;
-                    break;
-                case right:
-                    if(x < 7)
-                        x++;
-                    break;
-                case up:
-                    if(y < 7)
-                        y++;
-                    break;
-                case down:
-                    if(y > 0)
-                        y--;
-                    break;
-                case enter:
-                    exit = true;
-                    break;
-                case quit:
-                    System.exit(1);
-                    break;
-                case other:
-                    {}
-                    break;
-                default:
-                    {}
-                    break;
+                board_string = utils.create_fancy_board(Board);
+                update();
+                current = get_input();
+                switch(current)
+                {
+                    case left:
+                        if(x > 0)
+                            x--;
+                        break;
+                    case right:
+                        if(x < 7)
+                            x++;
+                        break;
+                    case up:
+                        if(y < 7)
+                            y++;
+                        break;
+                    case down:
+                        if(y > 0)
+                            y--;
+                        break;
+                    case enter:
+                        exit = true;
+                        break;
+                    case quit:
+                        System.out.print("quiting");
+                        raw_mode.leave_raw();
+                        System.exit(1);
+                        break;
+                    case other:
+                        {}
+                        break;
+                    default:
+                        {}
+                        break;
+                }
+                Board.update_valids(x,y);
             }
-            localboard.update_valids(x,y);
+            return new int[] {x,y};
         }
-        return new int[] {x,y};
+        public int[] get_move_coordinates(String[] message_move,int x_in,int y_in)
+        {
+            raw_mode.enter_raw();
+            int x = 0;
+            int y = 0;
+            boolean exit = false;
+            assert(message_move.length == 4);
+            update_message(message_move);
+            inputs current = inputs.other;
+            while(exit != true)
+            {
+                board_string = utils.create_fancy_board(Board);
+                update();
+                current = get_input();
+                switch(current)
+                {
+                    case left:
+                        if(x > 0)
+                            x--;
+                        break;
+                    case right:
+                        if(x < 7)
+                            x++;
+                        break;
+                    case up:
+                        if(y < 7)
+                            y++;
+                        break;
+                    case down:
+                        if(y > 0)
+                            y--;
+                        break;
+                    case enter:
+                        exit = true;
+                        break;
+                    case quit:
+                        System.out.print("quiting");
+                        raw_mode.leave_raw();
+                        System.exit(1);
+                        break;
+                    case other:
+                        {}
+                        break;
+                    default:
+                        {}
+                        break;
+                }
+                Board.update_valids(x_in,y_in);
+                Board.update_valids(x,y);
+            }
+            return new int[] {x,y};
+        }
     }
-    public int[] get_move_coordinates(String[] message_move,int x_in,int y_in)
-    {
-        int x = 0;
-        int y = 0;
-        boolean exit = false;
-        assert(message_move.length == 4);
-        update_message(message_move);
-        get_char.inputs current = get_char.inputs.other;
-        while(exit != true)
-        {
-            board_update();
-            current = get_char.get_input();
-            switch(current)
-            {
-                case left:
-                    if(x > 0)
-                        x--;
-                    break;
-                case right:
-                    if(x < 7)
-                        x++;
-                    break;
-                case up:
-                    if(y < 7)
-                        y++;
-                    break;
-                case down:
-                    if(y > 0)
-                        y--;
-                    break;
-                case enter:
-                    exit = true;
-                    break;
-                case quit:
-                    System.exit(1);
-                    break;
-                case other:
-                    {}
-                    break;
-                default:
-                    {}
-                    break;
-            }
-            localboard.update_valids(x_in,y_in);
-            localboard.update_valids(x,y);
-        }
-        return new int[] {x,y};
-    }*/
 }
