@@ -66,11 +66,11 @@ public class combinedCurses
                 return inputs.quit;
             if(in.equals(""+(char)27+(char)91+(char)68))
                 return inputs.left;
-            if(in.equals("\027\091\067"))
+            if(in.equals(""+(char)27+(char)91+(char)67))
                 return inputs.right;
-            if(in.equals("\027\091\065"))
+            if(in.equals(""+(char)27+(char)91+(char)65))
                 return inputs.up;
-            if(in.equals("\027\091\066"))
+            if(in.equals(""+(char)27+(char)91+(char)66))
                 return inputs.down;
             return inputs.other;
         }
