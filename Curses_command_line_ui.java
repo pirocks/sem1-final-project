@@ -1,6 +1,6 @@
 public class Curses_command_line_ui
 {
-    public static void ask_for_piece_white(highlighted_board global_board, boolean aiw, boolean aib,Curses_high_level curses_initq )
+    public static void ask_for_piece_white(highlighted_board global_board, boolean aiw, boolean aib,combinedCurses curses_initq )
     {
         String[] message_piece = new String[]{
             "Select a white piece.",
@@ -33,7 +33,7 @@ public class Curses_command_line_ui
         }
         ask_for_move_white(global_board,aiw,aib,x,y,curses_initq);
     }
-    public static void ask_for_move_white(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,Curses_high_level curses_initq)
+    public static void ask_for_move_white(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,combinedCurses curses_initq)
     {
         String[] message_move = new String[]{
             "Please select the",
@@ -52,7 +52,7 @@ public class Curses_command_line_ui
         global_board.apply_move(current_move);
         ask_for_piece_black(global_board,aiw,aib,curses_initq);
     }
-    public static void ask_for_piece_black(highlighted_board global_board, boolean aiw, boolean aib,Curses_high_level curses_initq)
+    public static void ask_for_piece_black(highlighted_board global_board, boolean aiw, boolean aib,combinedCurses curses_initq)
     {
         String[] message_piece = new String[]{
             "Select a white piece.",
@@ -85,7 +85,7 @@ public class Curses_command_line_ui
         }
         ask_for_move_black(global_board,aiw,aib,x,y,curses_initq);
     }
-    public static void ask_for_move_black(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,Curses_high_level curses_initq)
+    public static void ask_for_move_black(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,combinedCurses curses_initq)
     {
         String[] message_move = new String[]{
             "Please select the",

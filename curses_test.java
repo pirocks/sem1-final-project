@@ -17,11 +17,16 @@ public class curses_test
             "                                                                ",//11
             "                                                                ",//12
         };
-        Curses_interface curse = new Curses_interface(array,12);
-        Curses_high_level high = new Curses_high_level();
-        curse.board_overwrite(global_board);
+        //Curses_interface curse = new Curses_interface(array,12);
+        //Curses_high_level high = new Curses_high_level();
+        //curse.board_overwrite(global_board);
         highlighted_board newboard = new highlighted_board(global_board.toArray());
-        Curses_command_line_ui.ask_for_piece_white(newboard,false,false,high);
+        combinedCurses combined = new combinedCurses(newboard,new String[]
+        {
+            "stuff","stuff","stuff","stuff"
+        }
+        );
+        Curses_command_line_ui.ask_for_piece_white(newboard,false,false,combined);
         // System.out.println("hc" + utils.RESET);
         // for(int i =0;i < 8;i++) 
         // {

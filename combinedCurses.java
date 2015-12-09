@@ -9,8 +9,8 @@ public class combinedCurses
         private String[] board_string;
         public current(String[] message,String[] board_string)
         {
-            this.message = message;
-            this.board_string = board_string;
+            this.message = utils.string_aray_copy(message);
+            this.board_string = utils.string_aray_copy(board_string);
         }
     }
     current Current;
@@ -103,6 +103,7 @@ public class combinedCurses
         board_string = utils.create_fancy_board(Board);
         this.message = message;
         Current = new current(message,board_string);
+        full();
     }
     public void update_message(String[] in)
     {
@@ -111,24 +112,29 @@ public class combinedCurses
     //begin display stuff
         public void full()
         {
+            raw_mode.leave_raw();
             System.out.print(curses.clear_screen);
-            System.out.println(board_string);
-            System.out.println(message);
+            for(int i =0; i < board_string.length;i++)System.out.println(board_string[i]);
+            for(int i =0;i < message.length;i++)System.out.println(message);
+            raw_mode.enter_raw();
         }
         public void update()
         {
+            raw_mode.leave_raw();
             update_board();
             update_message();
+            raw_mode.enter_raw();
         }
         public void update_board()
         {
+            
             System.out.print(curses.exit_insert_mode);
             System.out.print(curses.cursor_home);
             board_string = utils.create_fancy_board(Board);
             String[] differences = diff_board(board_string);
             for(int i = 0; i < differences.length;i++)
             {
-                if(differences != null)
+                if(differences[i] != null)
                 {
                     System.out.print(curses.delete_line);
                     System.out.print(differences[i]);
@@ -143,7 +149,7 @@ public class combinedCurses
             String[] differences = diff_message(message);
             for(int i = 0; i < differences.length;i++)
             {
-                if(differences != null)
+                if(differences[i] != null)
                 {
                     System.out.print(curses.delete_line);
                     System.out.print(differences[i]);
@@ -208,8 +214,7 @@ public class combinedCurses
             return;
         }
     };
-    public class higher_level_stuff
-    {
+    //begin higher level stuff higher_level_stuff
         public int[] get_piece_coordinates(String[] message_piece)
         {
             raw_mode.enter_raw();
@@ -313,5 +318,5 @@ public class combinedCurses
             }
             return new int[] {x,y};
         }
-    }
+    //end higher level stuff
 }
