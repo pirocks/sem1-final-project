@@ -21,6 +21,7 @@ public class curses_test
         //Curses_high_level high = new Curses_high_level();
         //curse.board_overwrite(global_board);
         highlighted_board newboard = new highlighted_board(global_board.toArray());
+        newboard.set_selected(0,0);
         combinedCurses combined = new combinedCurses(newboard,new String[]
         {
             "stuff","stuff","stuff","stuff"

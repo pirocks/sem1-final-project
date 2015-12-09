@@ -75,4 +75,11 @@ public class highlight_locations
                 return null;
         }
     }
+    public String toString()
+    {
+        String out = "";
+        for(int i =0; i < x_locs.length;i++)
+            out += String.format("x_locs:%d y_locs: %d, colors: %s",x_locs[i],y_locs[i],colors[i]);
+        return out;
+    }
 }

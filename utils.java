@@ -212,7 +212,9 @@ public class utils
     }
     public static String[] create_fancy_board(highlighted_board board_in)
     {
+    	//System.out.print("highlighted_board");
     	highlight_locations locs = new highlight_locations(board_in);
+    	//System.out.println(locs.toString());
     	int out_i = 0;
     	String[] out = new String[8];
     	for(int i = 0; i < 8;i++)
@@ -232,14 +234,18 @@ public class utils
     			else
     				background = "\033[40m";
     			out[out_i] += background;
-    			int x_i = java.util.Arrays.asList(locs.x_locs).indexOf(x);
-    			int y_i = java.util.Arrays.asList(locs.x_locs).indexOf(y);
-    			if( x_i != -1 && y_i != -1 && x_i == y_i)
-    				out[out_i] += locs.colors[x_i];
+    			int x_i,y_i;
 				piece = board_in.toArray()[y][x];
 				if(valid.is_black(piece))
 				{
 				    out[out_i] += BLUE;
+				    x_i = find(locs.x_locs,x);
+	    			y_i = find(locs.x_locs,y);
+	    			// System.out.println("x_i:"+x_i+"y_i:"+y_i+"x:"+x+"y:"+y);
+	    			if( x_i != -1 && y_i != -1 && x_i == y_i){
+	    				out[out_i] += locs.colors[x_i];
+	    				//System.out.println("caught");
+	    			}
 				    switch(piece)
 				    {
 				        case pieces.black.king:
@@ -268,6 +274,12 @@ public class utils
 				else if(valid.is_white(piece))
 				{
 				    out[out_i] += RED;
+				    x_i = find(locs.x_locs,x);
+	    			y_i = find(locs.x_locs,y);
+	    			if( x_i != -1 && y_i != -1 && x_i == y_i){
+	    				out[out_i] += locs.colors[x_i];
+	    				//System.out.println("caught");
+	    			}
 				    switch(piece)
 				    {
 				        case pieces.white.king:
@@ -323,5 +335,14 @@ public class utils
     		out[i] = new String(in[i]);
     	}
     	return out;
+    }
+    public static int find(int[] haystack,int needle)
+    {
+    	for(int i = 0;i < haystack.length;i++)
+    	{
+    		if(haystack[i] == needle)
+    			return i;
+    	}
+    	return -1;
     }
 }
