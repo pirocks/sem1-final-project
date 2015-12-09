@@ -1,6 +1,21 @@
+import java.io.Console;
 public class combinedCurses
 {
     private highlighted_board Board;
+    private Curses curses;
+    private class current
+    {
+        private String[] message;
+        private String[] board_string;
+        public current(String[] message,String[] board_string)
+        {
+            this.message = message;
+            this.board_string = board_string;
+        }
+    }
+    current Current;
+    private String[] message;
+    private String[] board_string;
     public enum inputs
     {
         left,
@@ -12,19 +27,11 @@ public class combinedCurses
         help,
         other,
     }
-    class input_methods
+    public class input_methods
     {
-        public static String get_char_internal(String prompt)
+        public String get_char_internal(String prompt)
         {
             System.out.print(prompt);
-            Curses curses;
-            if(utils.global_curses == null)
-            {
-                curses = new Curses();
-                utils.global_curses = curses;
-            }
-            else
-                curses = utils.global_curses;
             Console cons = System.console();
             String out = "";
             try {
@@ -47,7 +54,7 @@ public class combinedCurses
             // curses.fix_the_terminal();
             return out;
         }
-        public static inputs get_input()
+        public inputs get_input()
         {
             String in = get_char_internal("");
             if(in.equals("\024"))
@@ -68,7 +75,7 @@ public class combinedCurses
                 return inputs.down;
             return inputs.other;
         }
-        public static inputs get_input(String prompt)
+        public inputs get_input(String prompt)
         {
             String in = get_char_internal(prompt);
             if(in.equals("\024"))
@@ -89,13 +96,210 @@ public class combinedCurses
                 return inputs.down;
             return inputs.other;
         }
-    }
-    public combinedCurses(highlighted_board in)
+    };
+    public combinedCurses(highlighted_board in,String[] message)
     {
-        
+        Board = in;
+        curses = new Curses();
+        board_string = utils.create_fancy_board(Board);
+        this.message = message;
+        Current = new current(message,board_string);
     }
-    public inputs get_input()
+    public void update_message(String[] in)
     {
-        return input_methods.get_input()
+        message = in;
     }
+    public class display
+    {
+        public void full()
+        {
+            System.out.println(board_string);
+            System.out.println(message);
+        }
+        public void update()
+        {
+            update_board();
+            update_message();
+        }
+        public void update_board()
+        {
+            System.out.print(curses.exit_insert_mode);
+            System.out.print(curses.cursor_home);
+            board_string = utils.create_fancy_board(Board);
+            String[] differences = diff_board(board_string);
+            for(int i = 0; i < differences.length;i++)
+            {
+                if(differences != null)
+                {
+                    System.out.print(curses.delete_line);
+                    System.out.print(differences[i]);
+                }
+                System.out.print(curses.cursor_down);
+            }
+            Current.board_string = utils.string_aray_copy(board_string);
+        }
+        public void update_message()
+        {
+            System.out.print(curses.exit_insert_mode);
+            String[] differences = diff_message(message);
+            for(int i = 0; i < differences.length;i++)
+            {
+                if(differences != null)
+                {
+                    System.out.print(curses.delete_line);
+                    System.out.print(differences[i]);
+                }
+                System.out.print(curses.cursor_down);
+            }
+            Current.message = utils.string_aray_copy(message);
+        }
+        private String[] diff_message(String[] in)
+        {
+            assert(Current.message.length == in.length);
+            String out[] = new String[in.length];
+            for(int i = 0; i < in.length; i++)
+            {
+                if(!(Current.message[i].equals(in[i])))
+                    out[i] = in[i];
+                else
+                    out[i] = null;
+            }
+            return out;
+        }
+        private String[] diff_board(String[] in)
+        {
+            assert(Current.message.length == in.length);
+            String out[] = new String[in.length];
+            for(int i = 0; i < in.length; i++)
+            {
+                if(!(Current.board_string[i].equals(in[i])))
+                    out[i] = in[i];
+                else
+                    out[i] = null;
+            }
+            return out;
+        }
+    };
+    public static class raw_mode
+    {
+        public static void enter_raw()
+        {
+            try
+            {
+                String[] stuff = {"/bin/sh", "-c", "stty raw </dev/tty"};
+                Runtime.getRuntime().exec(stuff).waitFor();
+            }
+            catch(Exception e)
+            {
+                return;
+            }
+        }
+        public static void leave_raw()
+        {
+            try
+            {
+                String[] stuff = {"/bin/sh", "-c", "stty sane </dev/tty"};
+                Runtime.getRuntime().exec(stuff).waitFor();
+            }
+            catch(Exception e)
+            {
+                return;
+            }
+        }
+    };
+    /*public int[] get_piece_coordinates(String[] message_piece)
+    {
+        int x = 0;
+        int y = 0;
+        boolean exit = false;
+        assert(message_piece.length == 4);
+        update_message(message_piece);
+        get_char.inputs current = get_char.inputs.other;
+        while(exit != true)
+        {
+            board_update();
+            current = get_char.get_input();
+            switch(current)
+            {
+                case left:
+                    if(x > 0)
+                        x--;
+                    break;
+                case right:
+                    if(x < 7)
+                        x++;
+                    break;
+                case up:
+                    if(y < 7)
+                        y++;
+                    break;
+                case down:
+                    if(y > 0)
+                        y--;
+                    break;
+                case enter:
+                    exit = true;
+                    break;
+                case quit:
+                    System.exit(1);
+                    break;
+                case other:
+                    {}
+                    break;
+                default:
+                    {}
+                    break;
+            }
+            localboard.update_valids(x,y);
+        }
+        return new int[] {x,y};
+    }
+    public int[] get_move_coordinates(String[] message_move,int x_in,int y_in)
+    {
+        int x = 0;
+        int y = 0;
+        boolean exit = false;
+        assert(message_move.length == 4);
+        update_message(message_move);
+        get_char.inputs current = get_char.inputs.other;
+        while(exit != true)
+        {
+            board_update();
+            current = get_char.get_input();
+            switch(current)
+            {
+                case left:
+                    if(x > 0)
+                        x--;
+                    break;
+                case right:
+                    if(x < 7)
+                        x++;
+                    break;
+                case up:
+                    if(y < 7)
+                        y++;
+                    break;
+                case down:
+                    if(y > 0)
+                        y--;
+                    break;
+                case enter:
+                    exit = true;
+                    break;
+                case quit:
+                    System.exit(1);
+                    break;
+                case other:
+                    {}
+                    break;
+                default:
+                    {}
+                    break;
+            }
+            localboard.update_valids(x_in,y_in);
+            localboard.update_valids(x,y);
+        }
+        return new int[] {x,y};
+    }*/
 }

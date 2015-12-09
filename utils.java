@@ -14,14 +14,14 @@ public class utils
 	public static final int bknight = 11;
 	public static final int bpawn =   12;
     public static board defualt_board = new board(new int[][] {
-    {brook,bknight,bbishop,bqueen,bking,bbishop,bknight,brook},
-    {bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn},
-    {blank,blank,blank,blank,blank,blank,blank,blank},
-    {blank,blank,blank,blank,blank,blank,blank,blank},
-    {blank,blank,blank,blank,blank,blank,blank,blank},
-    {blank,blank,blank,blank,blank,blank,blank,blank},
-    {wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn},
-    {wrook,wknight,wbishop,wqueen,wking,wbishop,wknight,wrook},
+	    {brook,bknight,bbishop,bqueen,bking,bbishop,bknight,brook},
+	    {bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn},
+	    {wrook,wknight,wbishop,wqueen,wking,wbishop,wknight,wrook},
     }
     );
     public static final String BLACK = "[0m";
@@ -33,7 +33,7 @@ public class utils
     public static final String CYAN = "[36m";
     public static final String WHITE = "[37m";
     public static final String RESET = "\033[0m";
-    public static Curses global_curses;
+    //public static Curses global_curses;
     public static void display_fancy_board(board board_in)
     {
         String background;
@@ -314,5 +314,14 @@ public class utils
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+    }
+    public static String[] string_aray_copy(String[] in)
+    {
+    	String[] out = new String[in.length];
+    	for(int i = 0;i < in.length;i++)
+    	{
+    		out[i] = new String(in[i]);
+    	}
+    	return out;
     }
 }
