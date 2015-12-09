@@ -64,7 +64,7 @@ public class combinedCurses
                 return inputs.quit;
             if(in.equals("\003"))
                 return inputs.quit;
-            if(in.equals("\027\091\068"))
+            if(in.equals(""+(char)27+(char)91+(char)68))
                 return inputs.left;
             if(in.equals("\027\091\067"))
                 return inputs.right;
@@ -115,7 +115,7 @@ public class combinedCurses
             raw_mode.leave_raw();
             System.out.print(curses.clear_screen);
             for(int i =0; i < board_string.length;i++)System.out.println(board_string[i]);
-            for(int i =0;i < message.length;i++)System.out.println(message);
+            for(int i =0;i < message.length;i++)System.out.println(message[i]);
             raw_mode.enter_raw();
         }
         public void update()
@@ -123,7 +123,8 @@ public class combinedCurses
             raw_mode.leave_raw();
             update_board();
             update_message();
-            for(int i =0; i < utils.create_fancy_board(Board).length;i++)System.out.println(utils.create_fancy_board(Board)[i]);
+            //for(int i =0; i < utils.create_fancy_board(Board).length;i++)System.out.println(utils.create_fancy_board(Board)[i]);
+            //System.out.println("updateing");//assert(false);
             raw_mode.enter_raw();
         }
         public void update_board()
@@ -174,7 +175,7 @@ public class combinedCurses
         }
         private String[] diff_board(String[] in)
         {
-            assert(Current.message.length == in.length);
+            assert(Current.board_string.length == in.length);
             String out[] = new String[in.length];
             for(int i = 0; i < in.length; i++)
             {
