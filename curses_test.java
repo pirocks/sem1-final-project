@@ -23,9 +23,9 @@ public class curses_test
         highlighted_board newboard = new highlighted_board(global_board.toArray());
         newboard.set_selected(0,0);
         combinedCurses combined = new combinedCurses(newboard,new String[]
-        {
-            "stuff","stuff","stuff","stuff"
-        }
+            {
+                "","","",""
+            }
         );
         Curses_command_line_ui.ask_for_piece_white(newboard,false,false,combined);
         // System.out.println("hc" + utils.RESET);

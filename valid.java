@@ -201,11 +201,20 @@ public class valid
 
 	public static boolean w_king(int[][] board_in, int x_in, int y_in, int x_end, int y_end) //castling ! implemented
 	{
+		//assert(false);
 		if (on_board(x_end,y_end))
 		{
+			if(abs(y_in - y_end) > 1)
+				return false;
+			if(abs(x_in - x_end) > 1)
+				return false;
 			if(is_black(board_in[y_end][x_end]) || board_in[y_end][x_end] == pieces.blank)
-				if(abs(y_in - y_end) == 1 || abs(x_in -x_end) == 1)
+			{
+				if(abs(y_in - y_end) == 1 && (abs(x_in -x_end) == 1 || abs(x_in -x_end) == 0))
 					return true;
+				if(abs(y_in - y_end) == 0 && abs(x_in -x_end) == 1)
+					return true;
+			}
 		}
 		return false;
 	}
@@ -244,6 +253,11 @@ public class valid
 
 	public static boolean b_king(int[][] board_in, int x_in, int y_in, int x_end, int y_end) 
 	{
+		if(abs(y_in - y_end) > 1)
+				return false;
+			if(abs(x_in - x_end) > 1)
+				return false;
+		//assert(false);
 		if (on_board(x_end,y_end))
 			if(is_white(board_in[y_end][x_end]) || board_in[y_end][x_end] == pieces.blank)
 				if(abs(y_in - y_end) == 1 || abs(x_in -x_end) == 1)
@@ -259,6 +273,7 @@ public class valid
 
 	public static boolean white(int[][] board_in, int x_in, int y_in, int x_end, int y_end)
 	{
+		//assert(false);
 		int piece = board_in[y_in][x_in];
 		switch(piece)
 		{
@@ -280,6 +295,7 @@ public class valid
 
 	public static boolean black(int[][] board_in, int x_in, int y_in, int x_end, int y_end)
 	{
+		//assert(false);
 		int piece = board_in[y_in][x_in];
 		switch(piece)
 		{

@@ -18,6 +18,10 @@ public class highlighted_board extends board
     }
     public void update_valids(int x_in,int y_in)
     {
+        //must reset
+        for(int y = 0; y < 8;y++)
+            for (int x = 0;x < 8 ;x++ ) 
+                    highlights[y][x] = states.blank;
         highlights[y_in][x_in] = states.selected;
         for(int y = 0; y < 8; y++)
             for(int x = 0; x < 8; x++)

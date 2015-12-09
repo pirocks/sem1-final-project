@@ -21,6 +21,8 @@ public class Curses_command_line_ui
         int[] piece = curses_initq.get_piece_coordinates(message_piece);
         int x = piece[0];
         int y = piece[1];
+        System.out.println(String.format("x:%dy:%d",x,y) );
+        //System.exit(1);
         if(global_board.getPiece(y,x) == pieces.blank)
         {
             System.out.println("That is not a piece");

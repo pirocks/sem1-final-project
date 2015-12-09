@@ -33,6 +33,14 @@ public class utils
     public static final String CYAN = "[36m";
     public static final String WHITE = "[37m";
     public static final String RESET = "\033[0m";
+    public static final String BACKGROUND_BLACK = "[0m";
+    public static final String BACKGROUND_RED = "[41m";
+    public static final String BACKGROUND_GREEN = "[42m";
+    public static final String BACKGROUND_YELLOW = "[43m";
+    public static final String BACKGROUND_BLUE = "[44m";
+    public static final String BACKGROUND_MAGENTA = "[45m";
+    public static final String BACKGROUND_CYAN = "[46m";
+    public static final String BACKGROUND_WHITE = "[47m";
     //public static Curses global_curses;
     public static void display_fancy_board(board board_in)
     {
@@ -210,17 +218,31 @@ public class utils
 		out[out_i] += RESET;
 		return out;
     }
+    public static String state_to_string(highlighted_board.states in)
+    {
+        switch(in)
+        {
+            case blank:
+                return null;
+            case selected:
+                return utils.BACKGROUND_YELLOW;
+            case move_valid:
+                return utils.BACKGROUND_GREEN;
+            case flashing_check:
+                return utils.BACKGROUND_RED;
+            default:
+                return null;
+        }
+    }
     public static String[] create_fancy_board(highlighted_board board_in)
     {
     	//System.out.print("highlighted_board");
-    	highlight_locations locs = new highlight_locations(board_in);
+    	//highlight_locations locs = new highlight_locations(board_in);
     	//System.out.println(locs.toString());
     	int out_i = 0;
     	String[] out = new String[8];
     	for(int i = 0; i < 8;i++)
-    	{
     		out[i] = "";
-    	}
     	String background;
 		int piece;
 		for(int y = 0; y < 8;y++)
@@ -234,18 +256,19 @@ public class utils
     			else
     				background = "\033[40m";
     			out[out_i] += background;
-    			int x_i,y_i;
+    			if(state_to_string(board_in.get(y,x)) != null){
+	    				out[out_i] += state_to_string(board_in.get(y,x));
+	    				//assert(locs.colors[x_i] != null);
+	    				//System.out.println("caught");
+}
 				piece = board_in.toArray()[y][x];
 				if(valid.is_black(piece))
 				{
 				    out[out_i] += BLUE;
-				    x_i = find(locs.x_locs,x);
-	    			y_i = find(locs.x_locs,y);
+				    // x_i = find(locs.x_locs,x);
+	    			// y_i = find(locs.x_locs,y);
 	    			// System.out.println("x_i:"+x_i+"y_i:"+y_i+"x:"+x+"y:"+y);
-	    			if( x_i != -1 && y_i != -1 && x_i == y_i){
-	    				out[out_i] += locs.colors[x_i];
-	    				//System.out.println("caught");
-	    			}
+	    			
 				    switch(piece)
 				    {
 				        case pieces.black.king:
@@ -274,10 +297,11 @@ public class utils
 				else if(valid.is_white(piece))
 				{
 				    out[out_i] += RED;
-				    x_i = find(locs.x_locs,x);
-	    			y_i = find(locs.x_locs,y);
-	    			if( x_i != -1 && y_i != -1 && x_i == y_i){
-	    				out[out_i] += locs.colors[x_i];
+				    // x_i = find(locs.x_locs,x);
+	    			// y_i = find(locs.x_locs,y);
+	    			if(state_to_string(board_in.get(y,x)) != null){
+	    				out[out_i] += state_to_string(board_in.get(y,x));
+	    				//assert(locs.colors[x_i] != null);
 	    				//System.out.println("caught");
 	    			}
 				    switch(piece)
@@ -344,5 +368,10 @@ public class utils
     			return i;
     	}
     	return -1;
+    }
+    public static void sanity_check(String[] in)
+    {
+    	for (int i =0; i < in.length ;i++ )
+    		assert(in[i] != null);
     }
 }

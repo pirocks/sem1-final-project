@@ -65,13 +65,35 @@ public class combinedCurses
             if(in.equals("\003"))
                 return inputs.quit;
             if(in.equals(""+(char)27+(char)91+(char)68))
+            {
+                System.out.print("left");
                 return inputs.left;
+            }
             if(in.equals(""+(char)27+(char)91+(char)67))
+            {
+                System.out.print("right");
                 return inputs.right;
+            }
             if(in.equals(""+(char)27+(char)91+(char)65))
+            {
+                System.out.print("up");
                 return inputs.up;
+            }
             if(in.equals(""+(char)27+(char)91+(char)66))
+            {
+                System.out.print("down");
                 return inputs.down;
+            }
+            if(in.equals("\n"))
+            {
+                //System.exit(0);
+                return inputs.enter;
+            }
+            if(in.equals("\015"))
+            {
+                //System.exit(0);
+                return inputs.enter;
+            }
             return inputs.other;
         }
         public inputs get_input(String prompt)
@@ -125,6 +147,10 @@ public class combinedCurses
             update_message();
             //for(int i =0; i < utils.create_fancy_board(Board).length;i++)System.out.println(utils.create_fancy_board(Board)[i]);
             //System.out.println("updateing");//assert(false);
+            //utils.display_fancy_board(Board);
+            //System.out.println("length:"+utils.create_fancy_board(Board).length);
+            //System.out.print(curses.clear_screen);
+            //full();
             raw_mode.enter_raw();
         }
         public void update_board()
@@ -138,10 +164,10 @@ public class combinedCurses
             {
                 if(differences[i] != null)
                 {
-                    System.out.print(curses.delete_line);
+                    //System.out.print(curses.delete_line);
                     System.out.print(differences[i]);
                 }
-                System.out.print(curses.cursor_down);
+                System.out.print(curses.newline);
             }
             Current.board_string = utils.string_aray_copy(board_string);
         }
@@ -153,8 +179,8 @@ public class combinedCurses
             {
                 if(differences[i] != null)
                 {
-                    System.out.print(curses.delete_line);
-                    System.out.print(differences[i]);
+                    //System.out.print(curses.delete_line);
+                    System.out.println(differences[i]);
                 }
                 System.out.print(curses.cursor_down);
             }
@@ -242,12 +268,12 @@ public class combinedCurses
                             x++;
                         break;
                     case up:
-                        if(y < 7)
-                            y++;
-                        break;
-                    case down:
                         if(y > 0)
                             y--;
+                        break;
+                    case down:
+                        if(y < 7)
+                            y++;
                         break;
                     case enter:
                         exit = true;
@@ -292,11 +318,11 @@ public class combinedCurses
                         if(x < 7)
                             x++;
                         break;
-                    case up:
+                    case down:
                         if(y < 7)
                             y++;
                         break;
-                    case down:
+                    case up:
                         if(y > 0)
                             y--;
                         break;
