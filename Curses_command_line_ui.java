@@ -21,7 +21,7 @@ public class Curses_command_line_ui
         int[] piece = curses_initq.get_piece_coordinates(message_piece);
         int x = piece[0];
         int y = piece[1];
-        System.out.println(String.format("x:%dy:%d",x,y) );
+        //System.out.println(String.format("x:%dy:%d",x,y) );
         //System.exit(1);
         if(global_board.getPiece(y,x) == pieces.blank)
         {
@@ -33,6 +33,9 @@ public class Curses_command_line_ui
             System.out.println("That is a black piece. Please select a white piece");
             ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
+        global_board.set_prevselected(x,y);
+        curses_initq.set_board(global_board);
+        global_board.set_prevselected(x,y);
         ask_for_move_white(global_board,aiw,aib,x,y,curses_initq);
     }
     public static void ask_for_move_white(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,combinedCurses curses_initq)
@@ -51,13 +54,15 @@ public class Curses_command_line_ui
             ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
         move current_move = new move(x,y,x_end,y_end);
+        global_board.set_prevselected(x,y);
         global_board.apply_move(current_move);
+        curses_initq.set_board(global_board);
         ask_for_piece_black(global_board,aiw,aib,curses_initq);
     }
     public static void ask_for_piece_black(highlighted_board global_board, boolean aiw, boolean aib,combinedCurses curses_initq)
     {
         String[] message_piece = new String[]{
-            "Select a white piece.",
+            "Select a black piece.",
             "Use the arrow keys.",
             "Use ennter to select",
             ""
@@ -80,11 +85,13 @@ public class Curses_command_line_ui
             System.out.println("That is not a piece");
             ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
-        if(valid.is_black(global_board.getPiece(y,x)))
+        if(valid.is_white(global_board.getPiece(y,x)))
         {
-            System.out.println("That is a black piece. Please select a white piece");
+            System.out.println("That is a white piece. Please select a white piece");
             ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
+        global_board.set_prevselected(x,y);
+        curses_initq.set_board(global_board);
         ask_for_move_black(global_board,aiw,aib,x,y,curses_initq);
     }
     public static void ask_for_move_black(highlighted_board global_board,boolean aiw, boolean aib,int x, int y,combinedCurses curses_initq)
@@ -103,7 +110,10 @@ public class Curses_command_line_ui
             ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
         move current_move = new move(x,y,x_end,y_end);
+        global_board.set_prevselected(x,y);
         global_board.apply_move(current_move);
+        global_board.set_prevselected(x,y);
+        curses_initq.set_board(global_board);
         ask_for_piece_white(global_board,aiw,aib,curses_initq);
     }
 }

@@ -230,6 +230,8 @@ public class utils
                 return utils.BACKGROUND_GREEN;
             case flashing_check:
                 return utils.BACKGROUND_RED;
+            case previously_selected:
+            	return utils.BACKGROUND_CYAN;
             default:
                 return null;
         }

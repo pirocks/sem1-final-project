@@ -6,6 +6,7 @@ public class highlighted_board extends board
         selected,
         move_valid,
         flashing_check,
+        previously_selected,
     }
     private states[][] highlights;
     public highlighted_board(int[][] in)
@@ -18,9 +19,9 @@ public class highlighted_board extends board
     }
     public void update_valids(int x_in,int y_in)
     {
-        //must reset
         for(int y = 0; y < 8;y++)
             for (int x = 0;x < 8 ;x++ ) 
+                if(highlights[y][x] != states.previously_selected)
                     highlights[y][x] = states.blank;
         highlights[y_in][x_in] = states.selected;
         for(int y = 0; y < 8; y++)
@@ -32,6 +33,10 @@ public class highlighted_board extends board
     {
         highlights[y][x] = states.selected;
     }
+    public void set_prevselected(int x,int y)
+    {
+        highlights[y][x] = states.previously_selected;
+    }
     public highlighted_board(int[][] in, states[][] states_in)
     {
         super(in);
@@ -40,5 +45,12 @@ public class highlighted_board extends board
     public states get(int y, int x)
     {
         return highlights[y][x];
+    }
+    public void clean_prevselected()
+    {
+        for (int y =0; y < highlights.length ;y++ )
+            for (int x =0;x < highlights[0].length ;x++ )
+                if(highlights[y][x] == states.previously_selected)
+                    highlights[y][x] = states.blank;
     }
 }

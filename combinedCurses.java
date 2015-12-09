@@ -66,22 +66,22 @@ public class combinedCurses
                 return inputs.quit;
             if(in.equals(""+(char)27+(char)91+(char)68))
             {
-                System.out.print("left");
+                //System.out.print("left");
                 return inputs.left;
             }
             if(in.equals(""+(char)27+(char)91+(char)67))
             {
-                System.out.print("right");
+                //System.out.print("right");
                 return inputs.right;
             }
             if(in.equals(""+(char)27+(char)91+(char)65))
             {
-                System.out.print("up");
+                //System.out.print("up");
                 return inputs.up;
             }
             if(in.equals(""+(char)27+(char)91+(char)66))
             {
-                System.out.print("down");
+                //System.out.print("down");
                 return inputs.down;
             }
             if(in.equals("\n"))
@@ -130,6 +130,10 @@ public class combinedCurses
     public void update_message(String[] in)
     {
         message = in;
+    }
+    public void set_board(highlighted_board in)
+    {
+        Board = in;
     }
     //begin display stuff
         public void full()
@@ -180,9 +184,9 @@ public class combinedCurses
                 if(differences[i] != null)
                 {
                     //System.out.print(curses.delete_line);
-                    System.out.println(differences[i]);
+                    System.out.print(differences[i]);
                 }
-                System.out.print(curses.cursor_down);
+                System.out.print(curses.newline);
             }
             Current.message = utils.string_aray_copy(message);
         }
@@ -292,11 +296,14 @@ public class combinedCurses
                 }
                 Board.update_valids(x,y);
             }
+            Board.set_prevselected(x,y);
             return new int[] {x,y};
         }
         public int[] get_move_coordinates(String[] message_move,int x_in,int y_in)
         {
             raw_mode.enter_raw();
+            Board.set_prevselected(x_in,y_in);
+            update();
             int x = 0;
             int y = 0;
             boolean exit = false;
@@ -305,6 +312,8 @@ public class combinedCurses
             inputs current = inputs.other;
             while(exit != true)
             {
+                Board.set_prevselected(x_in,y_in);
+                update();
                 board_string = utils.create_fancy_board(Board);
                 update();
                 current = get_input();
@@ -344,6 +353,8 @@ public class combinedCurses
                 Board.update_valids(x_in,y_in);
                 Board.update_valids(x,y);
             }
+            Board.clean_prevselected();
+            update();
             return new int[] {x,y};
         }
     //end higher level stuff
