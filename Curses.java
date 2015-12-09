@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Curses
 {
+
+    // this file was generated with the python script generate.py
+    // the python script was used due to the need to write hundreds of identical(almost) methods
     public static final String BLACK = "[0m";
     public static final String RED = "[31m";
     public static final String GREEN = "[32m";
@@ -18,10 +21,6 @@ public class Curses
     public static String change_scroll_region;
     public static String clear_all_tabs;
     public static String clear_screen;
-    public static String clr_bol;
-    public static String clr_eol;
-    public static String clr_eos;
-    public static String cursor_address;
     public static String cursor_down;
     public static String cursor_home;
     public static String cursor_invisible;
@@ -79,14 +78,6 @@ public class Curses
     public static String keypad_xmit;
     public static String newline;
     public static String orig_pair;
-    public static String parm_dch;
-    public static String parm_delete_line;
-    public static String parm_down_cursor;
-    public static String parm_ich;
-    public static String parm_insert_line;
-    public static String parm_left_cursor;
-    public static String parm_right_cursor;
-    public static String parm_up_cursor;
     public static String reset_2string;
     public static String restore_cursor;
     public static String save_cursor;
@@ -153,6 +144,7 @@ public class Curses
             public static String doReplace(String in)
             {
                 return in.replace("\\E","\033")
+                //.replace("^J", Character.toString((char)10))
                 .replace("^@","\0")
                 .replace("^A", Character.toString((char)1))
                 .replace("^B", Character.toString((char)2))
@@ -184,1118 +176,1250 @@ public class Curses
             
             public static void back_tab_init(String in)
             {
-                int word_index = (in).indexOf("back_tab=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug back_tab" + "thing: " + final_word);
-                back_tab = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("back_tab=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    back_tab = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + back_tab + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void bell_init(String in)
             {
-                int word_index = (in).indexOf("bell=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug bell" + "thing: " + final_word);
-                bell = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("bell=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    bell = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + bell + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void carriage_return_init(String in)
             {
-                int word_index = (in).indexOf("carriage_return=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug carriage_return" + "thing: " + final_word);
-                carriage_return = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("carriage_return=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    carriage_return = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + carriage_return + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void change_scroll_region_init(String in)
             {
-                int word_index = (in).indexOf("change_scroll_region=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug change_scroll_region" + "thing: " + final_word);
-                change_scroll_region = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("change_scroll_region=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    change_scroll_region = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + change_scroll_region + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void clear_all_tabs_init(String in)
             {
-                int word_index = (in).indexOf("clear_all_tabs=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug clear_all_tabs" + "thing: " + final_word);
-                clear_all_tabs = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("clear_all_tabs=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    clear_all_tabs = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + clear_all_tabs + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void clear_screen_init(String in)
             {
-                int word_index = (in).indexOf("clear_screen=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug clear_screen" + "thing: " + final_word);
-                clear_screen = doReplace(final_word);
-            }
-            public static void clr_bol_init(String in)
-            {
-                int word_index = (in).indexOf("clr_bol=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug clr_bol" + "thing: " + final_word);
-                clr_bol = doReplace(final_word);
-            }
-            public static void clr_eol_init(String in)
-            {
-                int word_index = (in).indexOf("clr_eol=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug clr_eol" + "thing: " + final_word);
-                clr_eol = doReplace(final_word);
-            }
-            public static void clr_eos_init(String in)
-            {
-                int word_index = (in).indexOf("clr_eos=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug clr_eos" + "thing: " + final_word);
-                clr_eos = doReplace(final_word);
-            }
-            public static void cursor_address_init(String in)
-            {
-                int word_index = (in).indexOf("cursor_address=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_address" + "thing: " + final_word);
-                cursor_address = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("clear_screen=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    clear_screen = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + clear_screen + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_down_init(String in)
             {
-                int word_index = (in).indexOf("cursor_down=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_down" + "thing: " + final_word);
-                cursor_down = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_down=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_down = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_down + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_home_init(String in)
             {
-                int word_index = (in).indexOf("cursor_home=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_home" + "thing: " + final_word);
-                cursor_home = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_home=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_home = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_home + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_invisible_init(String in)
             {
-                int word_index = (in).indexOf("cursor_invisible=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_invisible" + "thing: " + final_word);
-                cursor_invisible = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_invisible=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_invisible = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_invisible + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_left_init(String in)
             {
-                int word_index = (in).indexOf("cursor_left=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_left" + "thing: " + final_word);
-                cursor_left = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_left=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_left = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_left + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_normal_init(String in)
             {
-                int word_index = (in).indexOf("cursor_normal=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_normal" + "thing: " + final_word);
-                cursor_normal = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_normal=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_normal = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_normal + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_right_init(String in)
             {
-                int word_index = (in).indexOf("cursor_right=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_right" + "thing: " + final_word);
-                cursor_right = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_right=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_right = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_right + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_up_init(String in)
             {
-                int word_index = (in).indexOf("cursor_up=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_up" + "thing: " + final_word);
-                cursor_up = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_up=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_up = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_up + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void cursor_visible_init(String in)
             {
-                int word_index = (in).indexOf("cursor_visible=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug cursor_visible" + "thing: " + final_word);
-                cursor_visible = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("cursor_visible=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    cursor_visible = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + cursor_visible + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void delete_character_init(String in)
             {
-                int word_index = (in).indexOf("delete_character=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug delete_character" + "thing: " + final_word);
-                delete_character = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("delete_character=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    delete_character = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + delete_character + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void delete_line_init(String in)
             {
-                int word_index = (in).indexOf("delete_line=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug delete_line" + "thing: " + final_word);
-                delete_line = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("delete_line=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    delete_line = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + delete_line + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void ena_acs_init(String in)
             {
-                int word_index = (in).indexOf("ena_acs=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug ena_acs" + "thing: " + final_word);
-                ena_acs = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("ena_acs=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    ena_acs = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + ena_acs + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_alt_charset_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_alt_charset_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_alt_charset_mode" + "thing: " + final_word);
-                enter_alt_charset_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_alt_charset_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_alt_charset_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_alt_charset_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_blink_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_blink_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_blink_mode" + "thing: " + final_word);
-                enter_blink_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_blink_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_blink_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_blink_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_bold_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_bold_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_bold_mode" + "thing: " + final_word);
-                enter_bold_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_bold_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_bold_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_bold_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_ca_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_ca_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_ca_mode" + "thing: " + final_word);
-                enter_ca_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_ca_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_ca_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_ca_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_insert_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_insert_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_insert_mode" + "thing: " + final_word);
-                enter_insert_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_insert_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_insert_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_insert_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_reverse_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_reverse_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_reverse_mode" + "thing: " + final_word);
-                enter_reverse_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_reverse_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_reverse_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_reverse_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_standout_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_standout_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_standout_mode" + "thing: " + final_word);
-                enter_standout_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_standout_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_standout_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_standout_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void enter_underline_mode_init(String in)
             {
-                int word_index = (in).indexOf("enter_underline_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug enter_underline_mode" + "thing: " + final_word);
-                enter_underline_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("enter_underline_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    enter_underline_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + enter_underline_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void exit_alt_charset_mode_init(String in)
             {
-                int word_index = (in).indexOf("exit_alt_charset_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug exit_alt_charset_mode" + "thing: " + final_word);
-                exit_alt_charset_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("exit_alt_charset_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    exit_alt_charset_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + exit_alt_charset_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void exit_attribute_mode_init(String in)
             {
-                int word_index = (in).indexOf("exit_attribute_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug exit_attribute_mode" + "thing: " + final_word);
-                exit_attribute_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("exit_attribute_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    exit_attribute_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + exit_attribute_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void exit_ca_mode_init(String in)
             {
-                int word_index = (in).indexOf("exit_ca_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug exit_ca_mode" + "thing: " + final_word);
-                exit_ca_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("exit_ca_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    exit_ca_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + exit_ca_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void exit_insert_mode_init(String in)
             {
-                int word_index = (in).indexOf("exit_insert_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug exit_insert_mode" + "thing: " + final_word);
-                exit_insert_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("exit_insert_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    exit_insert_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + exit_insert_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void exit_standout_mode_init(String in)
             {
-                int word_index = (in).indexOf("exit_standout_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug exit_standout_mode" + "thing: " + final_word);
-                exit_standout_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("exit_standout_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    exit_standout_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + exit_standout_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void exit_underline_mode_init(String in)
             {
-                int word_index = (in).indexOf("exit_underline_mode=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug exit_underline_mode" + "thing: " + final_word);
-                exit_underline_mode = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("exit_underline_mode=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    exit_underline_mode = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + exit_underline_mode + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void flash_screen_init(String in)
             {
-                int word_index = (in).indexOf("flash_screen=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug flash_screen" + "thing: " + final_word);
-                flash_screen = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("flash_screen=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    flash_screen = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + flash_screen + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void init_2string_init(String in)
             {
-                int word_index = (in).indexOf("init_2string=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug init_2string" + "thing: " + final_word);
-                init_2string = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("init_2string=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    init_2string = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + init_2string + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void insert_line_init(String in)
             {
-                int word_index = (in).indexOf("insert_line=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug insert_line" + "thing: " + final_word);
-                insert_line = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("insert_line=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    insert_line = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + insert_line + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_backspace_init(String in)
             {
-                int word_index = (in).indexOf("key_backspace=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_backspace" + "thing: " + final_word);
-                key_backspace = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_backspace=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_backspace = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_backspace + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_btab_init(String in)
             {
-                int word_index = (in).indexOf("key_btab=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_btab" + "thing: " + final_word);
-                key_btab = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_btab=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_btab = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_btab + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_dc_init(String in)
             {
-                int word_index = (in).indexOf("key_dc=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_dc" + "thing: " + final_word);
-                key_dc = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_dc=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_dc = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_dc + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_down_init(String in)
             {
-                int word_index = (in).indexOf("key_down=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_down" + "thing: " + final_word);
-                key_down = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_down=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_down = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_down + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_end_init(String in)
             {
-                int word_index = (in).indexOf("key_end=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_end" + "thing: " + final_word);
-                key_end = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_end=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_end = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_end + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f1_init(String in)
             {
-                int word_index = (in).indexOf("key_f1=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f1" + "thing: " + final_word);
-                key_f1 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f1=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f1 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f1 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f10_init(String in)
             {
-                int word_index = (in).indexOf("key_f10=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f10" + "thing: " + final_word);
-                key_f10 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f10=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f10 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f10 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f11_init(String in)
             {
-                int word_index = (in).indexOf("key_f11=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f11" + "thing: " + final_word);
-                key_f11 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f11=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f11 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f11 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f12_init(String in)
             {
-                int word_index = (in).indexOf("key_f12=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f12" + "thing: " + final_word);
-                key_f12 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f12=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f12 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f12 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f2_init(String in)
             {
-                int word_index = (in).indexOf("key_f2=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f2" + "thing: " + final_word);
-                key_f2 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f2=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f2 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f2 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f3_init(String in)
             {
-                int word_index = (in).indexOf("key_f3=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f3" + "thing: " + final_word);
-                key_f3 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f3=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f3 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f3 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f4_init(String in)
             {
-                int word_index = (in).indexOf("key_f4=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f4" + "thing: " + final_word);
-                key_f4 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f4=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f4 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f4 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f5_init(String in)
             {
-                int word_index = (in).indexOf("key_f5=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f5" + "thing: " + final_word);
-                key_f5 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f5=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f5 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f5 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f6_init(String in)
             {
-                int word_index = (in).indexOf("key_f6=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f6" + "thing: " + final_word);
-                key_f6 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f6=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f6 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f6 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f7_init(String in)
             {
-                int word_index = (in).indexOf("key_f7=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f7" + "thing: " + final_word);
-                key_f7 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f7=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f7 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f7 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f8_init(String in)
             {
-                int word_index = (in).indexOf("key_f8=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f8" + "thing: " + final_word);
-                key_f8 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f8=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f8 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f8 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_f9_init(String in)
             {
-                int word_index = (in).indexOf("key_f9=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_f9" + "thing: " + final_word);
-                key_f9 = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_f9=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_f9 = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_f9 + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_home_init(String in)
             {
-                int word_index = (in).indexOf("key_home=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_home" + "thing: " + final_word);
-                key_home = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_home=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_home = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_home + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_ic_init(String in)
             {
-                int word_index = (in).indexOf("key_ic=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_ic" + "thing: " + final_word);
-                key_ic = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_ic=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_ic = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_ic + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_left_init(String in)
             {
-                int word_index = (in).indexOf("key_left=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_left" + "thing: " + final_word);
-                key_left = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_left=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_left = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_left + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_mouse_init(String in)
             {
-                int word_index = (in).indexOf("key_mouse=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_mouse" + "thing: " + final_word);
-                key_mouse = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_mouse=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_mouse = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_mouse + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_npage_init(String in)
             {
-                int word_index = (in).indexOf("key_npage=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_npage" + "thing: " + final_word);
-                key_npage = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_npage=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_npage = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_npage + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_ppage_init(String in)
             {
-                int word_index = (in).indexOf("key_ppage=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_ppage" + "thing: " + final_word);
-                key_ppage = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_ppage=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_ppage = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_ppage + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_right_init(String in)
             {
-                int word_index = (in).indexOf("key_right=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_right" + "thing: " + final_word);
-                key_right = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_right=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_right = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_right + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void key_up_init(String in)
             {
-                int word_index = (in).indexOf("key_up=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug key_up" + "thing: " + final_word);
-                key_up = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("key_up=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    key_up = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + key_up + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void keypad_local_init(String in)
             {
-                int word_index = (in).indexOf("keypad_local=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug keypad_local" + "thing: " + final_word);
-                keypad_local = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("keypad_local=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    keypad_local = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + keypad_local + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void keypad_xmit_init(String in)
             {
-                int word_index = (in).indexOf("keypad_xmit=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug keypad_xmit" + "thing: " + final_word);
-                keypad_xmit = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("keypad_xmit=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    keypad_xmit = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + keypad_xmit + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void newline_init(String in)
             {
-                int word_index = (in).indexOf("newline=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug newline" + "thing: " + final_word);
-                newline = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("newline=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    newline = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + newline + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void orig_pair_init(String in)
             {
-                int word_index = (in).indexOf("orig_pair=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug orig_pair" + "thing: " + final_word);
-                orig_pair = doReplace(final_word);
-            }
-            public static void parm_dch_init(String in)
-            {
-                int word_index = (in).indexOf("parm_dch=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_dch" + "thing: " + final_word);
-                parm_dch = doReplace(final_word);
-            }
-            public static void parm_delete_line_init(String in)
-            {
-                int word_index = (in).indexOf("parm_delete_line=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_delete_line" + "thing: " + final_word);
-                parm_delete_line = doReplace(final_word);
-            }
-            public static void parm_down_cursor_init(String in)
-            {
-                int word_index = (in).indexOf("parm_down_cursor=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_down_cursor" + "thing: " + final_word);
-                parm_down_cursor = doReplace(final_word);
-            }
-            public static void parm_ich_init(String in)
-            {
-                int word_index = (in).indexOf("parm_ich=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_ich" + "thing: " + final_word);
-                parm_ich = doReplace(final_word);
-            }
-            public static void parm_insert_line_init(String in)
-            {
-                int word_index = (in).indexOf("parm_insert_line=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_insert_line" + "thing: " + final_word);
-                parm_insert_line = doReplace(final_word);
-            }
-            public static void parm_left_cursor_init(String in)
-            {
-                int word_index = (in).indexOf("parm_left_cursor=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_left_cursor" + "thing: " + final_word);
-                parm_left_cursor = doReplace(final_word);
-            }
-            public static void parm_right_cursor_init(String in)
-            {
-                int word_index = (in).indexOf("parm_right_cursor=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_right_cursor" + "thing: " + final_word);
-                parm_right_cursor = doReplace(final_word);
-            }
-            public static void parm_up_cursor_init(String in)
-            {
-                int word_index = (in).indexOf("parm_up_cursor=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug parm_up_cursor" + "thing: " + final_word);
-                parm_up_cursor = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("orig_pair=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    orig_pair = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + orig_pair + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void reset_2string_init(String in)
             {
-                int word_index = (in).indexOf("reset_2string=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug reset_2string" + "thing: " + final_word);
-                reset_2string = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("reset_2string=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    reset_2string = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + reset_2string + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void restore_cursor_init(String in)
             {
-                int word_index = (in).indexOf("restore_cursor=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug restore_cursor" + "thing: " + final_word);
-                restore_cursor = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("restore_cursor=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    restore_cursor = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + restore_cursor + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void save_cursor_init(String in)
             {
-                int word_index = (in).indexOf("save_cursor=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug save_cursor" + "thing: " + final_word);
-                save_cursor = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("save_cursor=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    save_cursor = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + save_cursor + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void scroll_forward_init(String in)
             {
-                int word_index = (in).indexOf("scroll_forward=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug scroll_forward" + "thing: " + final_word);
-                scroll_forward = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("scroll_forward=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    scroll_forward = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + scroll_forward + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void scroll_reverse_init(String in)
             {
-                int word_index = (in).indexOf("scroll_reverse=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug scroll_reverse" + "thing: " + final_word);
-                scroll_reverse = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("scroll_reverse=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    scroll_reverse = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + scroll_reverse + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void set_a_background_init(String in)
             {
-                int word_index = (in).indexOf("set_a_background=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug set_a_background" + "thing: " + final_word);
-                set_a_background = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("set_a_background=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    set_a_background = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + set_a_background + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void set_a_foreground_init(String in)
             {
-                int word_index = (in).indexOf("set_a_foreground=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug set_a_foreground" + "thing: " + final_word);
-                set_a_foreground = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("set_a_foreground=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    set_a_foreground = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + set_a_foreground + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void set_attributes_init(String in)
             {
-                int word_index = (in).indexOf("set_attributes=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug set_attributes" + "thing: " + final_word);
-                set_attributes = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("set_attributes=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    set_attributes = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + set_attributes + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void set_tab_init(String in)
             {
-                int word_index = (in).indexOf("set_tab=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug set_tab" + "thing: " + final_word);
-                set_tab = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("set_tab=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    set_tab = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + set_tab + "failed to initialize");
+                    utils.sleep(500);
+                }
             }
             public static void tab_init(String in)
             {
-                int word_index = (in).indexOf("tab=");
-                //System.out.println("debug word_index" + word_index);
-                String new_string = in.substring(word_index);
-                //System.out.println("debug new_string_index" + new_string);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                //System.out.println("debug equals comma:" + equals_index + " " + comma_index);
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                //System.out.println("debug tab" + "thing: " + final_word);
-                tab = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("tab=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    tab = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + tab + "failed to initialize");
+                    utils.sleep(500);
+                }
             } public static void init_all(String in) {set_vars.back_tab_init(in);
 set_vars.bell_init(in);
 set_vars.carriage_return_init(in);
 set_vars.change_scroll_region_init(in);
 set_vars.clear_all_tabs_init(in);
 set_vars.clear_screen_init(in);
-set_vars.clr_bol_init(in);
-set_vars.clr_eol_init(in);
-set_vars.clr_eos_init(in);
-set_vars.cursor_address_init(in);
 set_vars.cursor_down_init(in);
 set_vars.cursor_home_init(in);
 set_vars.cursor_invisible_init(in);
@@ -1353,14 +1477,6 @@ set_vars.keypad_local_init(in);
 set_vars.keypad_xmit_init(in);
 set_vars.newline_init(in);
 set_vars.orig_pair_init(in);
-set_vars.parm_dch_init(in);
-set_vars.parm_delete_line_init(in);
-set_vars.parm_down_cursor_init(in);
-set_vars.parm_ich_init(in);
-set_vars.parm_insert_line_init(in);
-set_vars.parm_left_cursor_init(in);
-set_vars.parm_right_cursor_init(in);
-set_vars.parm_up_cursor_init(in);
 set_vars.reset_2string_init(in);
 set_vars.restore_cursor_init(in);
 set_vars.save_cursor_init(in);

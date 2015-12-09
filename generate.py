@@ -7,10 +7,10 @@ items = [
     'change_scroll_region',
     'clear_all_tabs',
     'clear_screen',
-    'clr_bol',
-    'clr_eol',
-    'clr_eos',
-    'cursor_address',
+    # 'clr_bol',
+    # 'clr_eol',
+    # 'clr_eos',
+    # 'cursor_address',
     'cursor_down',
     'cursor_home',
     'cursor_invisible',
@@ -97,6 +97,9 @@ import java.util.Scanner;
 
 public class Curses
 {
+
+    // this file was generated with the python script generate.py
+    // the python script was used due to the need to write hundreds of identical(almost) methods
     public static final String BLACK = "\033[0m";
     public static final String RED = "\033[31m";
     public static final String GREEN = "\033[32m";
@@ -212,12 +215,20 @@ end ="""}
 
 middle_format = """\n            public static void %s_init(String in)
             {
-                int word_index = (in).indexOf("%s=");
-                String new_string = in.substring(word_index);
-                int equals_index = (new_string).indexOf("=");
-                int comma_index = new_string.indexOf(",");
-                String final_word = new_string.substring(equals_index + 1,comma_index);
-                %s = doReplace(final_word);
+                try
+                {
+                    int word_index = (in).indexOf("%s=");
+                    String new_string = in.substring(word_index);
+                    int equals_index = (new_string).indexOf("=");
+                    int comma_index = new_string.indexOf(",");
+                    String final_word = new_string.substring(equals_index + 1,comma_index);
+                    %s = doReplace(final_word);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Warning:" + %s + "failed to initialize");
+                    utils.sleep(500);
+                }
             }"""
 
 
