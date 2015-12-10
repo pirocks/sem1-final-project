@@ -26,11 +26,17 @@ public class Curses_command_line_ui
         if(global_board.getPiece(y,x) == pieces.blank)
         {
             System.out.println("That is not a piece");
+            global_board.clean_prevselected();
+            curses_initq.set_board(global_board);
+            curses_initq.update();
             ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
         if(valid.is_black(global_board.getPiece(y,x)))
         {
             System.out.println("That is a black piece. Please select a white piece");
+            global_board.clean_prevselected();
+            curses_initq.set_board(global_board);
+            curses_initq.update();
             ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
         global_board.set_prevselected(x,y);
@@ -51,6 +57,9 @@ public class Curses_command_line_ui
         if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
         {
             System.out.println("That is not a valid move");
+            global_board.clean_prevselected();
+            curses_initq.set_board(global_board);
+            curses_initq.update();
             ask_for_piece_white(global_board,aiw,aib,curses_initq);
         }
         move current_move = new move(x,y,x_end,y_end);
@@ -83,11 +92,15 @@ public class Curses_command_line_ui
         if(global_board.getPiece(y,x) == pieces.blank)
         {
             System.out.println("That is not a piece");
+            global_board.clean_prevselected();
+            curses_initq.set_board(global_board);
+            curses_initq.update();
             ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
         if(valid.is_white(global_board.getPiece(y,x)))
         {
             System.out.println("That is a white piece. Please select a white piece");
+            
             ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }
         global_board.set_prevselected(x,y);
@@ -106,6 +119,9 @@ public class Curses_command_line_ui
         int y_end = temp[1];
         if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
         {
+            global_board.clean_prevselected();
+            curses_initq.set_board(global_board);
+            curses_initq.update();
             System.out.println("That is not a valid move");
             ask_for_piece_black(global_board,aiw,aib,curses_initq);
         }

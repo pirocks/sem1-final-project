@@ -304,8 +304,8 @@ public class combinedCurses
             raw_mode.enter_raw();
             Board.set_prevselected(x_in,y_in);
             update();
-            int x = 0;
-            int y = 0;
+            int x = x_in;
+            int y = y_in;
             boolean exit = false;
             assert(message_move.length == 4);
             update_message(message_move);
