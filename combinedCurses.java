@@ -148,6 +148,8 @@ public class combinedCurses
         public void update()
         {
             raw_mode.leave_raw();
+            System.out.print(curses.cursor_invisible);
+            System.out.print((char)27 + "[" + "?25l");
             update_board();
             update_message();
             //for(int i =0; i < utils.create_fancy_board(Board).length;i++)System.out.println(utils.create_fancy_board(Board)[i]);

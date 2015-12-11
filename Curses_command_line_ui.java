@@ -9,7 +9,7 @@ public class Curses_command_line_ui
             //experimental
             scored_board temp = new scored_board(global_board);
             positon_eval.dot_writers.init();
-            move current_move = new move(positon_eval.eval(temp,true,4,null,positon_eval.dot_writers.add_node()));
+            move current_move = new move(positon_eval.eval(temp,true,2,null,positon_eval.dot_writers.add_node()));
             //do ai moves
             global_board.apply_move(current_move);
             curses_initq.write_board(global_board);
@@ -63,7 +63,7 @@ public class Curses_command_line_ui
             //experimental
             scored_board temp = new scored_board(global_board);
             positon_eval.dot_writers.init();
-            move current_move = new move(positon_eval.eval(temp,false,4,null,positon_eval.dot_writers.add_node()));
+            move current_move = new move(positon_eval.eval(temp,false,2,null,positon_eval.dot_writers.add_node()));
             //do ai moves
             global_board.apply_move(current_move);
             curses_initq.set_board(global_board);curses_initq.update();
