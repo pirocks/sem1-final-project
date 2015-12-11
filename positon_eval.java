@@ -14,7 +14,7 @@ public class positon_eval
             current_board = scored_board.copy_board(board_in);
             current_move = moves_in[i];
             assert(valid.validinternal(board_in,current_move));
-            current_board.apply_move(current_move);//thi better be updating scores
+            current_board.apply_move(current_move);//this better be updating scores
             //add tons of asserts
             evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,Prune_data)).get_value());
         }
@@ -41,6 +41,7 @@ public class positon_eval
             else
             {
                 len = generators.generate_black(board_in,moves,0);
+                for (int i =0;i < len ;i++ ) assert(valid.is_black(moves[i].getPiece(board_in)));
                 evals = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data);
                 return min_max(evals,len,white_to_moveq,depth);
             }
@@ -92,22 +93,22 @@ public class positon_eval
                     piece = b[y][x];
                     switch(piece)
                     {
-                        case pieces.white.pawn:
+                        case pieces.black.pawn:
                             len_out = individual.generate_pawn_black(board_in,out,len_out,x,y);
                             break;
-                        case pieces.white.knight:
+                        case pieces.black.knight:
                             len_out = individual.generate_knight(board_in,out,len_out,x,y);
                             break;
-                        case pieces.white.king:
+                        case pieces.black.king:
                             len_out = individual.generate_king(board_in,out,len_out,x,y);
                             break;
-                        case pieces.white.bishop:
+                        case pieces.black.bishop:
                             len_out = individual.generate_bishop(board_in,out,len_out,x,y);
                             break;
-                        case pieces.white.queen:
+                        case pieces.black.queen:
                             len_out = individual.generate_queen(board_in,out,len_out,x,y);
                             break;
-                        case pieces.white.rook:
+                        case pieces.black.rook:
                             len_out = individual.generate_rook(board_in,out,len_out,x,y);
                             break;
                     }
@@ -148,6 +149,7 @@ public class positon_eval
                     out[templen] = current_move;
                     templen++;
                 }
+                //for (int i =len;i < templen ;i++ ) assert(valid.is_black(out[i].getPiece(board_in)));
                 return templen;
             }
             public static int generate_rook(board board_in,move[] out,int len,int x_in,int y_in)
@@ -177,6 +179,7 @@ public class positon_eval
                     out[templen] = current_move;
                     templen++;
                 }
+                //for (int i =len;i < templen ;i++ ) assert(valid.is_black(out[i].getPiece(board_in)));
                 return templen;
             }
             public static int generate_knight(board board_in,move[] out,int len,int x_in,int y_in)
@@ -192,6 +195,7 @@ public class positon_eval
                         templen++;
                     }
                 }
+                //for (int i =len;i < templen ;i++ ) assert(valid.is_black(out[i].getPiece(board_in)));
                 return templen;
             }
             public static int generate_king(board board_in,move[] out,int len,int x_in,int y_in)
@@ -207,6 +211,7 @@ public class positon_eval
                         templen++;
                     }
                 }
+                //for (int i =len;i < templen ;i++ ) assert(valid.is_black(out[i].getPiece(board_in)));
                 return templen;
             }
             public static int generate_pawn_white(board board_in,move[] out,int len,int x_in,int y_in)
@@ -222,6 +227,7 @@ public class positon_eval
                         templen++;
                     }
                 }
+                //for (int i =len;i < templen ;i++ ) assert(valid.is_black(out[i].getPiece(board_in)));
                 return templen; 
             }
             public static int generate_pawn_black(board board_in,move[] out,int len,int x_in,int y_in)
@@ -237,6 +243,7 @@ public class positon_eval
                         templen++;
                     }
                 }
+                //for (int i =len;i < templen ;i++ ) assert(valid.is_black(out[i].getPiece(board_in)));
                 return templen;
             }
         }

@@ -76,9 +76,13 @@ public class move
         out[1] = y_end;
         return out;
     }
+    public int getPiece(board in)
+    {
+        return in.toArray()[y_in][x_in];
+    }
     public String toString()
     {
-        return("move: x_start:" + this.get_x_in() + "y_start:" + this.get_y_in() 
-        + "x_end:" + this.get_x_end() + "y_end:" + this.get_y_end());
+        return("move: x_start: " + this.get_x_in() + " y_start: " + this.get_y_in() 
+        + " x_end: " + this.get_x_end() + "  y_end: " + this.get_y_end());
     }
 }

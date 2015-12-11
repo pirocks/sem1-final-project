@@ -51,6 +51,7 @@ public class combinedCurses
             // for(int i =0; i < out.length();i++)
             //     System.out.println("char #"+ i +":" + (int)(out.charAt(i)));
             // curses.fix_the_terminal();
+            System.out.print(curses.delete_line);
             return out;
         }
         public inputs get_input()
@@ -183,7 +184,7 @@ public class combinedCurses
             {
                 if(differences[i] != null)
                 {
-                    //System.out.print(curses.delete_line);
+                    System.out.print(curses.delete_line);
                     System.out.print(differences[i]);
                 }
                 System.out.print(curses.newline);
@@ -247,11 +248,11 @@ public class combinedCurses
         }
     };
     //begin higher level stuff higher_level_stuff
-        public int[] get_piece_coordinates(String[] message_piece)
+        public int[] get_piece_coordinates(String[] message_piece,int x_in,int y_in)
         {
             raw_mode.enter_raw();
-            int x = 0;
-            int y = 0;
+            int x = x_in;
+            int y = y_in;
             boolean exit = false;
             assert(message_piece.length == 4);
             update_message(message_piece);
@@ -351,11 +352,22 @@ public class combinedCurses
                         break;
                 }
                 Board.update_valids(x_in,y_in);
-                Board.update_valids(x,y);
+                Board.set_selected(x,y);
             }
             Board.clean_prevselected();
             update();
             return new int[] {x,y};
+        }
+        public void write_message(String[] in)
+        {
+            assert(in.length == 4);
+            update_message(in);
+            update();
+        }
+        public void write_board(highlighted_board in)
+        {
+            set_board(in);
+            update();
         }
     //end higher level stuff
 }

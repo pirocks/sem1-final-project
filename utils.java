@@ -22,7 +22,18 @@ public class utils
 	    {blank,blank,blank,blank,blank,blank,blank,blank},
 	    {wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn},
 	    {wrook,wknight,wbishop,wqueen,wking,wbishop,wknight,wrook},
-    }
+    	}
+    );
+    public static board debug_board = new board(new int[][] {
+	    {brook,bknight,bbishop,bqueen,bking,bbishop,bknight,brook},
+	    {bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn,bpawn},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {blank,blank,blank,blank,blank,blank,blank,blank},
+	    {wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn,wpawn},
+	    {wrook,wknight,wbishop,wqueen,wking,wbishop,wknight,wrook},
+    	}
     );
     public static final String BLACK = "[0m";
     public static final String RED = "[31m";

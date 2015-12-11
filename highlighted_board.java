@@ -35,6 +35,7 @@ public class highlighted_board extends board
     }
     public void set_prevselected(int x,int y)
     {
+        clean_prevselected();
         highlights[y][x] = states.previously_selected;
     }
     public highlighted_board(int[][] in, states[][] states_in)
