@@ -65,6 +65,22 @@ public class board {
 			System.out.print("\n");
 		}
 	}
+	public String toString_non_fancy()
+	{
+		String out = "";
+		int piece;
+		for(int y = 0; y < 8;y++)
+		{
+			for(int x = 0; x < 8;x++)
+			{
+				piece = boardValue[y][x];
+				String pieceString = utils.piece_to_String(piece);
+				out+= (pieceString + ",");
+			}
+			out+=("\n");
+		}
+		return out;
+	}
 
 }
 

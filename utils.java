@@ -387,4 +387,65 @@ public class utils
     	for (int i =0; i < in.length ;i++ )
     		assert(in[i] != null);
     }
+    public static String piece_to_String(int piece)
+    {
+    	String out ="";
+    	if(valid.is_black(piece))
+				{
+				    switch(piece)
+				    {
+				        case pieces.black.king:
+				            out += ("BK");
+				            break;
+				        case pieces.black.knight:
+				            out += ("BN");
+				            break;
+				        case pieces.black.bishop:
+				            out += ("BB");
+				            break;
+				        case pieces.black.pawn:
+				            out += ("BP");
+				            break;
+				        case pieces.black.queen:
+				            out += ("BQ");
+				            break;
+				        case pieces.black.rook:
+				            out += ("BR");
+				            break;
+				        default:
+				            assert(false);
+				            return null;
+				    }
+				}
+				else if(valid.is_white(piece))
+				{
+				    switch(piece)
+				    {
+				        case pieces.white.king:
+				            out += ("WK");
+				            break;
+				        case pieces.white.knight:
+				            out += ("WN");
+				            break;
+				        case pieces.white.bishop:
+				            out += ("WB");
+				            break;
+				        case pieces.white.pawn:
+				            out += ("WP");
+				            break;
+				        case pieces.white.queen:
+				            out += ("WQ");
+				            break;
+				        case pieces.white.rook:
+				            out += ("WR");
+				            break;
+				        default:
+				            assert(false);
+				            return null;
+				    }
+				}
+				else
+					out+="  ";
+				return out;
+    }
 }

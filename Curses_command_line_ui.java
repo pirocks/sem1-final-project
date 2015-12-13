@@ -11,6 +11,7 @@ public class Curses_command_line_ui
             positon_eval.dot_writers.init();
             move current_move = new move(positon_eval.eval(temp,true,2,null,positon_eval.dot_writers.add_node()));
             //do ai moves
+            positon_eval.dot_writers.close();
             global_board.apply_move(current_move);
             curses_initq.write_board(global_board);
             ask_for_piece_black(global_board,aiw,aib,curses_initq,x_in,y_in,null);
@@ -65,6 +66,7 @@ public class Curses_command_line_ui
             positon_eval.dot_writers.init();
             move current_move = new move(positon_eval.eval(temp,false,2,null,positon_eval.dot_writers.add_node()));
             //do ai moves
+            positon_eval.dot_writers.close();
             global_board.apply_move(current_move);
             curses_initq.set_board(global_board);curses_initq.update();
             ask_for_piece_white(global_board,aiw,aib,curses_initq,x_in,y_in,null);

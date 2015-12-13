@@ -11,7 +11,7 @@ public class runner
          }
         );
         
-        Curses_command_line_ui.ask_for_piece_white(newboard,false,false,combined,0,0,null);
+        Curses_command_line_ui.ask_for_piece_white(newboard,false,true,combined,0,0,null);
         // use command line ui for debugging
         ////command_line_ui.ask_for_piece_white(global_board,false,false);
         // scored_board in = new scored_board(global_board);

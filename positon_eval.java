@@ -30,7 +30,7 @@ public class positon_eval
         if(depth == 0)
         {
             //need somme shit here
-            dot_writers.complete_node(board_in.get_eval(),board_in,current_dot);
+            dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth);
             return new eval_move(-1,-1,-1,-1,board_in.get_eval());
         }
         else
@@ -42,7 +42,7 @@ public class positon_eval
             {
                 len = generators.generate_white(board_in,moves,0);
                 evals = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
-                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot);
+                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth);
                 return min_max(evals,len,white_to_moveq,depth);
             }
             else
@@ -50,7 +50,7 @@ public class positon_eval
                 len = generators.generate_black(board_in,moves,0);
                 for (int i =0;i < len ;i++ ) assert(valid.is_black(moves[i].getPiece(board_in)));
                 evals = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
-                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot);
+                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth);
                 return min_max(evals,len,white_to_moveq,depth);
             }
         }
@@ -324,18 +324,30 @@ public class positon_eval
         public static int add_node()
         {
         	board_count++;
-    		writer.println(String.format("a%d;",board_count));
+    		writer.print(String.format("a%d;",board_count));
             return board_count;
         }
         public static void link_node(int node1,int node2)
         {
-            writer.println(String.format("a%d -> a%d;\n",node1,node2));
+            writer.print(String.format("a%d -> a%d;\n",node1,node2));
         }
-        public static int complete_node(double value_in,board board_in,int board_in_count)
+        public static int complete_node(double value_in,board board_in,int board_in_count,boolean white_to_moveq,int depth)
         {
-        	writer.println(String.format("a%d [label=\"",board_in_count));
-        	writer.println(String.format("%s\n value: %f\n node:a%d\"] [fontname = \"Courier\"];\n",utils.create_fancy_board(board_in),value_in,board_in_count));
+        	writer.print(String.format("a%d [label=\"",board_in_count));
+        // 	String[] array = utils.create_fancy_board(board_in);
+        // 	String out = "\n";
+        // 	for(int i=0;i<array.length;i++)
+        // 	{
+        // 	    out+=array[i];
+        // 	    out+="\n";
+        // 	}
+        	writer.print(String.format("%s value: %f node:a%d white_to_moveq:%s depth: %d\"] [fontname = \"Cou\"];\n",board_in.toString_non_fancy(),value_in,board_in_count,white_to_moveq+"",depth));
         	return board_count;
+        }
+        public static void close()
+        {
+            writer.print("}");
+            writer.close();
         }
     }
 }
