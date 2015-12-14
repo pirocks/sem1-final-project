@@ -21,7 +21,7 @@ items = [
     'cursor_visible',
     'delete_character',
     'delete_line',
-    'ena_acs',
+#    'ena_acs',
     'enter_alt_charset_mode',
     'enter_blink_mode',
     'enter_bold_mode',
@@ -66,7 +66,7 @@ items = [
     'key_up',
     'keypad_local',
     'keypad_xmit',
-    'newline',
+#    'newline',
     'orig_pair',
     # 'parm_dch',
     # 'parm_delete_line',
@@ -108,6 +108,7 @@ public class Curses
     public static final String MAGENTA = "\033[35m";
     public static final String CYAN = "\033[36m";
     public static final String WHITE = "\033[37m";
+	public static final String newline = "\n"l
 """
 format1 ="""    public static String %s;\n"""
 

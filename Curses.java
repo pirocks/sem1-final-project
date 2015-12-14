@@ -76,7 +76,7 @@ public class Curses
     public static String key_up;
     public static String keypad_local;
     public static String keypad_xmit;
-    public static String newline;
+    public static String newline = "\n";
     public static String orig_pair;
     public static String reset_2string;
     public static String restore_cursor;
