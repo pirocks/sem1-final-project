@@ -47,6 +47,26 @@ public class positon_eval
     // {
         
     // }
+    public static eval_move[] call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node,double stop)
+    {
+        // if(white_to_moveq)
+        //     return call_generated_max(board_in, moves_in,len,white_to_moveq,depth,Prune_data,dot_node);
+        // else
+        //     return call_generated_min(board_in, moves_in,len,white_to_moveq,depth,Prune_data,dot_node);
+        scored_board current_board;
+        move current_move;
+        eval_move[] evaluations = new eval_move[len];
+        for(int i = 0; i < len; i++)
+        {
+            current_board = scored_board.copy_board(board_in);
+            current_move = moves_in[i];
+            assert(valid.validinternal(board_in,current_move));
+            current_board.apply_move(current_move);//this better be updating scores
+            //add tons of asserts
+            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,Prune_data,dot_node)).get_value());
+        }
+        return evaluations;
+    }
     public static eval_move eval(scored_board board_in,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
     {
         int current_dot = dot_writers.add_node();

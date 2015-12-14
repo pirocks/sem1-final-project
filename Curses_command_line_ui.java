@@ -43,7 +43,7 @@ public class Curses_command_line_ui
         int[] temp = curses_initq.get_move_coordinates(message_move,x,y);
         int x_end = temp[0];
         int y_end = temp[1];
-        if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
+        if(!valid.validinternal_all(global_board,new move(x,y,x_end,y_end)))
         {
             global_board.clean_prevselected();
             curses_initq.write_board(global_board);
@@ -79,13 +79,13 @@ public class Curses_command_line_ui
         {
             global_board.clean_prevselected();
             curses_initq.write_board(global_board);
-            ask_for_piece_black(global_board,aiw,aib,curses_initq,x,y,new String[]{"That is not a piece","Select a black piece.","Use the arrow keys.","Use enter to select"});
+            ask_for_piece_black(global_board,aiw,aib,curses_initq,x,y,new String[]{"That is not a piece      ","Select a black piece.        ","Use the arrow keys.         ","Use enter to select"});
         }
         if(valid.is_white(global_board.getPiece(y,x)))
         {
             global_board.clean_prevselected();
             curses_initq.write_board(global_board);
-            ask_for_piece_black(global_board,aiw,aib,curses_initq,x,y,new String[]{"That is a white piece.","Please select a white piece","",""});
+            ask_for_piece_black(global_board,aiw,aib,curses_initq,x,y,new String[]{"That is a white piece.         ","Please select a white piece      ","",""});
         }
         global_board.set_prevselected(x,y);
         curses_initq.write_board(global_board);
@@ -102,7 +102,7 @@ public class Curses_command_line_ui
         int[] temp = curses_initq.get_move_coordinates(message_move,x,y);
         int x_end = temp[0];
         int y_end = temp[1];
-        if(!valid.validinternal(global_board.toArray(),x,y,x_end,y_end))
+        if(!valid.validinternal_all(global_board,new move(x,y,x_end,y_end)))
         {
             global_board.clean_prevselected();
             curses_initq.write_board(global_board);

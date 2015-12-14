@@ -201,7 +201,10 @@ public class valid
 
 	public static boolean w_king(int[][] board_in, int x_in, int y_in, int x_end, int y_end) //castling ! implemented
 	{
-		//assert(false);
+		if(abs(x_in - x_end) > 1 && 0 == abs(y_in - y_end))//castling
+		{
+			
+		}
 		if (on_board(x_end,y_end))
 		{
 			if(abs(y_in - y_end) > 1)
@@ -351,5 +354,58 @@ public class valid
 		{
 			return false;
 		}
+	}
+	
+	public static boolean validinternal_all(board board_in,move move_in)
+	{
+		if(validinternal(board_in,move_in))
+		{
+			boolean to_move = determine_white_to_move(board_in,move_in);
+			scored_board temp = new scored_board(board_in.copy_board(board_in));
+			temp.apply_move(move_in);
+			if(check_for_check(temp,to_move))
+				return false;
+			//check_for_checkmate(temp,to_move);
+			return true;
+		}
+		return false;
+	}
+	public static boolean determine_white_to_move(board board_in,move move_in)
+	{
+		int y = move_in.get_y_in();
+		int x = move_in.get_x_in();
+		if(valid.is_white(board_in.toArray()[y][x]))
+		{
+			return true;
+		}
+		return false;
+	}
+	public static boolean check_for_stalemate(scored_board board_in,boolean white_to_moveq)
+	{
+		if(positon_eval_valid.eval(board_in,white_to_moveq,1,null,0).get_value() == positon_eval_valid.special)
+		{
+			//stalemate
+			return false;
+		}
+		return true;
+	}
+	public static boolean check_for_checkmate(scored_board board_in,boolean white_to_moveq)
+	{
+		if(positon_eval_valid.eval(board_in,white_to_moveq,2,null,0).get_value() <= -75.0 || positon_eval_valid.eval(board_in,white_to_moveq,2,null,0).get_value() >= 75.0)
+		{
+			return true;
+			//checkmate
+		}
+		return false;
+	}
+	public static boolean check_for_check(scored_board board_in,boolean white_to_moveq)
+	{
+		System.out.print("value:"+positon_eval_valid.eval(board_in,!white_to_moveq,1,null,0).get_value());
+		if(positon_eval_valid.eval(board_in,!white_to_moveq,1,null,0).get_value() <= -75.0 || positon_eval_valid.eval(board_in,!white_to_moveq,1,null,0).get_value() >= 75.0)
+		{
+			//check
+			return true;
+		}
+		return false;
 	}
 }
