@@ -391,6 +391,8 @@ public class valid
 	}
 	public static boolean check_for_checkmate(scored_board board_in,boolean white_to_moveq)
 	{
+		System.out.println("value:"+positon_eval_valid.eval(board_in,white_to_moveq,2,null,0).get_value());
+		System.out.println("value2:"+positon_eval_valid.eval(board_in,white_to_moveq,2,null,0).get_value());
 		if(positon_eval_valid.eval(board_in,white_to_moveq,2,null,0).get_value() <= -75.0 || positon_eval_valid.eval(board_in,white_to_moveq,2,null,0).get_value() >= 75.0)
 		{
 			return true;

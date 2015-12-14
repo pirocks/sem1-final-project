@@ -2,7 +2,7 @@ import java.io.Console;
 public class combinedCurses
 {
     private highlighted_board Board;
-    private Curses curses;
+    public Curses curses;
     private class current
     {
         private String[] message;

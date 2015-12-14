@@ -2,6 +2,13 @@ public class Curses_command_line_ui
 {
     public static void ask_for_piece_white(highlighted_board global_board, boolean aiw, boolean aib,combinedCurses curses_initq,int x_in,int y_in,String[] message_piece)
     {
+        if(valid.check_for_checkmate(new scored_board(global_board),true))
+        {
+            //System.out.println(curses_initq.curses.clear_screen);
+            combinedCurses.raw_mode.leave_raw();
+            System.out.println("Checkmate");
+            System.exit(0);
+        }
         if(message_piece == null)
             message_piece = new String[]{"Select a white piece.","Use the arrow keys.","Use enter to select","Hit q to quit"};
         if(aiw)
