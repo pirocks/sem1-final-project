@@ -187,7 +187,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + back_tab + "failed to initialize");
+                    System.out.println("Warning:" + "back_tab" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -204,7 +204,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + bell + "failed to initialize");
+                    System.out.println("Warning:" + "bell" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -221,7 +221,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + carriage_return + "failed to initialize");
+                    System.out.println("Warning:" + "carriage_return" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -238,7 +238,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + change_scroll_region + "failed to initialize");
+                    System.out.println("Warning:" + "change_scroll_region" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -255,7 +255,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + clear_all_tabs + "failed to initialize");
+                    System.out.println("Warning:" + "clear_all_tabs" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -272,7 +272,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + clear_screen + "failed to initialize");
+                    System.out.println("Warning:" + "clear_screen" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -289,7 +289,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_down + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_down" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -306,7 +306,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_home + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_home" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -323,7 +323,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_invisible + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_invisible" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -340,7 +340,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_left + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_left" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -357,7 +357,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_normal + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_normal" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -374,7 +374,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_right + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_right" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -391,7 +391,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_up + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_up" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -408,7 +408,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + cursor_visible + "failed to initialize");
+                    System.out.println("Warning:" + "cursor_visible" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -425,7 +425,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + delete_character + "failed to initialize");
+                    System.out.println("Warning:" + "delete_character" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -442,7 +442,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + delete_line + "failed to initialize");
+                    System.out.println("Warning:" + "delete_line" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -459,7 +459,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + ena_acs + "failed to initialize");
+                    System.out.println("Warning:" + "ena_acs" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -476,7 +476,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_alt_charset_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_alt_charset_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -493,7 +493,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_blink_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_blink_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -510,7 +510,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_bold_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_bold_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -527,7 +527,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_ca_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_ca_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -544,7 +544,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_insert_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_insert_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -561,7 +561,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_reverse_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_reverse_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -578,7 +578,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_standout_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_standout_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -595,7 +595,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + enter_underline_mode + "failed to initialize");
+                    System.out.println("Warning:" + "enter_underline_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -612,7 +612,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + exit_alt_charset_mode + "failed to initialize");
+                    System.out.println("Warning:" + "exit_alt_charset_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -629,7 +629,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + exit_attribute_mode + "failed to initialize");
+                    System.out.println("Warning:" + "exit_attribute_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -646,7 +646,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + exit_ca_mode + "failed to initialize");
+                    System.out.println("Warning:" + "exit_ca_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -663,7 +663,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + exit_insert_mode + "failed to initialize");
+                    System.out.println("Warning:" + "exit_insert_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -680,7 +680,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + exit_standout_mode + "failed to initialize");
+                    System.out.println("Warning:" + "exit_standout_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -697,7 +697,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + exit_underline_mode + "failed to initialize");
+                    System.out.println("Warning:" + "exit_underline_mode" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -714,7 +714,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + flash_screen + "failed to initialize");
+                    System.out.println("Warning:" + "flash_screen" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -731,7 +731,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + init_2string + "failed to initialize");
+                    System.out.println("Warning:" + "init_2string" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -748,7 +748,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + insert_line + "failed to initialize");
+                    System.out.println("Warning:" + "insert_line" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -765,7 +765,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_backspace + "failed to initialize");
+                    System.out.println("Warning:" + "key_backspace" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -782,7 +782,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_btab + "failed to initialize");
+                    System.out.println("Warning:" + "key_btab" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -799,7 +799,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_dc + "failed to initialize");
+                    System.out.println("Warning:" + "key_dc" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -816,7 +816,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_down + "failed to initialize");
+                    System.out.println("Warning:" + "key_down" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -833,7 +833,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_end + "failed to initialize");
+                    System.out.println("Warning:" + "key_end" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -850,7 +850,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f1 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f1" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -867,7 +867,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f10 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f10" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -884,7 +884,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f11 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f11" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -901,7 +901,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f12 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f12" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -918,7 +918,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f2 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f2" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -935,7 +935,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f3 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f3" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -952,7 +952,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f4 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f4" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -969,7 +969,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f5 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f5" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -986,7 +986,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f6 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f6" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1003,7 +1003,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f7 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f7" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1020,7 +1020,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f8 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f8" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1037,7 +1037,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_f9 + "failed to initialize");
+                    System.out.println("Warning:" + "key_f9" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1054,7 +1054,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_home + "failed to initialize");
+                    System.out.println("Warning:" + "key_home" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1071,7 +1071,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_ic + "failed to initialize");
+                    System.out.println("Warning:" + "key_ic" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1088,7 +1088,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_left + "failed to initialize");
+                    System.out.println("Warning:" + "key_left" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1105,7 +1105,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_mouse + "failed to initialize");
+                    System.out.println("Warning:" + "key_mouse" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1122,7 +1122,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_npage + "failed to initialize");
+                    System.out.println("Warning:" + "key_npage" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1139,7 +1139,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_ppage + "failed to initialize");
+                    System.out.println("Warning:" + "key_ppage" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1156,7 +1156,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_right + "failed to initialize");
+                    System.out.println("Warning:" + "key_right" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1173,7 +1173,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + key_up + "failed to initialize");
+                    System.out.println("Warning:" + "key_up" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1190,7 +1190,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + keypad_local + "failed to initialize");
+                    System.out.println("Warning:" + "keypad_local" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1207,7 +1207,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + keypad_xmit + "failed to initialize");
+                    System.out.println("Warning:" + "keypad_xmit" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1224,7 +1224,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + newline + "failed to initialize");
+                    System.out.println("Warning:" + "newline" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1241,7 +1241,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + orig_pair + "failed to initialize");
+                    System.out.println("Warning:" + "orig_pair" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1258,7 +1258,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + reset_2string + "failed to initialize");
+                    System.out.println("Warning:" + "reset_2string" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1275,7 +1275,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + restore_cursor + "failed to initialize");
+                    System.out.println("Warning:" + "restore_cursor" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1292,7 +1292,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + save_cursor + "failed to initialize");
+                    System.out.println("Warning:" + "save_cursor" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1309,7 +1309,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + scroll_forward + "failed to initialize");
+                    System.out.println("Warning:" + "scroll_forward" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1326,7 +1326,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + scroll_reverse + "failed to initialize");
+                    System.out.println("Warning:" + "scroll_reverse" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1343,7 +1343,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + set_a_background + "failed to initialize");
+                    System.out.println("Warning:" + "set_a_background" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1360,7 +1360,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + set_a_foreground + "failed to initialize");
+                    System.out.println("Warning:" + "set_a_foreground" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1377,7 +1377,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + set_attributes + "failed to initialize");
+                    System.out.println("Warning:" + "set_attributes" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1394,7 +1394,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + set_tab + "failed to initialize");
+                    System.out.println("Warning:" + "set_tab" + "failed to initialize");
                     utils.sleep(500);
                 }
             }
@@ -1411,7 +1411,7 @@ public class Curses
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + tab + "failed to initialize");
+                    System.out.println("Warning:" + "tab" + "failed to initialize");
                     utils.sleep(500);
                 }
             } public static void init_all(String in) {set_vars.back_tab_init(in);

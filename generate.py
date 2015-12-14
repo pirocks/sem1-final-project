@@ -226,7 +226,7 @@ middle_format = """\n            public static void %s_init(String in)
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Warning:" + %s + "failed to initialize");
+                    System.out.println("Warning:" + "%s" + "failed to initialize");
                     utils.sleep(500);
                 }
             }"""
