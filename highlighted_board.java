@@ -26,7 +26,7 @@ public class highlighted_board extends board
         highlights[y_in][x_in] = states.selected;
         for(int y = 0; y < 8; y++)
             for(int x = 0; x < 8; x++)
-                if(valid.validinternal(this.toArray(),x_in,y_in,x,y))
+                if(valid.validinternal_all(this,new move(x_in,y_in,x,y)))
                     highlights[y][x] = states.move_valid;
     }
     public void set_selected(int x,int y)
