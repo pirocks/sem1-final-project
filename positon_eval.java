@@ -9,6 +9,10 @@ public class positon_eval
     //everything static for performance
     public static eval_move[] call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
     {
+        // if(white_to_moveq)
+        //     return call_generated_max(board_in, moves_in,len,white_to_moveq,depth,Prune_data,dot_node);
+        // else
+        //     return call_generated_min(board_in, moves_in,len,white_to_moveq,depth,Prune_data,dot_node);
         scored_board current_board;
         move current_move;
         eval_move[] evaluations = new eval_move[len];
@@ -23,6 +27,26 @@ public class positon_eval
         }
         return evaluations;
     }
+    // public static eval_move[] call_generated_max(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
+    // {
+    //     scored_board current_board;
+    //     move current_move;
+    //     eval_move[] evaluations = new eval_move[len];
+    //     for(int i = 0; i < len; i++)
+    //     {
+    //         current_board = scored_board.copy_board(board_in);
+    //         current_move = moves_in[i];
+    //         assert(valid.validinternal(board_in,current_move));
+    //         current_board.apply_move(current_move);//this better be updating scores
+    //         //add tons of asserts
+    //         evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,Prune_data,dot_node)).get_value());
+    //     }
+    //     return evaluations;
+    // }
+    // public static eval_move[] call_generated_min(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
+    // {
+        
+    // }
     public static eval_move eval(scored_board board_in,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
     {
         int current_dot = dot_writers.add_node();
@@ -42,16 +66,18 @@ public class positon_eval
             {
                 len = generators.generate_white(board_in,moves,0);
                 evals = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
-                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth);
-                return min_max(evals,len,white_to_moveq,depth);
+                eval_move to_return = min_max(evals,len,white_to_moveq,depth);
+                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth,evals,len,to_return);
+                return to_return;
             }
             else
             {
                 len = generators.generate_black(board_in,moves,0);
                 for (int i =0;i < len ;i++ ) assert(valid.is_black(moves[i].getPiece(board_in)));
                 evals = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
-                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth);
-                return min_max(evals,len,white_to_moveq,depth);
+                eval_move to_return = min_max(evals,len,white_to_moveq,depth);
+                dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth,evals,len,to_return);
+                return to_return;
             }
         }
     }
@@ -128,7 +154,7 @@ public class positon_eval
             public static int generate_queen(board board_in,move[] out,int len,int x_in,int y_in) // returns new len
             {
                 int temp = generate_bishop(board_in,out,len,x_in,y_in);
-                return generate_rook(board_in,out,len,x_in,y_in);
+                return generate_rook(board_in,out,temp,x_in,y_in);
             }
             public static int generate_bishop(board board_in,move[] out,int len,int x_in,int y_in)
             {
@@ -290,7 +316,7 @@ public class positon_eval
             current = array[i];
             if(max.get_value() == special)
                 max = current;
-            if(current.get_value() < max.get_value() && current.get_value() != special)
+            if(current.get_value() > max.get_value() && current.get_value() != special)
                 max = current;
         }
         return max;
@@ -341,7 +367,21 @@ public class positon_eval
         // 	    out+=array[i];
         // 	    out+="\n";
         // 	}
-        	writer.print(String.format("%s value: %f node:a%d white_to_moveq:%s depth: %d\"] [fontname = \"Cou\"];\n",board_in.toString_non_fancy(),value_in,board_in_count,white_to_moveq+"",depth));
+        	writer.print(String.format("%s value: %f node:a%d white_to_moveq:%s depth: %d\"] [fontname = \"Courier\"];\n",board_in.toString_non_fancy(),value_in,board_in_count,white_to_moveq+"",depth));
+        	return board_count;
+        }
+        public static int complete_node(double value_in,board board_in,int board_in_count,boolean white_to_moveq,int depth,eval_move[] array,int len,eval_move result)
+        {
+        	writer.print(String.format("a%d [label=\"",board_in_count));
+        	String arrayString="[";
+        	for(int i = 0; i < len;i++)
+        	{
+        	    arrayString+=array[i].get_value() + "";
+        	    arrayString+=",";
+        	}
+        	arrayString+="]";
+        	arrayString+=String.format("min_max:%f",result.get_value());
+        	writer.print(String.format("%s value: %f node:a%d white_to_moveq:%s depth: %d,array:\n%s\n\"] [fontname = \"Courier\"];\n",board_in.toString_non_fancy(),value_in,board_in_count,white_to_moveq+"",depth,arrayString));
         	return board_count;
         }
         public static void close()
