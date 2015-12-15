@@ -9,6 +9,12 @@ public class Curses_command_line_ui
             System.out.println("Checkmate");
             System.exit(0);
         }
+        if(valid.check_for_stalemate(new scored_board(global_board),true)
+        {
+            combinedCurses.raw_mode.leave_raw();
+            System.out.println("Stalemate");
+            System.exit(0);
+        }
         if(message_piece == null)
             message_piece = new String[]{"Select a white piece.","Use the arrow keys.","Use enter to select","Hit q to quit"};
         if(aiw)
@@ -70,6 +76,12 @@ public class Curses_command_line_ui
             //System.out.println(curses_initq.curses.clear_screen);
             combinedCurses.raw_mode.leave_raw();
             System.out.println("Checkmate");
+            System.exit(0);
+        }
+        if(valid.check_for_stalemate(new scored_board(global_board),true)
+        {
+            combinedCurses.raw_mode.leave_raw();
+            System.out.println("Stalemate");
             System.exit(0);
         }
         if(message_piece == null)
