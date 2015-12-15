@@ -31,19 +31,106 @@ public class positon_eval_refactor
             if(white_to_moveq)
             {
                 len = generators.generate_white(board_in,moves,0);
-                eval_to_return = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
+                eval_to_return = call_generated_top(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
                 return eval_to_return;
             }
             else
             {
                 len = generators.generate_black(board_in,moves,0);
-                for (int i =0;i < len ;i++ ) assert(valid.is_black(moves[i].getPiece(board_in)));
-                eval_to_return = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
+                //for (int i =0;i < len ;i++ ) assert(valid.is_black(moves[i].getPiece(board_in)));
+                eval_to_return = call_generated_top(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
                 //eval_move to_return = min_max(evals,len,white_to_moveq,depth);
-                
                 return eval_to_return;
             }
+            
         }
+    }
+    public static eval_move call_generated_top(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
+    {
+        if(white_to_moveq)
+            return call_generated_max_top(board_in, moves_in,len,white_to_moveq,depth,Prune_data,dot_node);
+        else
+            return call_generated_min_top(board_in, moves_in,len,white_to_moveq,depth,Prune_data,dot_node);
+    }
+    public static eval_move call_generated_max_top(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
+    {
+        scored_board current_board;
+        move current_move;
+        eval_move[] evaluations = new eval_move[len];
+        eval_move current;
+        if(len == 0)
+            return new eval_move(-1,-1,-1,-1,special);
+        eval_move max = new eval_move(-1,-1,-1,-1,special);
+        for(int i = 0; i < len; i++)
+        {
+            current_board = scored_board.copy_board(board_in);
+            current_move = moves_in[i];
+            assert(valid.validinternal(board_in,current_move));
+            current_board.apply_move(current_move);//this better be updating scores
+            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,new prune_data(max,true),dot_node)).get_value());
+            if(!valid.validinternal_all(board_in,evaluations[i]))
+                evaluations[i] = new eval_move(-1,-1,-1,-1,special);
+            current = evaluations[i];
+            if(max.get_value() == special)
+                max = current;
+            if(current.get_value() > max.get_value() && current.get_value() != special)
+                max = current;
+            if(Prune_data != null)
+            {
+                assert(!Prune_data.maxq);
+                if(max.get_value() >= Prune_data.Eval_move.get_value())
+                    return max;
+            }
+        }
+        dot_writers.complete_node(board_in.get_eval(),board_in,dot_node,white_to_moveq,depth,evaluations,len,max);
+        if(max.get_value() == special)
+        {
+            System.out.print("Ai detected stalemate");
+            combinedCurses.raw_mode.leave_raw();
+            System.exit(0);
+        }
+        return max;
+        //return evaluations;
+    }
+    public static eval_move call_generated_min_top(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
+    {
+        scored_board current_board;
+        move current_move;
+        eval_move[] evaluations = new eval_move[len];
+        if(len == 0)
+            return new eval_move(-1,-1,-1,-1,special);
+        eval_move min = new eval_move(-1,-1,-1,-1,special);
+        eval_move current;
+        for(int i = 0; i < len; i++)
+        {
+            current_board = scored_board.copy_board(board_in);
+            current_move = moves_in[i];
+            assert(valid.validinternal(board_in,current_move));
+            current_board.apply_move(current_move);//this better be updating scores
+            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,new prune_data(min,false),dot_node)).get_value());
+            if(!valid.validinternal_all(board_in,evaluations[i]))
+                evaluations[i] = new eval_move(-1,-1,-1,-1,special);
+            current = evaluations[i];
+            if(min.get_value() == special)
+                min = current;
+            if(current.get_value() < min.get_value() && current.get_value() != special)
+                min = current;
+            if(Prune_data != null)
+            {
+                assert(Prune_data.maxq);
+                if(min.get_value() <= Prune_data.Eval_move.get_value())
+                    return min;
+            }
+        }
+        if(min.get_value() == special)
+        {
+            System.out.print("Ai detected stalemate");
+            combinedCurses.raw_mode.leave_raw();
+            System.exit(0);
+        }
+        dot_writers.complete_node(board_in.get_eval(),board_in,dot_node,white_to_moveq,depth,evaluations,len,min);
+        return min;
+        
     }
     public static eval_move call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
     {

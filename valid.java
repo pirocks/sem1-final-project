@@ -203,14 +203,14 @@ public class valid
 	{
 		if(abs(x_in - x_end) > 1 && 0 == abs(y_in - y_end) && y_in == 7)//castling
 		{
-			if(x_in == 3 && y_in == 7 && (x_end == 1) && y_end == 7 )
+			if(x_in == 4 && y_in == 7 && x_end == 1 && y_end == 7)
 			{
 				if(board_in[7][0] == pieces.wrook && board_in[7][1] == pieces.blank && board_in[7][2] == pieces.blank)
 					return true;
 			}
-			else if(x_in == 3 && y_in == 7 && (x_end == 5) && y_end == 7 )//| x_end == 5)
+			else if(x_in == 4 && y_in == 7 && x_end == 6 && y_end == 7)//| x_end == 5)
 			{
-				if(board_in[7][7] == pieces.wrook && board_in[7][6] == pieces.blank && board_in[7][5] == pieces.blank && board_in[7][4] == pieces.blank)
+				if(board_in[7][7] == pieces.wrook && board_in[7][6] == pieces.blank && board_in[7][5] == pieces.blank && board_in[7][4] == pieces.wking)
 					return true;
 			}
 			return false;
