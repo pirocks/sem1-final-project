@@ -9,14 +9,14 @@ public class Curses_command_line_ui
             System.out.println("Checkmate");
             System.exit(0);
         }
-        if(valid.check_for_stalemate(new scored_board(global_board),true)
+        if(valid.check_for_stalemate(new scored_board(global_board),true))
         {
             combinedCurses.raw_mode.leave_raw();
             System.out.println("Stalemate");
             System.exit(0);
         }
         if(message_piece == null)
-            message_piece = new String[]{"Select a white piece.","Use the arrow keys.","Use enter to select","Hit q to quit"};
+            message_piece = new String[]{"Select a white piece.        ","Use the arrow keys.        ","Use enter to select           ","Hit q to quit          "};
         if(aiw)
         {
             //experimental
@@ -61,7 +61,7 @@ public class Curses_command_line_ui
         {
             global_board.clean_prevselected();
             curses_initq.write_board(global_board);
-            ask_for_piece_white(global_board,aiw,aib,curses_initq,x_end,y_end,new String[]{"That is not a valid move.","Please reselect your piece","and try again",""});
+            ask_for_piece_white(global_board,aiw,aib,curses_initq,x_end,y_end,new String[]{"That is not a valid move.                           ","Please reselect your piece                        ","and try again               ",""});
         }
         move current_move = new move(x,y,x_end,y_end);
         global_board.set_prevselected(x,y);
@@ -78,14 +78,14 @@ public class Curses_command_line_ui
             System.out.println("Checkmate");
             System.exit(0);
         }
-        if(valid.check_for_stalemate(new scored_board(global_board),true)
+        if(valid.check_for_stalemate(new scored_board(global_board),false))
         {
             combinedCurses.raw_mode.leave_raw();
             System.out.println("Stalemate");
             System.exit(0);
         }
         if(message_piece == null)
-            message_piece = new String[]{"Select a black piece.","Use the arrow keys.","Use enter to select",""};
+            message_piece = new String[]{"Select a black piece.        ","Use the arrow keys.            ","Use enter to select","                             "};
         if(aib)
         {
             //experimental
@@ -134,7 +134,7 @@ public class Curses_command_line_ui
         {
             global_board.clean_prevselected();
             curses_initq.write_board(global_board);
-            ask_for_piece_black(global_board,aiw,aib,curses_initq,x_end,y_end,new String[]{"That is not a valid move.","Please reselect your piece","and try again",""});
+            ask_for_piece_black(global_board,aiw,aib,curses_initq,x_end,y_end,new String[]{"That is not a valid move.                ","Please reselect your piece          ","and try again               ","                                           "});
         }
         move current_move = new move(x,y,x_end,y_end);
         global_board.set_prevselected(x,y);

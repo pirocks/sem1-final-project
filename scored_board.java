@@ -55,7 +55,7 @@ public class scored_board extends board
 	            switch(piece)
 	            {
 	                case pieces.white.king:
-	                    eval += 100.0;
+	                    eval += 1000.0;
 	                    break;
 	                case pieces.white.knight:
 	                    eval += 3.0;
@@ -89,7 +89,7 @@ public class scored_board extends board
 	            switch(piece)
 	            {
 	                case pieces.black.king:
-	                    eval += 100.0;
+	                    eval += 1000.0;
 	                    break;
 	                case pieces.black.knight:
 	                    eval += 3.0;
