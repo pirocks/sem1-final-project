@@ -1,8 +1,10 @@
 public class prune_data
 {
-    boolean pruneq;
-    public prune_data(boolean pruneq)
+    public eval_move Eval_move;
+    public boolean maxq;
+    public prune_data(eval_move eval_in,boolean maxq)
     {
-        this.pruneq = pruneq;
+        this.Eval_move = eval_in;
+        this.maxq = maxq;
     }
 }

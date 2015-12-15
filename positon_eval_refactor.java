@@ -7,6 +7,44 @@ public class positon_eval_refactor
     public static int board_count;
     public static final double special = 200000.0;
     //everything static for performance
+    public static eval_move eval_top(scored_board board_in,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
+    {
+        int current_dot = dot_writers.add_node();
+        dot_writers.link_node(dot_node,current_dot);
+        if(depth == 0)
+        {
+            //need somme shit here
+            dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth);
+            return new eval_move(-1,-1,-1,-1,board_in.get_eval());
+        }
+        else
+        {
+            move[] moves = new move[8*4//pawns
+            + 2*8 //knights
+            + 2*(9+9)//bishop
+            + 2*(8+8-1)//rooks
+            + 2*8 //king
+            + 2*(9+9) + 2*(8+8-1)//queen
+            ];//need to figure out what actually is
+            eval_move eval_to_return;
+            int len;
+            if(white_to_moveq)
+            {
+                len = generators.generate_white(board_in,moves,0);
+                eval_to_return = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
+                return eval_to_return;
+            }
+            else
+            {
+                len = generators.generate_black(board_in,moves,0);
+                for (int i =0;i < len ;i++ ) assert(valid.is_black(moves[i].getPiece(board_in)));
+                eval_to_return = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
+                //eval_move to_return = min_max(evals,len,white_to_moveq,depth);
+                
+                return eval_to_return;
+            }
+        }
+    }
     public static eval_move call_generated(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
     {
         if(white_to_moveq)
@@ -19,28 +57,31 @@ public class positon_eval_refactor
         scored_board current_board;
         move current_move;
         eval_move[] evaluations = new eval_move[len];
+        eval_move current;
+        if(len == 0)
+            return new eval_move(-1,-1,-1,-1,special);
+        eval_move max = new eval_move(-1,-1,-1,-1,special);
         for(int i = 0; i < len; i++)
         {
             current_board = scored_board.copy_board(board_in);
             current_move = moves_in[i];
             assert(valid.validinternal(board_in,current_move));
             current_board.apply_move(current_move);//this better be updating scores
-            //add tons of asserts
-            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,Prune_data,dot_node)).get_value());
-        }
-        eval_move current;
-        if(len == 0)
-            return new eval_move(-1,-1,-1,-1,special);
-        eval_move min = evaluations[0];
-        for(int i = 0; i < len; i++)
-        {
+            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,new prune_data(max,true),dot_node)).get_value());
             current = evaluations[i];
-            if(min.get_value() == special)
-                min = current;
-            if(current.get_value() < min.get_value() && current.get_value() != special)
-                min = current;
+            if(max.get_value() == special)
+                max = current;
+            if(current.get_value() > max.get_value() && current.get_value() != special)
+                max = current;
+            if(Prune_data != null)
+            {
+                assert(!Prune_data.maxq);
+                if(max.get_value() >= Prune_data.Eval_move.get_value())
+                    return max;
+            }
         }
-        return min;
+        dot_writers.complete_node(board_in.get_eval(),board_in,dot_node,white_to_moveq,depth,evaluations,len,max);
+        return max;
         //return evaluations;
     }
     public static eval_move call_generated_min(scored_board board_in,move[] moves_in,int len,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
@@ -48,28 +89,31 @@ public class positon_eval_refactor
         scored_board current_board;
         move current_move;
         eval_move[] evaluations = new eval_move[len];
+        if(len == 0)
+            return new eval_move(-1,-1,-1,-1,special);
+        eval_move min = new eval_move(-1,-1,-1,-1,special);
+        eval_move current;
         for(int i = 0; i < len; i++)
         {
             current_board = scored_board.copy_board(board_in);
             current_move = moves_in[i];
             assert(valid.validinternal(board_in,current_move));
             current_board.apply_move(current_move);//this better be updating scores
-            //add tons of asserts
-            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,Prune_data,dot_node)).get_value());
-        }
-        eval_move current;
-        if(len == 0)
-            return new eval_move(-1,-1,-1,-1,special);
-        eval_move max = evaluations[0];
-        for(int i = 1; i < len; i++)
-        {
+            evaluations[i] = new eval_move(current_move,(eval(current_board,!white_to_moveq,depth - 1,new prune_data(min,false),dot_node)).get_value());
             current = evaluations[i];
-            if(max.get_value() == special)
-                max = current;
-            if(current.get_value() > max.get_value() && current.get_value() != special)
-                max = current;
+            if(min.get_value() == special)
+                min = current;
+            if(current.get_value() < min.get_value() && current.get_value() != special)
+                min = current;
+            if(Prune_data != null)
+            {
+                assert(Prune_data.maxq);
+                if(min.get_value() <= Prune_data.Eval_move.get_value())
+                    return min;
+            }
         }
-        return max;
+        dot_writers.complete_node(board_in.get_eval(),board_in,dot_node,white_to_moveq,depth,evaluations,len,min);
+        return min;
         
     }
     public static eval_move eval(scored_board board_in,boolean white_to_moveq,int depth,prune_data Prune_data,int dot_node)
@@ -97,7 +141,6 @@ public class positon_eval_refactor
             {
                 len = generators.generate_white(board_in,moves,0);
                 eval_to_return = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
-                //dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth,evals,len,to_return);
                 return eval_to_return;
             }
             else
@@ -106,7 +149,7 @@ public class positon_eval_refactor
                 for (int i =0;i < len ;i++ ) assert(valid.is_black(moves[i].getPiece(board_in)));
                 eval_to_return = call_generated(board_in,moves,len,white_to_moveq,depth,Prune_data,current_dot);
                 //eval_move to_return = min_max(evals,len,white_to_moveq,depth);
-                //dot_writers.complete_node(board_in.get_eval(),board_in,current_dot,white_to_moveq,depth,evals,len,to_return);
+                
                 return eval_to_return;
             }
         }
