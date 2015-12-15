@@ -16,7 +16,8 @@ public class Curses_command_line_ui
             //experimental
             scored_board temp = new scored_board(global_board);
             positon_eval_refactor.dot_writers.init();
-            move current_move = new move(positon_eval_refactor.eval_top(temp,true,4,null,positon_eval_refactor.dot_writers.add_node()));
+            curses_initq.write_message(new String[] {"thinking deep and","buggy(hopefully not) ","thoughts....",""});
+            move current_move = new move(positon_eval_refactor.eval_top(temp,true,5,null,positon_eval_refactor.dot_writers.add_node()));
             //do ai moves
             positon_eval_refactor.dot_writers.close();
             global_board.apply_move(current_move);
@@ -78,7 +79,8 @@ public class Curses_command_line_ui
             //experimental
             scored_board temp = new scored_board(global_board);
             positon_eval_refactor.dot_writers.init();
-            move current_move = new move(positon_eval_refactor.eval_top(temp,false,4,null,positon_eval_refactor.dot_writers.add_node()));
+            curses_initq.write_message(new String[] {"thinking deep and","buggy(hopefully not) ","",""});
+            move current_move = new move(positon_eval_refactor.eval_top(temp,false,5,null,positon_eval_refactor.dot_writers.add_node()));
             //do ai moves
             positon_eval_refactor.dot_writers.close();
             global_board.apply_move(current_move);
