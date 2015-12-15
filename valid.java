@@ -201,9 +201,19 @@ public class valid
 
 	public static boolean w_king(int[][] board_in, int x_in, int y_in, int x_end, int y_end) //castling ! implemented
 	{
-		if(abs(x_in - x_end) > 1 && 0 == abs(y_in - y_end))//castling
+		if(abs(x_in - x_end) > 1 && 0 == abs(y_in - y_end) && y_in == 7)//castling
 		{
-			
+			if(x_in == 3 && y_in == 7 && (x_end == 1) && y_end == 7 )
+			{
+				if(board_in[7][0] == pieces.wrook && board_in[7][1] == pieces.blank && board_in[7][2] == pieces.blank)
+					return true;
+			}
+			else if(x_in == 3 && y_in == 7 && (x_end == 5) && y_end == 7 )//| x_end == 5)
+			{
+				if(board_in[7][7] == pieces.wrook && board_in[7][6] == pieces.blank && board_in[7][5] == pieces.blank && board_in[7][4] == pieces.blank)
+					return true;
+			}
+			return false;
 		}
 		if (on_board(x_end,y_end))
 		{
@@ -256,6 +266,20 @@ public class valid
 
 	public static boolean b_king(int[][] board_in, int x_in, int y_in, int x_end, int y_end) 
 	{
+		if(abs(x_in - x_end) > 1 && 0 == abs(y_in - y_end) && y_in == 0)//castling
+		{
+			if(x_in == 3 && y_in == 0 && (x_end == 1) && y_end == 0 )
+			{
+				if(board_in[0][0] == pieces.wrook && board_in[0][1] == pieces.blank && board_in[0][2] == pieces.blank)
+					return true;
+			}
+			else if(x_in == 3 && y_in == 0 && (x_end == 5) && y_end == 0 )//| x_end == 5)
+			{
+				if(board_in[0][7] == pieces.wrook && board_in[0][6] == pieces.blank && board_in[0][5] == pieces.blank && board_in[0][4] == pieces.blank)
+					return true;
+			}
+			return false;
+		}
 		if(abs(y_in - y_end) > 1)
 				return false;
 			if(abs(x_in - x_end) > 1)
@@ -265,12 +289,6 @@ public class valid
 			if(is_white(board_in[y_end][x_end]) || board_in[y_end][x_end] == pieces.blank)
 				if(abs(y_in - y_end) == 1 || abs(x_in -x_end) == 1)
 					return true;
-				else
-					{/*printf("distance");*/}
-			else
-				{/*printf("is white is pieces.blank endpiece:%d\n",board_in[y_end][x_end]);*/}
-		else
-			{/*printf("on board_in[][]");*/}
 		return false;
 	}
 

@@ -25,7 +25,7 @@ public class scored_board extends board
 		}
 		else
 			return false;
-	}
+	}//fix this if using carry
 	public boolean valid_move(move move_in)
 	{
 		assert(false);
@@ -36,7 +36,7 @@ public class scored_board extends board
 		}
 		else
 			return false;
-	}
+	}//fix this if usig carry
 	public void update_eval(move move_in)
 	{
 	    //as of now uses slow calculation methods. will fix later.
