@@ -1,3 +1,9 @@
+This was a high school first semester AP Computer Science Project. It has been left as was, all flaws included. 
+
+
+
+
+Original Readme:
 # sem1-final-project
 
 Readme:
